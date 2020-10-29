@@ -6,3 +6,10 @@ https://cloud.google.com/healthcare/docs/resources/public-datasets/tcia
 
 https://cloud.google.com/healthcare/docs/resources/public-datasets/tcia#gcp_data_access
 -link to healthcare datasets 
+
+
+https://db.rstudio.com/databases/big-query/
+-this is how to connect big-query data to rstudio
+
+https://rpubs.com/shivanandiyer/BigRQuery
+-article showing how to connect bigquery to R
