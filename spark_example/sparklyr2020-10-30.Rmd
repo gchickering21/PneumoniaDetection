@@ -1,0 +1,157 @@
+---
+title: "sparklyr example"
+author: "Nicholas Horton (nhorton@amherst.edu)"
+date: "October 30, 2020"
+output: 
+  html_document:
+    fig_height: 3
+    fig_width: 5
+  pdf_document:
+    fig_height: 3
+    fig_width: 5
+  word_document:
+    fig_height: 3
+    fig_width: 5
+---
+
+The `sparklyr` package facilitates access to Spark clusters from within RStudio at hadoop2-rstudio.amherst.edu.  See http://spark.rstudio.com for details of the implementation.
+
+
+```{r, setup, include=FALSE}
+library(tidyverse)
+library(mosaic) # Load additional packages here 
+# Some customization.  You can alter or delete as desired (if you know what you are doing).
+knitr::opts_chunk$set(
+  tidy=FALSE,     # display code as typed
+  size="small")   # slightly smaller font for code
+```
+
+
+```{r eval=FALSE}
+install.packages("devtools")    # these are already installed on the server
+devtools::install_github("rstudio/sparklyr")
+```
+
+```{r eval=FALSE}
+library(sparklyr)
+spark_install(version = "1.6.1")  # once only
+```
+
+```{r message=FALSE}
+library(sparklyr)
+sc <- spark_connect(master = "yarn-client")
+spark_version(sc)
+```
+The returned Spark connection (sc) provides a remote dplyr data source to the Spark cluster.
+
+For more information on connecting to remote Spark clusters see the Deployment section.
+
+#### Reading Data
+
+You can copy R data frames into Spark using the copy_to function (more typically though you’ll read data within the Spark cluster using the spark_read family of functions). For the examples below we’ll copy some datasets from R into Spark (note that you may need to install the nycflights13 and Lahman packages in order to execute this code):
+
+```{r}
+iris_tbl <- copy_to(sc, iris)
+flights_tbl <- copy_to(sc, nycflights13::flights, "flights")
+batting_tbl <- copy_to(sc, Lahman::Batting, "batting")
+```
+
+You can list all of the available tables (including those that were already pre-loaded within the cluster) using the dplyr src_tbls function:
+
+```{r}
+src_tbls(sc)
+```
+
+#### Using dplyr
+
+We can new use all of the available dplyr verbs against the tables within the cluster. Here’s a simple filtering example:
+
+```{r}
+# filter by departure delay
+flights_tbl %>% filter(dep_delay == 2)
+```
+
+#### Intro to accessing Spark via dplyr
+
+The introduction to dplyr provides additional dplyr examples you can try. For example, consider the last example from the tutorial which plots data on flight delays:
+
+```{r}
+delay <- flights_tbl %>% 
+  group_by(tailnum) %>%
+  summarise(count = n(), dist = mean(distance, na.rm = TRUE), delay = mean(arr_delay)) %>%
+  filter(count > 20, dist < 2000, !is.na(delay)) %>%
+  collect
+
+# plot delays
+library(ggplot2)
+ggplot(delay, aes(dist, delay)) +
+  geom_point(aes(size = count), alpha = 1/2) +
+  geom_smooth() +
+  scale_size_area(max_size = 2)
+```
+
+#### Window Functions
+
+dplyr window functions are also supported, for example:
+
+```{r}
+batting_tbl %>%
+  select(playerID, yearID, teamID, G, AB:H) %>%
+  arrange(playerID, yearID, teamID) %>%
+  group_by(playerID) %>%
+  filter(min_rank(desc(H)) <= 2 & H > 0)
+
+```
+
+
+For additional documentation on using dplyr with Spark see the dplyr section.
+
+#### Using MLlib
+
+You can orchestrate machine learning algorithms in a Spark cluster via the MLlib functions in sparklyr. These functions connect to a set of high-level APIs built on top of DataFrames that help you create and tune machine learning workflows.
+
+In this example we’ll use `ml_linear_regression` to fit a linear regression model. We’ll use the built-in mtcars dataset, and see if we can predict a car’s fuel consumption (mpg) based on its weight (wt), and the number of cylinders the engine contains (cyl). We’ll assume in each case that the relationship between mpg and each of our features is linear.
+
+```{r}
+# copy mtcars into spark
+mtcars_tbl <- copy_to(sc, mtcars)
+
+# transform our data set, and then partition into 'training', 'test'
+partitions <- mtcars_tbl %>%
+  filter(hp >= 100) %>%
+  mutate(cyl8 = cyl == 8) %>%
+  sdf_random_split(training = 0.5, test = 0.5, seed = 1099)
+
+# fit a linear model to the training dataset
+fit <- partitions$training %>%
+  ml_linear_regression(response = "mpg", features = c("wt", "cyl"))
+```
+
+
+For linear regression models produced by Spark, we can use `summary()` to learn a bit more about the quality of our fit, and the statistical significance of each of our predictors.
+
+```{r}
+summary(fit)
+```
+
+Spark machine learning supports a wide array of algorithms and feature transformations and as illustrated above it’s easy to chain these functions together with dplyr pipelines. To learn more see the MLlib section.
+
+#### Extensions
+
+The facilities used internally by sparklyr for its dplyr and MLlib interfaces are available to extension packages via the sparkapi package. Since Spark is a general purpose cluster computing system there are many potential applications for extensions (e.g. interfaces to custom machine learning pipelines, interfaces to 3rd party Spark packages, etc.).
+
+
+To learn more about creating extensions see the Extensions section.
+
+```{r}
+spark_disconnect(sc)
+```
+
+
+#### RStudio IDE
+
+The latest RStudio Preview Release of the RStudio IDE includes integrated support for Spark and the sparklyr package, including tools for creating and managing Spark connections.
+
+Once you’ve installed the sparklyr package, you should find a new Spark pane within the IDE. This pane includes a New Connection dialog which can be used to make connections to local or remote Spark instances.
+
+Once you’ve connected to Spark you’ll be able to browse the tables contained within the Spark cluster. The Spark DataFrame preview uses the standard RStudio data viewer. The RStudio IDE features for sparklyr are available now as part of the RStudio Preview Release.
