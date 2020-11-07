@@ -13,3 +13,6 @@ https://db.rstudio.com/databases/big-query/
 
 https://rpubs.com/shivanandiyer/BigRQuery
 -article showing how to connect bigquery to R
+
+Where I got the dataset from
+-https://archive.ics.uci.edu/ml/datasets/Deepfakes%3A+Medical+Image+Tamper+Detection
