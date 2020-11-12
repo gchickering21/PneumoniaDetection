@@ -1,0 +1,35 @@
+---
+title: "Start"
+author: "Graham Chickering"
+date: "10/28/2020"
+output: pdf_document
+---
+
+```{r}
+knitr::opts_chunk$set(echo = TRUE)
+library(bigrquery) # R Interface to Google BigQuery API  
+library(dplyr) # Grammar for data manipulation  
+library(DBI) # Interface definition to connect to databases 
+library(ggplot2) # Data Viz package
+```
+```{r}
+projectid<-'image-analysis-detection'
+datasetid<-'politics'
+bq_conn <-  dbConnect(bigquery(), 
+                            project = projectid,
+                            dataset = datasetid, 
+                            use_legacy_sql = FALSE
+                      )
+```
+
+```{r}
+bigrquery::dbListTables(bq_conn)
+politics <- dplyr::tbl(bq_conn, 
+                              "political_candidates")
+```
+
+```{r}
+trial<-politics %>% collect()
+glimpse(trial)
+```
+
