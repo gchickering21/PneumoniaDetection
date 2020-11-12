@@ -5,7 +5,7 @@ date: "11/7/2020"
 output: pdf_document
 ---
 
-```{r}
+```{r, message=FALSE}
 library(tensorflow)
 library(tfdatasets)
 library(keras)
@@ -34,15 +34,18 @@ names(objects)
 
 all_images<-as.data.frame(objects[-c(1,2),-3])
 
-image<-gcs_get_object(objects$name[[9]], saveToDisk="patient0.jpeg", overwrite = TRUE)
+image<-gcs_get_object(objects$name[[9]], saveToDisk="patient0.png", overwrite = TRUE)
 
 ```
 
 
 ```{r, warnings=FALSE, message=FALSE}
 
-data_dir <- gs_data_dir("gs://medical_images/archive") 
-medical_data <- read_csv(file.path(data_dir, "DL_info.csv")) 
+medical_data<-gcs_get_object(objects$name[[2]])
+
+#data_dir <- gs_data_dir("gs://medical_images/archive") 
+#medical_data<-read_csv(file.path("gs://medical_images/archiveDL_info.csv")) 
+#medical_data <- read_csv(file.path(data_dir, "DL_info.csv")) 
 
 path<-"gs://medical_images/archive/minideeplesion/"
 path2<-"archive/minideeplesion/"
@@ -83,7 +86,8 @@ ggplot(data = patients, aes(x = patient_age, fill = Gender)) +
 patients2<-patients %>% filter(lesion_type != "Unknown")
 
 ggplot(patients2, aes(x=patient_age, fill = lesion_type)) +
-  geom_density(alpha = 0.2)
+  geom_density(alpha = 0.2) +
+  labs(x = "Patient Age", title = "Density Plot of Patient Ages by Lesion Type")
 ```
 
 
@@ -92,7 +96,7 @@ ggplot(data = patients, aes(x = lesion_type, fill=Gender)) +
   geom_bar() +
   coord_flip()+
   scale_fill_manual(values = c("#69b3a2", "#404080")) +
-  labs(x = "Legion Type", title = "Histogram of Lesion Type by Gender")
+  labs(x = "Legion Type", title = "Bar Plot of Lesion Type by Gender")
 ```
 
 ```{r}
@@ -100,7 +104,7 @@ patients2<-patients %>% filter (radius<250 & lesion_type != "Unknown")
 
 ggplot(data = patients2, aes(x = radius,fill=lesion_type)) +
   geom_density(alpha=0.2) +
-  labs(x = "Radius", title = "Histogram of Radius by Lesion Type")
+  labs(x = "Radius", title = "Density Plot of Radius by Lesion Type")
 ```
 
 
@@ -133,8 +137,11 @@ library(dplyr)
 
 
 ```{r}
+#spark_install()
 
 sc <- spark_connect(master = "local", version = "2.3")
+
+spark_read_csv()
 
 medical <- copy_to(sc, medical_data)
 images<-copy_to(sc,objects )
@@ -148,6 +155,18 @@ spark_disconnect(sc)
 
 
 ## Data Preprocessing To Set Up Testing and Training Sets
+
+
+```{r}
+library(imager)
+
+im <- load.image("patient0.jpeg") %>% grayscale()
+plot(im)
+dim(im)
+x<-as.matrix(im)
+```
+
+
 
 
 ```{r}
