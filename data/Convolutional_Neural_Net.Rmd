@@ -7,6 +7,7 @@ output: pdf_document
 
 ```{r, message=FALSE}
 library(tensorflow)
+library(reticulate) 
 # library(tfdatasets)
 library(keras)
 #library(cloudml)
@@ -15,6 +16,8 @@ library(keras)
 # library(ggplot2)
 # library(readr) 
 library(tictoc)
+#library(rsparkling)
+#library(h2o)
 ```
 
 
@@ -27,18 +30,18 @@ img_height <- 20
 target_size <- c(img_width, img_height)
 
 # RGB = 3 channels
-channels <- 3
+channels <- 1
 
 batch_size<-10
 
 # path to image folders
-train_image_files_path<- file.path("/Users/grahamchickering/Downloads/chest_xray/val")
-#train_image_files_path <- file.path("/Users/grahamchickering/Downloads/chest_xray/train")
+#train_image_files_path<- file.path("/Users/grahamchickering/Downloads/chest_xray/val")
+train_image_files_path <- file.path("/Users/grahamchickering/Downloads/chest_xray/train")
 #val_image_files_path <- file.path("/Users/grahamchickering/Downloads/chest_xray/val")
 #test_image_files_path<-file.path("/Users/grahamchickering/Downloads/chest_xray/test")
 ```
 
-```{r}
+```{r, message=FALSE}
 train_data_gen = image_data_generator(
   rescale = 1/255,
   validation_split=0.2
@@ -59,7 +62,7 @@ train_image_array_gen <- flow_images_from_directory(train_image_files_path,
                                           train_data_gen,
                                           subset = 'training',
                                           target_size = target_size,
-                                          #color_mode="grayscale",
+                                          color_mode="grayscale",
                                           class_mode = "binary",
                                           classes = chest_list,
                                           shuffle=TRUE,
@@ -69,7 +72,7 @@ train_image_array_gen <- flow_images_from_directory(train_image_files_path,
 val_image_array_gen <- flow_images_from_directory(train_image_files_path, 
                                           train_data_gen,
                                           subset = 'validation',
-                                          #color_mode="grayscale",
+                                          color_mode="grayscale",
                                           target_size = target_size,
                                           class_mode = "binary",
                                           classes = chest_list,
@@ -114,43 +117,18 @@ epochs <- 2
 ```
 
 ```{r}
-model <- keras_model_sequential()
+model <- keras_model_sequential() %>% 
+  layer_conv_2d(filters = 32, kernel_size = c(3,3), activation = "relu", 
+                input_shape = c(20,20,1)) %>% 
+  layer_max_pooling_2d(pool_size = c(2,2)) %>% 
+  layer_conv_2d(filters = 64, kernel_size = c(3,3), activation = "relu") %>% 
+  layer_max_pooling_2d(pool_size = c(2,2)) %>% 
+  layer_conv_2d(filters = 64, kernel_size = c(3,3), activation = "relu")
 
-# add layers
-model %>%
-  layer_conv_2d(filter = 32, kernel_size = c(3,3), padding = "same", input_shape = c(img_width, img_height, channels)) %>%
-  layer_activation("relu") %>%
-  
-  # Second hidden layer
-  layer_conv_2d(filter = 16, kernel_size = c(3,3), padding = "same") %>%
-  layer_activation_leaky_relu(0.5) %>%
-  layer_batch_normalization() %>%
-
-  # Use max pooling
-  layer_max_pooling_2d(pool_size = c(2,2)) %>%
-  layer_dropout(0.25) %>%
-  
-  # Flatten max filtered output into feature vector 
-  # and feed into dense layer
-  layer_flatten() %>%
-  layer_dense(100) %>%
-  layer_activation("relu") %>%
-  layer_dropout(0.5) %>%
-
-  # Outputs from dense layer are projected onto output layer
-  layer_dense(output_n) %>% 
-  layer_activation("softmax")
-
-
-
-
-# model <- keras_model_sequential() %>% 
-#   layer_conv_2d(filters = 32, kernel_size = c(3,3), activation = "relu", 
-#                 input_shape = c(20,20,1)) #%>% 
-  # layer_max_pooling_2d(pool_size = c(2,2)) %>% 
-  # layer_conv_2d(filters = 64, kernel_size = c(3,3), activation = "relu") %>% 
-  # layer_max_pooling_2d(pool_size = c(2,2)) %>% 
-  # layer_conv_2d(filters = 64, kernel_size = c(3,3), activation = "relu")
+model %>% 
+  layer_flatten() %>% 
+  layer_dense(units = 64, activation = "relu") %>% 
+  layer_dense(units = 10, activation = "softmax")
 
 ```
 
@@ -167,6 +145,10 @@ model %>% compile(
 )
 summary(model)
 ```
+```{r}
+gen <- keras:::as_generator.function(batch_generator(iris, batch_size))
+gen <- keras:::as_generator.function()
+```
 
 
 ```{r}
@@ -175,8 +157,8 @@ hist <- model %>% fit_generator(
   train_image_array_gen,
   
   # epochs
-  steps_per_epoch = as.integer(train_samples / batch_size), 
-  epochs = epochs, 
+  steps_per_epoch = 1, 
+  epochs = 1, 
   
   # validation data
   # validation_data = valid_image_array_gen,
