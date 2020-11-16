@@ -1,0 +1,40 @@
+---
+title: "CloudStorage"
+author: "Graham Chickering"
+date: "11/15/2020"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+gcs_auth(json_file="account_credentials.json")
+gcs_list_buckets("image-analysis-detection")
+```
+
+```{r}
+gcs_get_bucket("chest-xray-train")
+gcs_global_bucket("chest-xray-train")
+train_objects <- gcs_list_objects() %>% mutate(id= row_number())
+
+gcs_get_bucket("chest-xray-validation")
+gcs_global_bucket("chest-xray-validation")
+validation_objects <- gcs_list_objects() %>% mutate(id= row_number())
+
+gcs_get_bucket("chest-xray-test")
+gcs_global_bucket("chest-xray-test")
+test_objects <- gcs_list_objects() %>% mutate(id= row_number())
+```
+
+```{r}
+# gcs_get_bucket("chest-xray-medical")   
+# gcs_global_bucket("chest-xray-medical")
+# all_objects <- gcs_list_objects() %>% mutate(id= row_number())
+# length(all_objects)
+
+#trial<-gcs_get_object(all_objects)
+#image<-gcs_get_object(all_objects$name[[1]])
+```
+
