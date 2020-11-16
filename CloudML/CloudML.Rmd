@@ -1,0 +1,36 @@
+---
+title: "CloudML"
+author: "Graham Chickering"
+date: "11/15/2020"
+output: pdf_document
+---
+
+```{r}
+# install.packages("cloudml")
+# library(cloudml)
+# gcloud_install()
+```
+
+
+```{r}
+# library(tensorflow)
+# library(tfdatasets)
+library(keras)
+library(cloudml)
+library(tfruns)
+library(tfestimators)
+```
+
+```{r}
+library(tfruns)
+#training_run("train.R")
+
+```
+
+
+```{r}
+gcloud_init()
+
+cloudml_train("train.R")
+```
+
