@@ -6,7 +6,15 @@ output: pdf_document
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+library(tensorflow)
+library(tfdatasets)
+library(keras)
+library(cloudml)
+library(tidyverse)
+library(googleCloudStorageR)
+library(sparklyr)
+library(ggplot2)
+library(readr) 
 ```
 
 ```{r}
@@ -26,6 +34,12 @@ validation_objects <- gcs_list_objects() %>% mutate(id= row_number())
 gcs_get_bucket("chest-xray-test")
 gcs_global_bucket("chest-xray-test")
 test_objects <- gcs_list_objects() %>% mutate(id= row_number())
+```
+
+
+
+```{r}
+gs_rsync(source="gs://chest-xray-train", destination="/Users/grahamchickering/Desktop", recursive=TRUE )
 ```
 
 ```{r}

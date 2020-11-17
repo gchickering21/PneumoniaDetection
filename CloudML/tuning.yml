@@ -1,12 +1,16 @@
 trainingInput:
+  scaleTier: CUSTOM
+  runtimeVersion: "2.1"
+  pythonVersion: "3.7"
+  masterType: standard_gpu
   hyperparameters:
     goal: MAXIMIZE
-    hyperparameterMetricTag: accuracy
+    hyperparameterMetricTag: val_acc
     maxTrials: 10
     maxParallelTrials: 2
     params:
-      - parameterName: learning_rate
+      - parameterName: dropout1
         type: DOUBLE
-        minValue: 0.01
-        maxValue: 0.02
+        minValue: 0.2
+        maxValue: 0.6
         scaleType: UNIT_LINEAR_SCALE

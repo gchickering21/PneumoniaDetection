@@ -46,15 +46,6 @@ train_data_gen = image_data_generator(
   rescale = 1/255,
   validation_split=0.2
 )
-
-# val_data_gen <- image_data_generator(
-#   rescale = 1/255
-#   )
-# 
-# test_data_gen<-image_data_generator(
-#   rescale = 1/255
-#   )  
-
 ```
 
 ```{r}
@@ -133,8 +124,6 @@ model %>%
 ```
 
 ```{r}
-
-
 model %>% compile(
   optimizer = "adam",
   loss = "sparse_categorical_crossentropy",
@@ -144,10 +133,11 @@ summary(model)
 ```
 
 ```{r}
+tensorboard("logs/run_a")
 hist <- model %>% fit_generator(
+  callbacks = callback_tensorboard("logs/run_a"),
   # training data
   train_image_array_gen,
-  
   # epochs
   steps_per_epoch = as.integer(train_samples / batch_size), 
   epochs = epochs, 
@@ -158,4 +148,72 @@ hist <- model %>% fit_generator(
 )
 ```
 
+```{r}
+plot(hist)
+```
+```{r}
+model %>% save_model_hdf5("my_model.h5")
+model <- load_model_hdf5("my_model.h5")
+```
+
+##Testing the model
+```{r}
+ test_image_files_path<-file.path("/Users/grahamchickering/Downloads/chest_xray/test")
+```
+
+```{r}
+test_datagen <- image_data_generator(rescale = 1/255)
+
+test_generator <- flow_images_from_directory(
+        test_image_files_path,
+        test_datagen,
+        color_mode="grayscale",
+        target_size = target_size,
+        class_mode = "binary",
+        classes = chest_list,
+        batch_size = 1,
+        shuffle = FALSE,
+        seed = 42)
+```
+
+```{r, warning=FALSE, message=FALSE}
+model %>%
+  evaluate_generator(test_generator, 
+                     steps = as.integer(test_generator$n))
+```
+```{r}
+classes <- test_generator$classes %>%
+  factor() %>%
+  table() %>%
+  as_tibble()
+colnames(classes)[1] <- "value"
+classes
+```
+
+```{r}
+indices <- test_generator$class_indices %>%
+  as.data.frame() %>%
+  gather() %>%
+  mutate(value = as.character(value)) %>%
+  left_join(classes, by = "value")
+indices
+```
+
+```{r}
+test_generator$reset()
+predictions <- model %>% 
+  predict_generator(
+    generator = test_generator,
+    steps = as.integer(test_generator$n)
+    ) %>%
+  round(digits = 2) %>%
+  as_tibble()
+predictions
+
+colnames(predictions) <- indices$key
+predictions
+predictions <- predictions %>%
+   mutate(truth_idx = as.character(test_generator$classes)) %>%
+   left_join(indices, by = c("truth_idx" = "value"))
+```
 

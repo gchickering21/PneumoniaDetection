@@ -33,10 +33,19 @@ library(tfruns)
 ```{r}
 gcloud_init()
 
-job<-cloudml_train("mnist.R", config="tuning.yml")
+job<-cloudml_train("mnist_mlp.R", config="tuning.yml")
 ```
+
+
+
+
+```{r}
+job_collect('cloudml_2020_11_17_044628399')
+```
+
 
 ```{r}
 job_status(job)
+job_collect()
 ```
 
