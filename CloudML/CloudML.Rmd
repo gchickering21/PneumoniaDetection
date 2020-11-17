@@ -9,11 +9,13 @@ output: pdf_document
 # install.packages("cloudml")
 # library(cloudml)
 # gcloud_install()
+#install_tensorflow(version = "2.1.0")
 ```
 
 
 ```{r}
-# library(tensorflow)
+library(yaml)
+ library(tensorflow)
 # library(tfdatasets)
 library(keras)
 library(cloudml)
@@ -31,6 +33,10 @@ library(tfruns)
 ```{r}
 gcloud_init()
 
-cloudml_train("train.R")
+job<-cloudml_train("mnist.R", config="tuning.yml")
+```
+
+```{r}
+job_status(job)
 ```
 

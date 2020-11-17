@@ -112,8 +112,8 @@ train_samples <- train_image_array_gen$n
 valid_samples <- val_image_array_gen$n
 
 # define batch size and number of epochs
-batch_size <- 10
-epochs <- 2
+batch_size <- 32
+epochs <- 5
 ```
 
 ```{r}
@@ -133,10 +133,7 @@ model %>%
 ```
 
 ```{r}
-# model %>%
-#   layer_flatten() %>%
-#   layer_dense(units = 64, activation = "relu") %>%
-# layer_dense(units = 10, activation = "softmax")
+
 
 model %>% compile(
   optimizer = "adam",
@@ -145,11 +142,6 @@ model %>% compile(
 )
 summary(model)
 ```
-```{r}
-gen <- keras:::as_generator.function(batch_generator(iris, batch_size))
-gen <- keras:::as_generator.function()
-```
-
 
 ```{r}
 hist <- model %>% fit_generator(
@@ -157,16 +149,13 @@ hist <- model %>% fit_generator(
   train_image_array_gen,
   
   # epochs
-  steps_per_epoch = 1, 
-  epochs = 1, 
+  steps_per_epoch = as.integer(train_samples / batch_size), 
+  epochs = epochs, 
   
   # validation data
-  # validation_data = valid_image_array_gen,
-  # validation_steps = as.integer(valid_samples / batch_size)
+  validation_data = val_image_array_gen,
+  validation_steps = as.integer(valid_samples / batch_size)
 )
 ```
 
-```{r}
-sessionInfo()
-```
 

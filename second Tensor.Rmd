@@ -1,0 +1,173 @@
+---
+title: "Tensors"
+author: "Graham Chickering"
+date: "11/16/2020"
+output: pdf_document
+---
+
+```{r}
+library(keras)
+library(tfdatasets)
+library(reticulate)
+```
+
+```{r}
+data_dir <- file.path("/Users/grahamchickering/Downloads/chest_xray/train")
+```
+
+```{r}
+images <- list.files(data_dir, pattern = ".jpeg", recursive = TRUE)
+length(images)
+```
+
+```{r}
+classes <- list.dirs(data_dir, full.names = FALSE, recursive = FALSE)
+classes
+```
+
+```{r}
+list_ds <- file_list_dataset(file_pattern = paste0(data_dir, "/*/*"))
+list_ds %>% reticulate::as_iterator() %>% reticulate::iter_next()
+```
+
+```{r}
+get_label <- function(file_path) {
+  parts <- tf$strings$split(file_path, "/")
+  parts[-2] %>% 
+    tf$equal(classes) %>% 
+    tf$cast(dtype = tf$float32)
+}
+
+decode_img <- function(file_path, height = 28, width = 28) {
+  
+  size <- as.integer(c(height, width))
+  
+  file_path %>% 
+    tf$io$read_file() %>% 
+    tf$image$decode_jpeg(channels = 1) %>% 
+    tf$image$convert_image_dtype(dtype = tf$float32) %>% 
+    tf$image$resize(size = size)
+}
+
+preprocess_path <- function(file_path) {
+  list(
+    decode_img(file_path),
+    get_label(file_path)
+  )
+}
+```
+
+```{r}
+labeled_ds <- list_ds %>% 
+  dataset_map(preprocess_path, num_parallel_calls = tf$data$experimental$AUTOTUNE)
+
+labeled_ds %>% 
+  reticulate::as_iterator() %>% 
+  reticulate::iter_next()
+```
+
+```{r}
+prepare <- function(ds, batch_size, shuffle_buffer_size) {
+  
+  if (shuffle_buffer_size > 0)
+    ds <- ds %>% dataset_shuffle(shuffle_buffer_size)
+  
+  ds %>% 
+    dataset_batch(batch_size) %>% 
+    # `prefetch` lets the dataset fetch batches in the background while the model
+    # is training.
+    dataset_prefetch(buffer_size = tf$data$experimental$AUTOTUNE)
+}
+
+```
+
+```{r}
+model <- keras_model_sequential() %>% 
+  layer_flatten() %>% 
+  layer_dense(units = 128, activation = "relu") %>% 
+  layer_dense(units = 128, activation = "relu") %>% 
+  layer_dense(units = 5, activation = "softmax")
+
+model %>% 
+  compile(
+    loss = "categorical_crossentropy",
+    optimizer = "adam",
+    metrics = "accuracy"
+  )
+```
+
+
+```{r}
+# model %>% 
+#   fit(
+#     prepare(labeled_ds, batch_size = 32, shuffle_buffer_size=100 ),
+#     epochs = 1,
+#     verbose = 2
+#   )
+model %>%
+  fit(labeled_ds %>% dataset_shuffle(50), epochs=5, verbose=2)
+```
+
+```{r}
+batch_size = 32
+steps_per_epoch = 50
+```
+
+```{r}
+mnist_dataset <- function(filename) {
+  dataset <- tfrecord_dataset(filename) %>%
+    dataset_map(function(example_proto) {
+
+      # parse record
+      features <- tf$parse_single_example(
+        example_proto,
+        features = list(
+          image_raw = tf$FixedLenFeature(shape(), tf$string),
+          label = tf$FixedLenFeature(shape(), tf$int64)
+        )
+      )
+
+      # preprocess image
+      image <- tf$decode_raw(features$image_raw, tf$uint8)
+      image <- tf$cast(image, tf$float32) / 255
+
+      # convert label to one-hot
+      label <- tf$one_hot(tf$cast(features$label, tf$int32), 10L)
+
+      # return
+      list(image, label)
+    }) %>%
+    dataset_repeat() %>%
+    dataset_shuffle(1000) %>%
+    dataset_batch(batch_size, drop_remainder = TRUE) %>%
+    dataset_prefetch(1)
+}
+
+
+```
+
+```{r}
+model <- keras_model_sequential() %>%
+  layer_dense(units = 256, activation = 'relu', input_shape = c(784)) %>%
+  layer_dropout(rate = 0.4) %>%
+  layer_dense(units = 128, activation = 'relu') %>%
+  layer_dropout(rate = 0.3) %>%
+  layer_dense(units = 10, activation = 'softmax')
+
+model %>% compile(
+  loss = 'categorical_crossentropy',
+  optimizer = optimizer_rmsprop(),
+  metrics = c('accuracy')
+)
+```
+
+```{r}
+history <- model %>% fit(
+  mnist_dataset(data_dir),
+  steps_per_epoch = steps_per_epoch,
+  epochs = 20
+  #validation_data = mnist_dataset("mnist/validation.tfrecords"),
+  #validation_steps = steps_per_epoch
+)
+```
+
