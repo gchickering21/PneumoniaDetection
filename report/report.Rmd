@@ -90,14 +90,13 @@ For this project, I was specifically focused on creating a model that would woul
 
 ## Neural Networks
 
-Convolutional Neural Networks (CNN) at a high level are a form of deep learning that an image as an inputs and eventually classifies it under a certain category. These types of networks are heavily used to perform tasks such as facial recognition, object detection, and image classification to just list a few. CNN's are a specific type of neural network,which more generally falls under the branch of deep learning. Neural networks are extremely popular today due to recent advances in both the algorithms for the models and the computer architecture which allows for much faster processing times of these complex models.
+Convolutional Neural Networks (CNN) at a high level are a form of deep learning thattakes an image as an input and eventually classifies it under a certain category. These types of networks are used heavily to perform tasks such as facial recognition, object detection, and image classification to just list a few. CNN's are a specific type of neural network, which falls under the branch of machine learning called deep learning. Neural networks are extremely popular today due to recent advances in both the algorithms for the models and the computer architecture which allows for much faster processing times of these complex models.
 
-### Add image of Neural Networks 
+```{r sample-fig6, echo=FALSE, fig.align="center", out.width = "75%", out.height = "25%", fig.cap="Neural Network example"}
+knitr::include_graphics("images/neural_net.jpeg")
+```
 
-This figure above shows an example of what the underlying structure of a neural network looks like. This example contains 
-
-Feels like Im copying from the book 
-
+This figure above shows an example of what the underlying structure of a neural network looks like (see figure 6, ADD Source). The neural network show in this example consists of one input layer, one hidden layer with 4 hidden units, and then one output layer. The input layer would be the exact data you are feeding into the model, so for this picture this would mean there was two examples being fed into network to train the model. Then we can see how each of the input layers are connected to three of the gray nodes in the hidden layer. While this model only has one hidden layer and the inputs are only connected to 3 of the hidden units, in other models one could create multiple hidden layers, each with a different number of hidden units, and the number of units that are connected together from layer to layer can vary as well. After that we can see that there is one output layer for this example, but other networks can contain varying numbers of output units as well. Neural networks in general can contain differing number of hidden layers, hidden units, input and output units and vary based on the data they have and the problem they are trying to solve. In general data is fed into the model, it is passed through the network using weights, and then often trained using a technique called backwards propagation. This technique is able to optimize the model by comparing the result found by the model to the true results, and then working backwards through the model to update the weights so that the model can better classify the input data. Neural networks in general have been shown to be extremely successful at a broad range of tasks such as natural language processing to self-driving cars and everything inbetween. 
 
 ## Convolutional Neural Networks (CNN)
 
@@ -112,16 +111,13 @@ Convolution layers is one of the first layers that begins extracting features fr
 Another type of key layer is the subsampling and pooling layers. Usually the feature map that is created from the previous convolution layer is then fed into a subsampling/pooling layer. These layers work by combining small subsections of the feature map in order to simplify the feature map. The advantages of this include leading to higher computational efficiency by decreasing the size of the features and the number of parameters that are required to learn, as well as introducing local invariance that helps to generate feature that are more robust to noise from the input images (https://www.mathworks.com/discovery/convolutional-neural-network-matlab.html).
 
 ### Dropout layers 
-Dropout layers are then used to prevent over-fitting of the data set. It can be very easy to create a CNN that gets over-trained but then fails to perform well on the testing set of data. To prevent over-fitting and make the model work well for a broader range of images for general performance, dropout layers are introduced as a form of regularization. Dropout is usually applied to hidden units of layers and works by "during the training phase of a neural network, a fraction of the hidden units are randomly dropped at every iteration. This dropping out of random units requires the remaining units to rescale to account for the missing units which forces the network to learn a redundant representation of the data" (book 537). This makes it so the model is more general and robust to changes in patterns in the data and prevent overfitting. 
+Dropout layers are then used to prevent over-fitting of the data set. It can be very easy to create a CNN that gets over-trained but then fails to perform well on the testing set of data. To prevent over-fitting and make the model work well for a broader range of images for general performance, dropout layers are introduced as a form of regularization. Dropout is usually applied to hidden units of layers and works by "during the training phase of a neural network, a fraction of the hidden units are randomly dropped at every iteration. This dropping out of random units requires the remaining units to rescale to account for the missing units which forces the network to learn a redundant representation of the data" (book 537). This makes it so the model is more generalizable and robust to changes in patterns in the data and prevent overfitting. 
 
 ### Challenges
 
-When working with CNN's, these different types of layers that the network can be built off can all be included multiple times and in different orders. For example one could create a network of just a convolution layer and a dropout layer or someone could create a model that is convolution layer, pooling layer, convolution layer, and then two dropout layers. There is no set rules around what order or how many different layers your network can have.
+When working with CNN's, these different types of layers that the network can be built off can all be included multiple times and in different orders. For example one could create a network of just a convolution layer and a dropout layer or someone could create a model that is convolution layer, pooling layer, convolution layer, and then two dropout layers. There is no set rules around what order or how many different layers your network can have. On top of having unlimited variations of the type of layers within the network, there is also unlimited parameters that one can choose in terms of the size of the feature map, the number of units to pool together in the pooling layer, or the number of units to dropout in the dropout layer to just list a few examples. Due to having so many input parameters that can be changed and altered when it comes to building the model, finding the best possible input parameters and underlying structure of the model can become computationally expensive very quickly. 
 
--hyperparameter tuning
--computationally expensive
--hard to interpret the different layers
-
+On top of CNN's being very computationally expensive to run, being able to interpret the outputs and inputs of individual layers of the network is its own separate issue. Often these types of models are referred to as "black box" models because while a human can understand the input and outputs of the models, it is often hard to decipher and understand what exactly the model is doing inside the box. While there has been promising developments in this area such as Visualizing Activation Layers (add a link ) and Occlusion Sensitivity (add a link) , this still remains an area of the field that a lot of future work can be done in. So while CNN's have been shown to do an incredible job at image classification tasks, optimizing and understanding these types of models is an area that can cause problems and issues. 
 
 ## CNN's with Medical Images
 
@@ -132,21 +128,6 @@ I first started off by having my data split into training, validation, and testi
 
 ##### put in an image that shows the original split in the data
 
-```{r sample-fig6, echo=FALSE, fig.align="center", out.width = "75%", out.height = "25%", fig.cap="Tensors in Tensorflow"}
-knitr::include_graphics("images/dd/model.png")
-```
-
-```{r sample-fig7, echo=FALSE, fig.align="center", out.width = "75%", out.height = "25%", fig.cap="Tensors in Tensorflow"}
-knitr::include_graphics("images/dd/graph.png")
-```
-
-```{r sample-fig8, echo=FALSE, fig.align="center", out.width = "75%", out.height = "25%", fig.cap="Tensors in Tensorflow"}
-knitr::include_graphics("images/dd/tensor.png")
-```
-
-```{r sample-fig9, echo=FALSE, fig.align="center", out.width = "75%", out.height = "25%", fig.cap="Tensors in Tensorflow"}
-knitr::include_graphics("images/dd/acc.png")
-```
 
 # Future Work
 
