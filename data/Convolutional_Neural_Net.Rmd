@@ -8,16 +8,9 @@ output: pdf_document
 ```{r, message=FALSE}
 library(tensorflow)
 library(reticulate) 
-# library(tfdatasets)
+#library(tfdatasets)
 library(keras)
-#library(cloudml)
-# library(tidyverse)
-# library(sparklyr)
-# library(ggplot2)
-# library(readr) 
 library(tictoc)
-#library(rsparkling)
-#library(h2o)
 ```
 
 
@@ -25,20 +18,18 @@ library(tictoc)
 chest_list <- c("NORMAL","PNEUMONIA")
 output_n<-length(chest_list)
 
-img_width <- 20
-img_height <- 20
+img_width <- 32
+img_height <- 32
 target_size <- c(img_width, img_height)
 
-# RGB = 3 channels
+#this is for grayscale images
 channels <- 1
 
-batch_size<-10
+batch_size<-32
 
 # path to image folders
-#train_image_files_path<- file.path("/Users/grahamchickering/Downloads/chest_xray/val")
+##This will need to be changed to the file path on your computer
 train_image_files_path <- file.path("/Users/grahamchickering/Downloads/chest_xray/train")
-#val_image_files_path <- file.path("/Users/grahamchickering/Downloads/chest_xray/val")
-#test_image_files_path<-file.path("/Users/grahamchickering/Downloads/chest_xray/test")
 ```
 
 ```{r, message=FALSE}
@@ -70,14 +61,6 @@ val_image_array_gen <- flow_images_from_directory(train_image_files_path,
                                           shuffle=TRUE,
                                           batch_size=batch_size,
                                           seed = 27)
-# test_image_array_gen <- flow_images_from_directory(test_image_files_path, 
-#                                           test_data_gen,
-#                                           target_size = target_size,
-#                                           subset='testing',
-#                                           class_mode = "categorical",
-#                                           classes = chest_list,
-#                                           batch_size=batch_size,
-#                                           seed = 27)
 ```
 
 ```{r}
@@ -132,7 +115,7 @@ model %>% compile(
 summary(model)
 ```
 
-```{r}
+```{r, warnings=FALSE}
 tensorboard("logs/run_a")
 hist <- model %>% fit_generator(
   callbacks = callback_tensorboard("logs/run_a"),

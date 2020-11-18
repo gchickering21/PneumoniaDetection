@@ -24,46 +24,6 @@
 %% load any required packages here
 
 
-\usepackage{color}
-\usepackage{fancyvrb}
-\newcommand{\VerbBar}{|}
-\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
-\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
-% Add ',fontsize=\small' for more characters per line
-\usepackage{framed}
-\definecolor{shadecolor}{RGB}{248,248,248}
-\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
-\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
-\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
-\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
-\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
-\newcommand{\BuiltInTok}[1]{#1}
-\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
-\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
-\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
-\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
-\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
-\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
-\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
-\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
-\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
-\newcommand{\ExtensionTok}[1]{#1}
-\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
-\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
-\newcommand{\ImportTok}[1]{#1}
-\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
-\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
-\newcommand{\NormalTok}[1]{#1}
-\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
-\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
-\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
-\newcommand{\RegionMarkerTok}[1]{#1}
-\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
-\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
-\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
-\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
-\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
-\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
 
 % Pandoc citation processing
 
@@ -93,7 +53,7 @@
 
 \if0\blind
 {
-  \title{\bf Identify Lesions within CT Scans Using Convolutional Neural Networks}
+  \title{\bf Detecting Pneumonia within CT Scans Using Convolutional Neural Networks}
 
   \author{
         Graham Chickering \\
@@ -108,7 +68,7 @@
   \bigskip
   \bigskip
   \begin{center}
-    {\LARGE\bf Identify Lesions within CT Scans Using Convolutional Neural Networks}
+    {\LARGE\bf Detecting Pneumonia within CT Scans Using Convolutional Neural Networks}
   \end{center}
   \medskip
 } \fi
@@ -118,7 +78,7 @@
 Convolutional Networks are a specific type of Neural Networks that have
 shown to be particularly effective at being able to identify distinct
 objects within images. This technique can be used to identify different
-types of anomalies, such as lesions, within medical images as well as
+sorts of condition, such as pneumonia, within medical images as well as
 detect other sorts of tumors or cancers. In theory this type of network
 is designed based on how the human brain works and the idea that
 multiple levels of neurons are connected together in order to detect and
@@ -127,42 +87,50 @@ neural networks can be very computationally expensive and require large
 amounts of memory and processing capabilities if working with a very
 large dataset. Especially when working in R which has limited memory
 capabilities, trying to run and train this type of model can be very
-slow and ineffective. Thanks to developments in cloud computing and
-distributed data processing engines such as Google Cloud Storage and
-Apache Spark, being able to run and train these types of models within R
-can become much faster and more efficient when trying to analyze large
-amounts of data. While there is more work to be done, this project shows
-how to create an infrastructure that efficiently stores data and trains
-these models when working with the R Studio Environment.
+slow and ineffective. Thanks to developments in cloud computing such as
+Google Cloud Storage and Tensorflow being able to store and run these
+types of models within R can become much faster and more efficient when
+trying to analyze large amounts of data. While there is more work to be
+done, this project shows how to create an infrastructure that
+efficiently stores data and then trains convolutional neural networks
+when working with the R Studio Environment.
 \end{abstract}
 
 \noindent%
-{\it Keywords:} Convolutional Neural Networks, Apache Spark, Google Cloud Storage,
-Lesions, Healthcare
+{\it Keywords:} Convolutional Neural Networks, Google Cloud Storage, Tensorflow, Keras
 \vfill
 
 \newpage
 \spacingset{1.45} % DON'T change the spacing!
 
+\begin{figure}
+
+{\centering \includegraphics[width=0.75\linewidth,height=0.25\textheight]{images/big-data-healthcare} 
+
+}
+
+\caption{Big Data in Healthcare}\label{fig:sample-fig}
+\end{figure}
+
 \hypertarget{introduction}{%
 \section{Introduction}\label{introduction}}
 
-It has been estimated that roughly 80\% of healthcare data is
+It has been estimated that roughly 80\% of health care data is
 unstructured data, which can come in the form of videos, sensor data,
 images, or text. Although hospitals and researchers used to have a hard
 time extracting insights from this type of data, with the recent
 advances that have been made in data science and handling big data, this
-has created new application areas within the healthcare industry in
+has created new application areas within the health care industry in
 sectors such as genomics, drug trials, predicting patient health, and
 medical imagery. Medical imaging research in particular has made
 significant progress recently with researchers being able to use
 different machine learning algorithms to detect different types of
 lesions and cancers from CT and other types of scans. In particular the
-advancements of convolutional neural networks to identify different
-types of lesions and cancers is extremely promising to the medical
-community and can be used to potentially help doctors identify tumors or
-lesions that they might have missed, and reduce the amount of hours and
-amount of expertise required to view CT scans.
+advancements of convolutional neural networks to identify whether or not
+someone has pneumonia has become extremely promising and can be used to
+potentially help doctors identify whether or not someone has pneumonia
+that they might have missed, and reduce the amount of hours and amount
+of expertise required to view CT scans.
 
 When working with medical imagery data sets though one of the first
 problems someone may run into is how to process and handle these large
@@ -184,9 +152,10 @@ you do end up crossing into the threshold where R can no longer store
 all the data in an effective way, there are multiple potential solutions
 in the forms of choosing random subsets of the data, buying a computer
 with larger memory, or use parallelization and using multiple clusters
-to perform the analysis. It is this solution of utilizing distributed
-computing, via the sparklyr package, that will allow us to perform
-computationally expensive analysis on large data sets.
+to perform the analysis. It is this solution of choosing random subsets
+of data, using the keras and tensorflow R packages, that will allow me
+to work with and convert large files of image data into a form that
+models can be trained on them.
 
 On top of the issue of trying to run analysis on large data sets in R
 itself, is the issue of how to best store and load the original
@@ -204,436 +173,351 @@ data gets added to the project. In this project I will take advantage of
 Google Cloud Storage to store my data, which will look and store my data
 on the cloud without having to take up any space on my local machine.
 
-By combining Google Cloud Storage with Apache Spark this will allow me
-to create a large data set consisting of medical images. This data set
-will then be used to train and create a convolutional neural network
-that will try to identify the lesions themselves within the images.
+By combining Google Cloud Storage with Keras and Tensorflow, this will
+allow me to utilize a large data set that consisting of medical images.
+This data set will then be used to train and create a convolutional
+neural networks that will try to identify whether or not someone has
+pneumonia from the images.
 
 This project will allow me to answer the questions of what is the best
-way to store large datasets and perform computationally expensive
+way to store large data sets and perform computationally expensive
 analysis on those data sets? How does one handle and process images so
 that analysis can be performed on them, and how effective are
-convolutional neural networks at identifying anomalies within images?
-
-\hypertarget{work-i-have-completed-so-far}{%
-\subsection{Work I have completed so
-far}\label{work-i-have-completed-so-far}}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{library}\NormalTok{(tensorflow)}
-\KeywordTok{library}\NormalTok{(tfdatasets)}
-\KeywordTok{library}\NormalTok{(keras)}
-\KeywordTok{library}\NormalTok{(cloudml)}
-\KeywordTok{library}\NormalTok{(readr) }
-\KeywordTok{library}\NormalTok{(tidyverse)}
-\KeywordTok{library}\NormalTok{(googleCloudStorageR)}
-\KeywordTok{library}\NormalTok{(googleAuthR)}
-\KeywordTok{library}\NormalTok{(sparklyr)}
-\KeywordTok{library}\NormalTok{(magick)}
-\KeywordTok{library}\NormalTok{(ggplot2)}
-\KeywordTok{library}\NormalTok{(cowplot)}
-\KeywordTok{library}\NormalTok{(reprex)}
-\KeywordTok{library}\NormalTok{(imager)}
-\end{Highlighting}
-\end{Shaded}
-
-\#\# This is where we set up a connection between Google Cloud Storage
-and R
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{gcs_auth}\NormalTok{(}\DataTypeTok{json_file=}\StringTok{"account_credentials.json"}\NormalTok{)}
-
-\KeywordTok{gcs_get_bucket}\NormalTok{(}\StringTok{"medical_images"}\NormalTok{)   }
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## ==Google Cloud Storage Bucket==
-## Bucket:          medical_images 
-## Project Number:  1048020973776 
-## Location:        US 
-## Class:           STANDARD 
-## Created:         2020-11-07 18:56:59 
-## Updated:         2020-11-07 18:56:59 
-## Meta-generation: 1 
-## eTag:            CAE=
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{gcs_global_bucket}\NormalTok{(}\StringTok{"medical_images"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## Set default bucket name to 'medical_images'
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{gcs_get_global_bucket}\NormalTok{()}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## [1] "medical_images"
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{objects <-}\StringTok{ }\KeywordTok{gcs_list_objects}\NormalTok{()}
-
-\NormalTok{all_images<-}\KeywordTok{as.data.frame}\NormalTok{(objects[}\OperatorTok{-}\KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{),}\OperatorTok{-}\DecValTok{3}\NormalTok{])}
-
-\NormalTok{image<-}\KeywordTok{gcs_get_object}\NormalTok{(objects}\OperatorTok{$}\NormalTok{name[[}\DecValTok{9}\NormalTok{]], }\DataTypeTok{saveToDisk=}\StringTok{"patient0.png"}\NormalTok{, }\DataTypeTok{overwrite =} \OtherTok{TRUE}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## 2020-11-12 00:50:23 -- Saved archive/minideeplesion/000001_01_01/109.png to patient0.png (200.9 Kb)
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{medical_data<-}\KeywordTok{gcs_get_object}\NormalTok{(objects}\OperatorTok{$}\NormalTok{name[[}\DecValTok{2}\NormalTok{]])}
-
-\CommentTok{#data_dir <- gs_data_dir("gs://medical_images/archive") }
-\CommentTok{#medical_data<-read_csv(file.path("gs://medical_images/archiveDL_info.csv")) }
-\CommentTok{#medical_data <- read_csv(file.path(data_dir, "DL_info.csv")) }
-
-\NormalTok{path<-}\StringTok{"gs://medical_images/archive/minideeplesion/"}
-\NormalTok{path2<-}\StringTok{"archive/minideeplesion/"}
-
-\NormalTok{medical_data<-medical_data }\OperatorTok{%>%}\StringTok{ }
-\StringTok{   }\NormalTok{janitor}\OperatorTok{::}\KeywordTok{clean_names}\NormalTok{() }\OperatorTok{%>%}\StringTok{ }
-\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{first_part=}\KeywordTok{substr}\NormalTok{(file_name,}\DecValTok{1}\NormalTok{,}\DecValTok{12}\NormalTok{), }\DataTypeTok{second_part=}\KeywordTok{substr}\NormalTok{(file_name,}\DecValTok{14}\NormalTok{,}\DecValTok{20}\NormalTok{), }
-         \DataTypeTok{file_path=}\KeywordTok{paste0}\NormalTok{(path,first_part,}\KeywordTok{paste}\NormalTok{(}\StringTok{"/"}\NormalTok{, second_part, }\DataTypeTok{sep=}\StringTok{""}\NormalTok{)),  }
-         \DataTypeTok{object_path=} \KeywordTok{paste0}\NormalTok{(path2,first_part,}\KeywordTok{paste}\NormalTok{(}\StringTok{"/"}\NormalTok{, second_part, }\DataTypeTok{sep=}\StringTok{""}\NormalTok{)),}
-         \DataTypeTok{radius=}\KeywordTok{substr}\NormalTok{(lesion_diameters_pixel,}\DecValTok{1}\NormalTok{,}\DecValTok{6}\NormalTok{),}
-         \DataTypeTok{lesion_type=}\KeywordTok{case_when}\NormalTok{(}
-\NormalTok{           coarse_lesion_type }\OperatorTok{==}\StringTok{ }\DecValTok{-1} \OperatorTok{~}\StringTok{"Unknown"}\NormalTok{, }
-\NormalTok{           coarse_lesion_type }\OperatorTok{==}\StringTok{ }\DecValTok{1} \OperatorTok{~}\StringTok{ "Bone"}\NormalTok{,}
-\NormalTok{           coarse_lesion_type }\OperatorTok{==}\StringTok{ }\DecValTok{2} \OperatorTok{~}\StringTok{ "Abdomen"}\NormalTok{,}
-\NormalTok{           coarse_lesion_type }\OperatorTok{==}\StringTok{ }\DecValTok{3} \OperatorTok{~}\StringTok{ "Mediastinum"}\NormalTok{,}
-\NormalTok{           coarse_lesion_type }\OperatorTok{==}\StringTok{ }\DecValTok{4} \OperatorTok{~}\StringTok{ "Liver"}\NormalTok{,}
-\NormalTok{           coarse_lesion_type }\OperatorTok{==}\StringTok{ }\DecValTok{5} \OperatorTok{~}\StringTok{"Lung"}\NormalTok{,}
-\NormalTok{           coarse_lesion_type }\OperatorTok{==}\StringTok{ }\DecValTok{6} \OperatorTok{~}\StringTok{ "Kidney"}\NormalTok{,}
-\NormalTok{           coarse_lesion_type }\OperatorTok{==}\StringTok{ }\DecValTok{7} \OperatorTok{~}\StringTok{ "Soft tissue"}\NormalTok{,}
-\NormalTok{           coarse_lesion_type }\OperatorTok{==}\StringTok{ }\DecValTok{8} \OperatorTok{~}\StringTok{ "Pelvis"}
-\NormalTok{         ) ) }\OperatorTok{%>%}\StringTok{ }
-\StringTok{  }\KeywordTok{select}\NormalTok{(}\OperatorTok{-}\NormalTok{first_part,}\OperatorTok{-}\NormalTok{second_part) }\OperatorTok{%>%}\StringTok{ }\KeywordTok{arrange}\NormalTok{(file_name)}
-\end{Highlighting}
-\end{Shaded}
-
-\hypertarget{exploratory-data-analysis}{%
-\subsection{Exploratory Data Analysis}\label{exploratory-data-analysis}}
-
--These graphs will show the characteristics of the patients and types of
-legions of the patients in the study
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{patients <-}\StringTok{ }\NormalTok{medical_data }\OperatorTok{%>%}
-\StringTok{  }\KeywordTok{filter}\NormalTok{(patient_age }\OperatorTok{<}\StringTok{ }\DecValTok{120}\NormalTok{) }\OperatorTok{%>%}
-\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{radius=}\KeywordTok{round}\NormalTok{(}\KeywordTok{as.numeric}\NormalTok{(radius),}\DecValTok{0}\NormalTok{)) }\OperatorTok{%>%}
-\StringTok{  }\KeywordTok{rename}\NormalTok{(}\DataTypeTok{Gender =}\NormalTok{ patient_gender)}
-
-\KeywordTok{ggplot}\NormalTok{(}\DataTypeTok{data =}\NormalTok{ patients, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ patient_age, }\DataTypeTok{fill =}\NormalTok{ Gender)) }\OperatorTok{+}
-\StringTok{  }\KeywordTok{geom_histogram}\NormalTok{(}\DataTypeTok{binwidth =} \DecValTok{1}\NormalTok{) }\OperatorTok{+}
-\StringTok{  }\KeywordTok{scale_fill_manual}\NormalTok{(}\DataTypeTok{values =} \KeywordTok{c}\NormalTok{(}\StringTok{"#69b3a2"}\NormalTok{, }\StringTok{"#404080"}\NormalTok{)) }\OperatorTok{+}
-\StringTok{  }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{x =} \StringTok{"Patient Age"}\NormalTok{, }\DataTypeTok{title =} \StringTok{"Histogram of Patient Ages by Gender"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\includegraphics{report_files/figure-latex/unnamed-chunk-4-1.pdf}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{patients2<-patients }\OperatorTok{%>%}\StringTok{ }\KeywordTok{filter}\NormalTok{(lesion_type }\OperatorTok{!=}\StringTok{ "Unknown"}\NormalTok{)}
-
-\KeywordTok{ggplot}\NormalTok{(patients2, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x=}\NormalTok{patient_age, }\DataTypeTok{fill =}\NormalTok{ lesion_type)) }\OperatorTok{+}
-\StringTok{  }\KeywordTok{geom_density}\NormalTok{(}\DataTypeTok{alpha =} \FloatTok{0.2}\NormalTok{) }\OperatorTok{+}
-\StringTok{  }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{x =} \StringTok{"Patient Age"}\NormalTok{, }\DataTypeTok{title =} \StringTok{"Density Plot of Patient Ages by Lesion Type"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\includegraphics{report_files/figure-latex/unnamed-chunk-5-1.pdf}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{ggplot}\NormalTok{(}\DataTypeTok{data =}\NormalTok{ patients, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ lesion_type, }\DataTypeTok{fill=}\NormalTok{Gender)) }\OperatorTok{+}
-\StringTok{  }\KeywordTok{geom_bar}\NormalTok{() }\OperatorTok{+}
-\StringTok{  }\KeywordTok{coord_flip}\NormalTok{()}\OperatorTok{+}
-\StringTok{  }\KeywordTok{scale_fill_manual}\NormalTok{(}\DataTypeTok{values =} \KeywordTok{c}\NormalTok{(}\StringTok{"#69b3a2"}\NormalTok{, }\StringTok{"#404080"}\NormalTok{)) }\OperatorTok{+}
-\StringTok{  }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{x =} \StringTok{"Legion Type"}\NormalTok{, }\DataTypeTok{title =} \StringTok{"Bar Plot of Lesion Type by Gender"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\includegraphics{report_files/figure-latex/unnamed-chunk-6-1.pdf}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{patients2<-patients }\OperatorTok{%>%}\StringTok{ }\KeywordTok{filter}\NormalTok{ (radius}\OperatorTok{<}\DecValTok{250} \OperatorTok{&}\StringTok{ }\NormalTok{lesion_type }\OperatorTok{!=}\StringTok{ "Unknown"}\NormalTok{)}
-
-\KeywordTok{ggplot}\NormalTok{(}\DataTypeTok{data =}\NormalTok{ patients2, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ radius,}\DataTypeTok{fill=}\NormalTok{lesion_type)) }\OperatorTok{+}
-\StringTok{  }\KeywordTok{geom_density}\NormalTok{(}\DataTypeTok{alpha=}\FloatTok{0.2}\NormalTok{) }\OperatorTok{+}
-\StringTok{  }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{x =} \StringTok{"Radius"}\NormalTok{, }\DataTypeTok{title =} \StringTok{"Density Plot of Radius by Lesion Type"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\includegraphics{report_files/figure-latex/unnamed-chunk-7-1.pdf}
-
-\hypertarget{this-to-to-print-out-some-of-the-images-of-the-actual-lesions}{%
-\subsection{This to to print out some of the images of the actual
-lesions}\label{this-to-to-print-out-some-of-the-images-of-the-actual-lesions}}
-
--This needs to be changed, meant to have a box around where the legion
-is but currently not working -Also planning to add multiple of these
-types of images
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{image<-}\KeywordTok{gcs_get_object}\NormalTok{(objects}\OperatorTok{$}\NormalTok{name[[}\DecValTok{9}\NormalTok{]], }\DataTypeTok{saveToDisk=}\StringTok{"patient0.jpeg"}\NormalTok{, }\DataTypeTok{overwrite =} \OtherTok{TRUE}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## 2020-11-12 00:50:28 -- Saved archive/minideeplesion/000001_01_01/109.png to patient0.jpeg (200.9 Kb)
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{img<-}\KeywordTok{image_read}\NormalTok{(}\StringTok{"patient0.jpeg"}\NormalTok{)}
-\NormalTok{img<-}\KeywordTok{image_normalize}\NormalTok{(img)}
-
-\KeywordTok{image_info}\NormalTok{(img)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## # A tibble: 1 x 7
-##   format width height colorspace matte filesize density
-##   <chr>  <int>  <int> <chr>      <lgl>    <int> <chr>  
-## 1 PNG      512    512 Gray       FALSE        0 72x72
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{image<-}\KeywordTok{ggdraw}\NormalTok{() }\OperatorTok{+}
-\StringTok{  }\KeywordTok{draw_image}\NormalTok{(}
-\NormalTok{    img, }\DataTypeTok{scale =} \DecValTok{1}
-\NormalTok{  ) }\OperatorTok{+}\StringTok{ }\KeywordTok{geom_rect}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{xmin =} \DecValTok{0}\NormalTok{, }\DataTypeTok{xmax =} \DecValTok{20}\NormalTok{, }\DataTypeTok{ymin =} \DecValTok{0}\NormalTok{, }\DataTypeTok{ymax =} \DecValTok{20}\NormalTok{), }\DataTypeTok{alpha =} \DecValTok{1}\OperatorTok{/}\DecValTok{10}\NormalTok{,}\DataTypeTok{fill =} \StringTok{"red"}\NormalTok{)}
-\NormalTok{image}
-\end{Highlighting}
-\end{Shaded}
-
-\includegraphics{report_files/figure-latex/unnamed-chunk-8-1.pdf}
-
-\hypertarget{this-is-where-i-will-begin-my-work-with-spark-now-that-all-the-data-is-available-from-google-cloud-storage}{%
-\subsection{This is where I will begin my work with Spark now that all
-the data is available from Google Cloud
-Storage}\label{this-is-where-i-will-begin-my-work-with-spark-now-that-all-the-data-is-available-from-google-cloud-storage}}
-
--This is not complete
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{#spark_install()}
-
-\NormalTok{sc <-}\StringTok{ }\KeywordTok{spark_connect}\NormalTok{(}\DataTypeTok{master =} \StringTok{"local"}\NormalTok{, }\DataTypeTok{version =} \StringTok{"2.3"}\NormalTok{)}
-
-
-\NormalTok{medical <-}\StringTok{ }\KeywordTok{copy_to}\NormalTok{(sc, medical_data)}
-\NormalTok{images<-}\KeywordTok{copy_to}\NormalTok{(sc,objects )}
-\NormalTok{medical}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## # Source: spark<medical_data> [?? x 22]
-##    file_name patient_index study_index series_id key_slice_index
-##    <chr>             <dbl>       <dbl>     <dbl>           <dbl>
-##  1 000001_0~             1           1         1             109
-##  2 000001_0~             1           2         1              14
-##  3 000001_0~             1           2         1              17
-##  4 000001_0~             1           3         1              88
-##  5 000001_0~             1           4         1              17
-##  6 000002_0~             2           1         1             162
-##  7 000002_0~             2           1         1             176
-##  8 000002_0~             2           2         1              50
-##  9 000002_0~             2           2         1              52
-## 10 000002_0~             2           2         1              65
-## # ... with more rows, and 17 more variables: measurement_coordinates <chr>,
-## #   bounding_boxes <chr>, lesion_diameters_pixel <chr>,
-## #   normalized_lesion_location <chr>, coarse_lesion_type <dbl>,
-## #   possibly_noisy <dbl>, slice_range <chr>, spacing_mm_px <chr>,
-## #   image_size <chr>, dicom_windows <chr>, patient_gender <chr>,
-## #   patient_age <dbl>, train_val_test <dbl>, file_path <chr>,
-## #   object_path <chr>, radius <chr>, lesion_type <chr>
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{spark_web}\NormalTok{(sc)}
-
-\KeywordTok{spark_disconnect}\NormalTok{(sc)}
-\end{Highlighting}
-\end{Shaded}
-
-\hypertarget{data-preprocessing-to-set-up-testing-and-training-sets-of-the-medical-images}{%
-\subsection{Data Preprocessing To Set Up Testing and Training Sets of
-the medical
-images}\label{data-preprocessing-to-set-up-testing-and-training-sets-of-the-medical-images}}
-
--This is not complete
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{im <-}\StringTok{ }\KeywordTok{load.image}\NormalTok{(}\StringTok{"patient0.jpeg"}\NormalTok{) }\OperatorTok{%>%}\StringTok{ }\KeywordTok{grayscale}\NormalTok{()}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## Warning in grayscale(.): Image appears to already be in grayscale mode
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{plot}\NormalTok{(im)}
-\end{Highlighting}
-\end{Shaded}
-
-\includegraphics{report_files/figure-latex/unnamed-chunk-10-1.pdf}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{dim}\NormalTok{(im)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## [1] 512 512   1   1
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{x<-}\KeywordTok{as.matrix}\NormalTok{(im)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{set.seed}\NormalTok{(}\DecValTok{123}\NormalTok{)}
-\NormalTok{random <-}\StringTok{ }\KeywordTok{sample}\NormalTok{(}\DecValTok{1}\OperatorTok{:}\KeywordTok{nrow}\NormalTok{(all_images), }\FloatTok{0.8} \OperatorTok{*}\StringTok{ }\KeywordTok{nrow}\NormalTok{(all_images)) }\CommentTok{# 80%: training data, 20%: test data}
-\NormalTok{train <-}\StringTok{ }\NormalTok{all_images[random, ] }
-\NormalTok{train2<-}\StringTok{ }\NormalTok{train }\OperatorTok{%>%}\StringTok{ }\KeywordTok{left_join}\NormalTok{(medical_data, }\DataTypeTok{by=} \KeywordTok{c}\NormalTok{(}\StringTok{"name"}\NormalTok{=}\StringTok{"object_path"}\NormalTok{))}
-
-\NormalTok{test <-}\StringTok{ }\NormalTok{all_images[}\OperatorTok{-}\NormalTok{random, ]}
-\NormalTok{test2<-}\StringTok{ }\NormalTok{test }\OperatorTok{%>%}\StringTok{ }\KeywordTok{left_join}\NormalTok{(medical_data, }\DataTypeTok{by=} \KeywordTok{c}\NormalTok{(}\StringTok{"name"}\NormalTok{=}\StringTok{"object_path"}\NormalTok{))}
-\CommentTok{#image2<-gcs_get_object(train$name[[1]], saveToDisk="patient1.jpeg", overwrite = TRUE)}
-\end{Highlighting}
-\end{Shaded}
-
-\hypertarget{this-is-where-i-will-do-more-of-the-machine-learning-and-convolution-neural-netowrks-within-spark}{%
-\subsection{This is where I will do more of the machine learning and
-convolution neural netowrks within
-Spark}\label{this-is-where-i-will-do-more-of-the-machine-learning-and-convolution-neural-netowrks-within-spark}}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{# data_dir <- gs_data_dir("gs://medical_images/archive/minideeplesion") }
-\CommentTok{# images <- list.files(data_dir, pattern = ".png", recursive = TRUE)}
-\CommentTok{# length(images)}
-\CommentTok{# }
-\CommentTok{# classes <- list.dirs(data_dir, full.names = FALSE, recursive = FALSE)}
-\CommentTok{# classes}
-\CommentTok{# }
-\CommentTok{# list_ds <- file_list_dataset(file_pattern = paste0(data_dir, "/*/*"))}
-\CommentTok{# list_ds %>% reticulate::as_iterator() %>% reticulate::iter_next()}
-\CommentTok{# list_ds}
-\CommentTok{# }
-\CommentTok{# get_label <- function(file_path) \{}
-\CommentTok{#   parts <- tf$strings$split(file_path, "/")}
-\CommentTok{#   parts[-2] %>% }
-\CommentTok{#     tf$equal(classes) %>% }
-\CommentTok{#     tf$cast(dtype = tf$float32)}
-\CommentTok{# \}}
-\CommentTok{# }
-\CommentTok{# decode_img <- function(file_path, height = 224, width = 224) \{}
-\CommentTok{#   }
-\CommentTok{#   size <- as.integer(c(height, width))}
-\CommentTok{#   }
-\CommentTok{#   file_path %>% }
-\CommentTok{#     tf$io$read_file() %>% }
-\CommentTok{#     tf$image$decode_jpeg(channels = 3) %>% }
-\CommentTok{#     tf$image$convert_image_dtype(dtype = tf$float32) %>% }
-\CommentTok{#     tf$image$resize(size = size)}
-\CommentTok{# \}}
-\CommentTok{# }
-\CommentTok{# preprocess_path <- function(file_path) \{}
-\CommentTok{#   list(}
-\CommentTok{#     decode_img(file_path),}
-\CommentTok{#     get_label(file_path)}
-\CommentTok{#   )}
-\CommentTok{# \}}
-\CommentTok{# }
-\CommentTok{# labeled_ds <- list_ds %>% }
-\CommentTok{#   dataset_map(preprocess_path, num_parallel_calls = tf$data$experimental$AUTOTUNE)}
-\CommentTok{# }
-\CommentTok{# labeled_ds %>% }
-\CommentTok{#   reticulate::as_iterator() %>% }
-\CommentTok{#   reticulate::iter_next()}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{# prepare <- function(ds, batch_size, shuffle_buffer_size) \{}
-\CommentTok{#   }
-\CommentTok{#   if (shuffle_buffer_size > 0)}
-\CommentTok{#     ds <- ds %>% dataset_shuffle(shuffle_buffer_size)}
-\CommentTok{#   }
-\CommentTok{#   ds %>% }
-\CommentTok{#     dataset_batch(batch_size) %>% }
-\CommentTok{#     # `prefetch` lets the dataset fetch batches in the background while the model}
-\CommentTok{#     # is training.}
-\CommentTok{#     dataset_prefetch(buffer_size = tf$data$experimental$AUTOTUNE)}
-\CommentTok{# \}}
-\CommentTok{# }
-\CommentTok{# model <- keras_model_sequential() %>% }
-\CommentTok{#   layer_flatten() %>% }
-\CommentTok{#   layer_dense(units = 128, activation = "relu") %>% }
-\CommentTok{#   layer_dense(units = 128, activation = "relu") %>% }
-\CommentTok{#   layer_dense(units = 5, activation = "softmax")}
-\CommentTok{# }
-\CommentTok{# model %>% }
-\CommentTok{#   compile(}
-\CommentTok{#     loss = "categorical_crossentropy",}
-\CommentTok{#     optimizer = "adam",}
-\CommentTok{#     metrics = "accuracy"}
-\CommentTok{#   )}
-\CommentTok{# }
-\CommentTok{# model %>% }
-\CommentTok{#   fit(}
-\CommentTok{#     prepare(labeled_ds, batch_size = 32, shuffle_buffer_size = 1000),}
-\CommentTok{#     epochs = 5,}
-\CommentTok{#     verbose = 2}
-\CommentTok{#   )}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{# trial<-flow_images_from_directory(directory=data_dir,}
-\CommentTok{#                            generator = image_data_generator(rescale=1/255),}
-\CommentTok{#                            target_size=c(256,256), color_mode = "grayscale")}
-\CommentTok{# trial}
-\CommentTok{# data_dir <- gs_data_dir("gs://medical_images/archive/minideeplesion/000002_02_01/044.png") }
-\CommentTok{# trial<-image_load(path="gs://medical_images/archive/minideeplesion/000002_02_01", grayscale=TRUE)}
-\end{Highlighting}
-\end{Shaded}
+convolutional neural networks at identifying pneumonia within CT scans?
+
+\hypertarget{google-cloud-storage}{%
+\section{Google Cloud Storage}\label{google-cloud-storage}}
+
+When trying to work with Big Data, one of the first questions one has to
+answer is what is the best way to store and access this data. While
+smaller files can be stored directly on your computer and eventually
+loaded into R Studio to perform analysis on, when data moves into the
+gigabyte, terabyte, or even petabyte range one may not not want to store
+this data directly on their machine and use of large chunks of their
+limited memory that is available. With the advancement of cloud service
+solutions in recent years though, one can now use a platform such as
+Google Cloud Platform, Amazon Web Services, or Microsoft Azure, people
+can store large amounts of data directly on these platforms and take
+advantage of these companies large data warehouses for a small cost.
+This can allow one to free up space and memory on their own personal
+machine and access the data directly from these servers whenever they
+desire.
+
+For this project, I am going to focus on how to setup and store medical
+imagery in Google Cloud Storage and learn how this can be connected to R
+Studio so that I can then before analysis on these images. The data set
+I will be working with is labeled Chest X-Ray images
+(\url{https://data.mendeley.com/datasets/rscbjbr9sj/2}) which will be
+used to detect and classify whether or not someone has pneumonia. This
+data set is roughly 2 GB in size and contains CT scans of patients who
+either have or dont have pneumonia. Due to Github having maximum storage
+limit of 1 GB, I wanted to look into ways that would allow me to work
+with a data set of this size and not have to upload the data directly
+into Github itself. One of the solutions for this was to use Google
+Cloud Storage and take advantage of the free credits that Google offers
+for new users using their service. By uploading and storing the data set
+directly onto the Google platform, this meant I could delete the data
+set off my computer for the time being and free up memory space.
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.75\linewidth,height=0.25\textheight]{images/cloud_storage} 
+
+}
+
+\caption{Google Cloud Storage Platform}\label{fig:sample-fig2}
+\end{figure}
+
+In order to actually work with this data in R Studio though, a
+connection between R and Google Cloud was required to be setup. By
+utilizing the \emph{googleCloudStorageR} package, I was able to setup a
+connection that allowed me to download the data from my Cloud Storage
+bucket and onto my desktop where it could then be read into R Studio
+without having to store the files themselves within R Studio. This
+allowed me to not have to store the data in my actual Github repository
+but still be able to perform analysis and build models on the images.
+
+\hypertarget{image-transformation-and-tensorflow}{%
+\section{Image Transformation and
+Tensorflow}\label{image-transformation-and-tensorflow}}
+
+Once the images are in a place where they could be loaded into R, one
+needs to put the images into a format where R can actually perform
+analysis on them. For images, this can consist of different image
+transformations and adjustments such as cropping, brightness,
+contrasting, changing the color scale, or resizing an image. This sort
+of data augmentation, when performed on all the images in the data set
+can help create a more consistent form between all the images. By
+putting all the images in grayscale or cropping photos, this makes all
+the images' underlying form more consistent and makes it easier for
+models to distinguish differences in the images themselves. For the
+images in my medical imagery data set, this primarily consisted of
+resizing the images on a pixel by pixel basis so they were all the same
+size, and then converted them to a grayscale color. This made the
+underlying structure of the images the same for all the images in the
+dataset.
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.75\linewidth,height=0.25\textheight]{images/pneumonia} 
+
+}
+
+\caption{Pneumonia}\label{fig:sample-fig3}
+\end{figure}
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.75\linewidth,height=0.25\textheight]{images/normal} 
+
+}
+
+\caption{Normal}\label{fig:sample-fig4}
+\end{figure}
+
+After getting all the images into the same structure, I needed to
+convert them to a form where I could actually perform analysis on the
+images. In order to do this I relied on the \emph{tensorflow} R
+packages. Tensorflow is a ``scalable and multiplatform programming
+interface for implementing and running machine learning
+algorithms''(Book page 427). Tensorflow allows execution on both CPU's
+and GPU's which help speed up processing time on complicated algorithms.
+This package is built around a ``computation graph composed as a set of
+nodes where each node represents an operation that may have zero or more
+input or output. A tensor is created as a symbolic handle to refer to
+the input and output of these operations'' (428 book). A tensor is best
+understood as either a scalar, vector , matrices and so on, which all
+correspond to a different rank tensor (see image below). These tensors
+are created from the values in the data you are working with and then
+are used to build and create the complex models one wants to work with
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.75\linewidth,height=0.25\textheight]{images/tensors} 
+
+}
+
+\caption{Tensors in Tensorflow}\label{fig:sample-fig5}
+\end{figure}
+
+For the images in my data set, by using Tensorflow I was able to convert
+the images into a set of tensors that represented the pixels of the
+images themselves. Since the images had been resized to a 32x32 picture
+in grayscale coloring, this became a 32x32x1 tensor for each image.
+These tensors were then combined with their appropriate label for the
+type of image they were, either Normal or Pneumonia, creating a nicely
+formatted data set where we could then start to create models to best
+classify the data.
+
+\hypertarget{keras-and-convolutional-neural-networks}{%
+\section{Keras and Convolutional Neural
+Networks}\label{keras-and-convolutional-neural-networks}}
+
+As we could see from the prior pictures of someone who had pneumonia
+versus someone who did not have pneumonia, it can be very hard to
+discern whether or not someone has pneumonia for a person without the
+technical training and expertise to identify pictures of pneumonia from
+looking at the CT scans. This ultimately requires doctors and those with
+the expertise to spend more time looking at the scans, rather than
+spending their already limited time directly helping patients. One way
+to help doctors to get back to directly helping patients is by utilizing
+machine learning to identify and detect different diseases or ailments
+within CT scans. By training and creating models that are able to
+discern between a normal or healthy scan versus someone who has a lesion
+or has pneumonia, we can begin to use artificial intelligence to
+alleviate some of the extraneous work that doctors are required to do.
+
+\hypertarget{keras}{%
+\subsection{Keras}\label{keras}}
+
+For this project, I was specifically focused on creating a model that
+would would be able to discern between someone who has pneumonia versus
+someone who does not have pneumonia. In order to do this I utilized the
+\emph{keras} package in order to build a convolutional neural network to
+be able to distinguish between the two different diagnosis. Keras is a
+``high-level neural network API that is built to run off other libraries
+such as Tensorflow to provide a user-friendly interface to building
+complex models'' (book page 451). Keras, when working with Tensorflow,
+helps to provide the framework to begin building complex neural network
+models. This package will allow me to be able to not only train and
+build the model, but be able to test the model on another subset of
+images and be able to begin to predict whether or not someone has
+pneumonia from looking at a specific image. Specifically I used the
+keras package to build out a convolutional neural network that have been
+shown to work extremely well for image classification tasks.
+
+\hypertarget{neural-networks}{%
+\subsection{Neural Networks}\label{neural-networks}}
+
+Convolutional Neural Networks (CNN) at a high level are a form of deep
+learning that an image as an inputs and eventually classifies it under a
+certain category. These types of networks are heavily used to perform
+tasks such as facial recognition, object detection, and image
+classification to just list a few. CNN's are a specific type of neural
+network,which more generally falls under the branch of deep learning.
+Neural networks are extremely popular today due to recent advances in
+both the algorithms for the models and the computer architecture which
+allows for much faster processing times of these complex models.
+
+\hypertarget{add-image-of-neural-networks}{%
+\subsubsection{Add image of Neural
+Networks}\label{add-image-of-neural-networks}}
+
+This figure above shows an example of what the underlying structure of a
+neural network looks like. This example contains
+
+Feels like Im copying from the book
+
+\hypertarget{convolutional-neural-networks-cnn}{%
+\subsection{Convolutional Neural Networks
+(CNN)}\label{convolutional-neural-networks-cnn}}
+
+As mentioned earlier, CNN's a specific form of Neural Network that is
+based heavily on how the visual cortext of the human brain works when
+recogizing images, which is what allows it to perform extremely well on
+image classification tasks. At a high level CNN's work by ``combining
+the low level features in a layer-wise fashion to form high-level
+features'' (book 519). So rather than just looking at each pixel of an
+image separately, this model works to combine pixels into distinct
+features that can then be used to identify exact objects within the
+images. In order for the model to actual identify distinct features it
+relies on an idea called feature mapping that groups patches of pixels
+together in the image and combines them into one feature in the new
+feature map. This is based on the underlying assumption that in the
+context of image data, ``nearby pixels are typically more relevant to
+each other than picels that are far away from each other'' (book 520).
+
+In order to actually perform this feature mapping though a CNN relies on
+creating a series of different types of layers in the form of
+convolution layers, subsampling layers, pooling layers, and dropout
+layers.
+
+\hypertarget{convolution-layers}{%
+\subsubsection{Convolution layers}\label{convolution-layers}}
+
+Convolution layers is one of the first layers that begins extracting
+features from the input images. This layer works by taking an input
+matrix that represents the image and a filter matrix, of potentially a
+different size, with a set of weifhts. These two matrices are multiplied
+together to create a feature map that begins to identify the low level
+features such as edges, blurriness, or sharpness of the image.
+
+\hypertarget{subsampling-and-pooling-layers}{%
+\subsubsection{Subsampling and Pooling
+Layers}\label{subsampling-and-pooling-layers}}
+
+Another type of key layer is the subsampling and pooling layers. Usually
+the feature map that is created from the previous convolution layer is
+then fed into a subsampling/pooling layer. These layers work by
+combining small subsections of the feature map in order to simplify the
+feature map. The advantages of this include leading to higher
+computational efficiency by decreasing the size of the features and the
+number of parameters that are required to learn, as well as introducing
+local invariance that helps to generate feature that are more robust to
+noise from the input images
+(\url{https://www.mathworks.com/discovery/convolutional-neural-network-matlab.html}).
+
+\hypertarget{dropout-layers}{%
+\subsubsection{Dropout layers}\label{dropout-layers}}
+
+Dropout layers are then used to prevent over-fitting of the data set. It
+can be very easy to create a CNN that gets over-trained but then fails
+to perform well on the testing set of data. To prevent over-fitting and
+make the model work well for a broader range of images for general
+performance, dropout layers are introduced as a form of regularization.
+Dropout is usually applied to hidden units of layers and works by
+``during the training phase of a neural network, a fraction of the
+hidden units are randomly dropped at every iteration. This dropping out
+of random units requires the remaining units to rescale to account for
+the missing units which forces the network to learn a redundant
+representation of the data'' (book 537). This makes it so the model is
+more general and robust to changes in patterns in the data and prevent
+overfitting.
+
+\hypertarget{challenges}{%
+\subsubsection{Challenges}\label{challenges}}
+
+When working with CNN's, these different types of layers that the
+network can be built off can all be included multiple times and in
+different orders. For example one could create a network of just a
+convolution layer and a dropout layer or someone could create a model
+that is convolution layer, pooling layer, convolution layer, and then
+two dropout layers. There is no set rules around what order or how many
+different layers your network can have.
+
+-hyperparameter tuning -computationally expensive -hard to interpret the
+different layers
+
+\hypertarget{cnns-with-medical-images}{%
+\subsection{CNN's with Medical Images}\label{cnns-with-medical-images}}
+
+For my project, I wanted to use Convolutional Neural Networks to see how
+well this type of network could perform on the task of trying to
+classify whether or not someone had pneumonia based just of a CT scan.
+At this point I have already gotten my images into a form that allows
+them to be passed as inputs to build a model, so the next step was for
+me to begin training the model.
+
+\hypertarget{come-back-and-describe-this}{%
+\paragraph{come back and describe
+this}\label{come-back-and-describe-this}}
+
+I first started off by having my data split into training, validation,
+and testing sets. The training set would be used to train the model, the
+
+\hypertarget{put-in-an-image-that-shows-the-original-split-in-the-data}{%
+\subparagraph{put in an image that shows the original split in the
+data}\label{put-in-an-image-that-shows-the-original-split-in-the-data}}
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.75\linewidth,height=0.25\textheight]{images/dd/model} 
+
+}
+
+\caption{Tensors in Tensorflow}\label{fig:sample-fig6}
+\end{figure}
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.75\linewidth,height=0.25\textheight]{images/dd/graph} 
+
+}
+
+\caption{Tensors in Tensorflow}\label{fig:sample-fig7}
+\end{figure}
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.75\linewidth,height=0.25\textheight]{images/dd/tensor} 
+
+}
+
+\caption{Tensors in Tensorflow}\label{fig:sample-fig8}
+\end{figure}
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.75\linewidth,height=0.25\textheight]{images/dd/acc} 
+
+}
+
+\caption{Tensors in Tensorflow}\label{fig:sample-fig9}
+\end{figure}
+
+\hypertarget{future-work}{%
+\section{Future Work}\label{future-work}}
+
+\begin{itemize}
+\tightlist
+\item
+  working with google cloud platform environment, not having to store
+  the data on my computer at all -model could have been optimized
+\item
+  further application areas, such as lesions and other things that can
+  be detected in ct scans (enhancing images
+  themself)\url{https://healthitanalytics.com/news/deep-learning-model-can-enhance-standard-ct-scan-technology}
+\end{itemize}
 
 \bibliographystyle{agsm}
 \bibliography{bibliography.bib}

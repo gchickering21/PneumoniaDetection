@@ -1,0 +1,3 @@
+Setting Up a Project in Google Cloud Project
+
+Once the data has been downloaded directly onto your computer, the next step is to setup a google cloud project. Since we all have accounts alrady created for class, the next step is to create a project that is going to be associated with this data. Please follow the instructions from this page to setup a project. https://cloud.google.com/resource-manager/docs/creating-managing-projects

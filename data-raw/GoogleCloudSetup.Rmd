@@ -6,49 +6,25 @@ output: pdf_document
 ---
 
 ```{r setup, include=FALSE}
-library(tensorflow)
-library(tfdatasets)
-library(keras)
-library(cloudml)
-library(tidyverse)
 library(googleCloudStorageR)
-library(sparklyr)
-library(ggplot2)
-library(readr) 
 ```
 
+Here we check your buckets that are associated and available with your own person account_credentials.
 ```{r}
 gcs_auth(json_file="account_credentials.json")
 gcs_list_buckets("image-analysis-detection")
 ```
 
+This reads all the files that are stored in the google cloud storage bucket that you want to work with
 ```{r}
-gcs_get_bucket("chest-xray-train")
-gcs_global_bucket("chest-xray-train")
-train_objects <- gcs_list_objects() %>% mutate(id= row_number())
-
-gcs_get_bucket("chest-xray-validation")
-gcs_global_bucket("chest-xray-validation")
-validation_objects <- gcs_list_objects() %>% mutate(id= row_number())
-
-gcs_get_bucket("chest-xray-test")
-gcs_global_bucket("chest-xray-test")
-test_objects <- gcs_list_objects() %>% mutate(id= row_number())
+gcs_get_bucket("chest-xray-medical")
+gcs_global_bucket("chest-xray-medical")
+medical_objects <- gcs_list_objects() %>% mutate(id= row_number())
 ```
+This part is going to copy the data that is available in your Google Cloud Storage bucket back to the destination of your choosing (this is somewhere on your computer that you can choose). The destination should be somewhere that is not connected to a Github account (Since the folder is so large, Github will not be able to hold the folder). This is necessary for us to work with models later on. This download can be deleted at anytime after the analysis is complete since the data is stored in your Google Cloud Storage bucket. Change the destination here to somewhere on your personal computer.  This will take a couple minutes to copy over all the data from your bucket onto your computer.
 
-
-
-```{r}
-gs_rsync(source="gs://chest-xray-train", destination="/Users/grahamchickering/Desktop", recursive=TRUE )
+```{r, warning=FALSE, message=FALSE}
+gs_rsync(source="gs://chest-xray-medical", destination="/Users/grahamchickering/Desktop", recursive=TRUE )
 ```
-
-```{r}
-# gcs_get_bucket("chest-xray-medical")   
-# gcs_global_bucket("chest-xray-medical")
-# all_objects <- gcs_list_objects() %>% mutate(id= row_number())
-# length(all_objects)
-
-#trial<-gcs_get_object(all_objects)
-#image<-gcs_get_object(all_objects$name[[1]])
-```
+This just copied 
 

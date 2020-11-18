@@ -1,0 +1,4 @@
+Data Download
+
+Since the dataset we will eventually be working with is so large, we want to avoid putting this data directly into our github repository. In order to do this the first step is to actuallly download the data which can be found from this kaggle site (https://www.kaggle.com/paultimothymooney/chest-xray-pneumonia). On the site all you have to do is click the download button, and you will download the appropriate dataset we will be working with in this project
+(This data will eventually be able to be deleted off your computer).
