@@ -92,7 +92,7 @@ Google Cloud Storage and Tensorflow being able to store and run these
 types of models within R can become much faster and more efficient when
 trying to analyze large amounts of data. While there is more work to be
 done, this project shows how to create an infrastructure that
-efficiently stores data and then trains convolutional neural networks
+efficiently stores data and then train convolutional neural networks
 when working with the R Studio Environment.
 \end{abstract}
 
@@ -115,22 +115,22 @@ when working with the R Studio Environment.
 \hypertarget{introduction}{%
 \section{Introduction}\label{introduction}}
 
-It has been estimated that roughly 80\% of health care data is
+~~~~~It has been estimated that roughly 80\% of health care data is
 unstructured data, which can come in the form of videos, sensor data,
 images, or text. Although hospitals and researchers used to have a hard
 time extracting insights from this type of data, with the recent
 advances that have been made in data science and handling big data, this
 has created new application areas within the health care industry in
 sectors such as genomics, drug trials, predicting patient health, and
-medical imagery. Medical imaging research in particular has made
-significant progress recently with researchers being able to use
-different machine learning algorithms to detect different types of
-lesions and cancers from CT and other types of scans. In particular the
-advancements of convolutional neural networks to identify whether or not
-someone has pneumonia has become extremely promising and can be used to
-potentially help doctors identify whether or not someone has pneumonia
-that they might have missed, and reduce the amount of hours and amount
-of expertise required to view CT scans.
+medical imagery (See Figure 1 \citet{NEJM}). Medical imaging research in
+particular has made significant progress recently with researchers being
+able to use different machine learning algorithms to detect different
+types of lesions and cancers from CT and other types of scans. In
+particular the advancements of convolutional neural networks to identify
+whether or not someone has pneumonia has become extremely promising and
+can be used to potentially help doctors identify whether or not someone
+has pneumonia that they might have missed, and reduce the amount of
+hours and amount of expertise required to view CT scans.
 
 When working with medical imagery data sets though one of the first
 problems someone may run into is how to process and handle these large
@@ -142,20 +142,15 @@ world of Big Data and large data sets? While many of us have probably
 been able to read in and load our data for projects into the R Studio
 environment without issues and without having to worry about whether the
 entirety of our data can even be loaded in, one may begin to run into
-complications the larger the data set becomes. By default, R loads all
-data into memory and while memory size depends slightly on your
-computer's configuration settings under any circumstances one cant have
-more than 2,147,483,647 rows or columns, which is roughly equivalent to
-2 GB of memory that R is using. (see
-\url{http://www.columbia.edu/~sjm2186/EPIC_R/EPIC_R_BigData.pdf}). If
-you do end up crossing into the threshold where R can no longer store
-all the data in an effective way, there are multiple potential solutions
-in the forms of choosing random subsets of the data, buying a computer
-with larger memory, or use parallelization and using multiple clusters
-to perform the analysis. It is this solution of choosing random subsets
-of data, using the keras and tensorflow R packages, that will allow me
-to work with and convert large files of image data into a form that
-models can be trained on them.
+complications the larger the data set becomes.If you do end up crossing
+into the threshold where R can no longer store all the data in an
+effective way, there are multiple potential solutions in the forms of
+choosing random subsets of the data, buying a computer with larger
+memory, or use parallelization and using multiple clusters to perform
+the analysis. It is this solution of choosing random subsets of data,
+using the Keras and Tensorflow R packages, that will allow me to work
+with and convert large files of image data into a form that models can
+be trained on them.
 
 On top of the issue of trying to run analysis on large data sets in R
 itself, is the issue of how to best store and load the original
@@ -188,36 +183,37 @@ convolutional neural networks at identifying pneumonia within CT scans?
 \hypertarget{google-cloud-storage}{%
 \section{Google Cloud Storage}\label{google-cloud-storage}}
 
-When trying to work with Big Data, one of the first questions one has to
-answer is what is the best way to store and access this data. While
-smaller files can be stored directly on your computer and eventually
-loaded into R Studio to perform analysis on, when data moves into the
-gigabyte, terabyte, or even petabyte range one may not not want to store
-this data directly on their machine and use of large chunks of their
-limited memory that is available. With the advancement of cloud service
-solutions in recent years though, one can now use a platform such as
-Google Cloud Platform, Amazon Web Services, or Microsoft Azure, people
-can store large amounts of data directly on these platforms and take
-advantage of these companies large data warehouses for a small cost.
-This can allow one to free up space and memory on their own personal
-machine and access the data directly from these servers whenever they
-desire.
+~~~~~When trying to work with Big Data, one of the first questions one
+has to answer is what is the best way to store and access this data.
+While smaller files can be stored directly on your computer and
+eventually loaded into R Studio to perform analysis on, when data moves
+into the gigabyte, terabyte, or even petabyte range one may not not want
+to store this data directly on their machine and use of large chunks of
+their limited memory that is available. With the advancement of cloud
+service solutions in recent years though, one can now use a platform
+such as Google Cloud Platform, Amazon Web Services, or Microsoft Azure,
+people can store large amounts of data directly on these platforms and
+take advantage of these companies large data warehouses for a small
+cost. This can allow one to free up space and memory on their own
+personal machine and access the data directly from these servers
+whenever they desire.
 
 For this project, I am going to focus on how to setup and store medical
 imagery in Google Cloud Storage and learn how this can be connected to R
 Studio so that I can then before analysis on these images. The data set
-I will be working with is labeled Chest X-Ray images
-(\url{https://data.mendeley.com/datasets/rscbjbr9sj/2}) which will be
-used to detect and classify whether or not someone has pneumonia. This
-data set is roughly 2 GB in size and contains CT scans of patients who
-either have or dont have pneumonia. Due to Github having maximum storage
-limit of 1 GB, I wanted to look into ways that would allow me to work
-with a data set of this size and not have to upload the data directly
-into Github itself. One of the solutions for this was to use Google
-Cloud Storage and take advantage of the free credits that Google offers
-for new users using their service. By uploading and storing the data set
-directly onto the Google platform, this meant I could delete the data
-set off my computer for the time being and free up memory space.
+I will be working with is a labeled Chest X-Ray images (\citet{Medical})
+which will be used to detect and classify whether or not someone has
+pneumonia. This data set is roughly 2 GB in size and contains CT scans
+of patients who either have or dont have pneumonia. Due to Github having
+maximum storage limit of 1 GB, I wanted to look into ways that would
+allow me to work with a data set of this size and not have to upload the
+data directly into Github itself. One of the solutions for this was to
+use Google Cloud Storage and take advantage of the free credits that
+Google offers for new users using their service. By uploading and
+storing the data set directly onto the Google platform, this meant I
+could delete the data set off my computer for the time being and free up
+memory space (See Figure 2 for an example of the Google Cloud Platform
+Console).
 
 \begin{figure}
 
@@ -241,8 +237,8 @@ but still be able to perform analysis and build models on the images.
 \section{Image Transformation and
 Tensorflow}\label{image-transformation-and-tensorflow}}
 
-Once the images are in a place where they could be loaded into R, one
-needs to put the images into a format where R can actually perform
+~~~~~Once the images are in a place where they could be loaded into R,
+one needs to put the images into a format where R can actually perform
 analysis on them. For images, this can consist of different image
 transformations and adjustments such as cropping, brightness,
 contrasting, changing the color scale, or resizing an image. This sort
@@ -255,41 +251,28 @@ images in my medical imagery data set, this primarily consisted of
 resizing the images on a pixel by pixel basis so they were all the same
 size, and then converted them to a grayscale color. This made the
 underlying structure of the images the same for all the images in the
-dataset.
+data set. See figure below for how the images looked after adjustments
+were made.
 
 \begin{figure}
-
-{\centering \includegraphics[width=0.75\linewidth,height=0.25\textheight]{images/pneumonia} 
-
-}
-
-\caption{Pneumonia}\label{fig:sample-fig3}
-\end{figure}
-
-\begin{figure}
-
-{\centering \includegraphics[width=0.75\linewidth,height=0.25\textheight]{images/normal} 
-
-}
-
-\caption{Normal}\label{fig:sample-fig4}
+\includegraphics[width=0.49\linewidth,height=0.25\textheight]{images/pneumonia} \includegraphics[width=0.49\linewidth,height=0.25\textheight]{images/normal} \caption{Patient CT Scans. At left, patient with pneumonia. At right, a patient without pnuemonia}\label{fig:graunt}
 \end{figure}
 
 After getting all the images into the same structure, I needed to
 convert them to a form where I could actually perform analysis on the
 images. In order to do this I relied on the \emph{tensorflow} R
 packages. Tensorflow is a ``scalable and multiplatform programming
-interface for implementing and running machine learning
-algorithms''(Book page 427). Tensorflow allows execution on both CPU's
-and GPU's which help speed up processing time on complicated algorithms.
-This package is built around a ``computation graph composed as a set of
-nodes where each node represents an operation that may have zero or more
-input or output. A tensor is created as a symbolic handle to refer to
-the input and output of these operations'' (428 book). A tensor is best
-understood as either a scalar, vector , matrices and so on, which all
-correspond to a different rank tensor (see image below). These tensors
-are created from the values in the data you are working with and then
-are used to build and create the complex models one wants to work with
+interface for implementing and running machine learning algorithms''
+\citet{PML}. Tensorflow allows execution on both CPU's and GPU's which
+help speed up processing time on complicated algorithms. This package is
+built around a ``computation graph composed as a set of nodes where each
+node represents an operation that may have zero or more input or output.
+A tensor is created as a symbolic handle to refer to the input and
+output of these operations'' \citet{PML}. A tensor is best understood as
+either a scalar, vector , matrices and so on, which all correspond to a
+different rank tensor (See Figure 3 below). These tensors are created
+from the values in the data you are working with and then are used to
+build and create the complex models one wants to work with.
 
 \begin{figure}
 
@@ -297,25 +280,25 @@ are used to build and create the complex models one wants to work with
 
 }
 
-\caption{Tensors in Tensorflow}\label{fig:sample-fig5}
+\caption{Tensors in Tensorflow}\label{fig:sample-fig3}
 \end{figure}
 
 For the images in my data set, by using Tensorflow I was able to convert
 the images into a set of tensors that represented the pixels of the
-images themselves. Since the images had been resized to a 32x32 picture
-in grayscale coloring, this became a 32x32x1 tensor for each image.
-These tensors were then combined with their appropriate label for the
-type of image they were, either Normal or Pneumonia, creating a nicely
-formatted data set where we could then start to create models to best
-classify the data.
+images themselves. Since the images had been resized to a 64x64 pixel
+picture in grayscale coloring, this became a 64x64x1 tensor for each
+image. These tensors were then combined with their appropriate label for
+the type of image they were, either Normal or Pneumonia, creating a
+nicely formatted data set where we could then start to create models to
+best classify the data.
 
 \hypertarget{keras-and-convolutional-neural-networks}{%
 \section{Keras and Convolutional Neural
 Networks}\label{keras-and-convolutional-neural-networks}}
 
-As we could see from the prior pictures of someone who had pneumonia
-versus someone who did not have pneumonia, it can be very hard to
-discern whether or not someone has pneumonia for a person without the
+~~~~~As we could see from the prior pictures of someone who had
+pneumonia versus someone who did not have pneumonia, it can be very hard
+to discern whether or not someone has pneumonia for a person without the
 technical training and expertise to identify pictures of pneumonia from
 looking at the CT scans. This ultimately requires doctors and those with
 the expertise to spend more time looking at the scans, rather than
@@ -330,28 +313,28 @@ alleviate some of the extraneous work that doctors are required to do.
 \hypertarget{keras}{%
 \subsection{Keras}\label{keras}}
 
-For this project, I was specifically focused on creating a model that
-would would be able to discern between someone who has pneumonia versus
-someone who does not have pneumonia. In order to do this I utilized the
-\emph{keras} package in order to build a convolutional neural network to
-be able to distinguish between the two different diagnosis. Keras is a
-``high-level neural network API that is built to run off other libraries
-such as Tensorflow to provide a user-friendly interface to building
-complex models'' (book page 451). Keras, when working with Tensorflow,
-helps to provide the framework to begin building complex neural network
-models. This package will allow me to be able to not only train and
-build the model, but be able to test the model on another subset of
-images and be able to begin to predict whether or not someone has
-pneumonia from looking at a specific image. Specifically I used the
-keras package to build out a convolutional neural network that have been
-shown to work extremely well for image classification tasks.
+~~~~~For this project, I was specifically focused on creating a model
+that would would be able to discern between someone who has pneumonia
+versus someone who does not have pneumonia. In order to do this I
+utilized the \emph{keras} package in order to build a convolutional
+neural network to be able to distinguish between the two different
+diagnosis. Keras is a ``high-level neural network API that is built to
+run off other libraries such as Tensorflow to provide a user-friendly
+interface to building complex models'' \citet{PML}. Keras, when working
+with Tensorflow, helps to provide the framework to begin building
+complex neural network models. This package will allow me to be able to
+not only train and build the model, but be able to test the model on
+another subset of images and be able to begin to predict whether or not
+someone has pneumonia from looking at a specific image. Specifically I
+used the keras package to build out a convolutional neural network that
+have been shown to work extremely well for image classification tasks.
 
 \hypertarget{neural-networks}{%
 \subsection{Neural Networks}\label{neural-networks}}
 
-Convolutional Neural Networks (CNN) at a high level are a form of deep
-learning thattakes an image as an input and eventually classifies it
-under a certain category. These types of networks are used heavily to
+~~~~~Convolutional Neural Networks (CNN) at a high level are a form of
+deep learning thattakes an image as an input and eventually classifies
+it under a certain category. These types of networks are used heavily to
 perform tasks such as facial recognition, object detection, and image
 classification to just list a few. CNN's are a specific type of neural
 network, which falls under the branch of machine learning called deep
@@ -366,28 +349,28 @@ complex models.
 
 }
 
-\caption{Neural Network example}\label{fig:sample-fig6}
+\caption{Neural Network example}\label{fig:sample-fig4}
 \end{figure}
 
-This figure above shows an example of what the underlying structure of a
-neural network looks like (see figure 6, ADD Source). The neural network
-show in this example consists of one input layer, one hidden layer with
-4 hidden units, and then one output layer. The input layer would be the
-exact data you are feeding into the model, so for this picture this
-would mean there was two examples being fed into network to train the
-model. Then we can see how each of the input layers are connected to
-three of the gray nodes in the hidden layer. While this model only has
-one hidden layer and the inputs are only connected to 3 of the hidden
-units, in other models one could create multiple hidden layers, each
-with a different number of hidden units, and the number of units that
-are connected together from layer to layer can vary as well. After that
-we can see that there is one output layer for this example, but other
-networks can contain varying numbers of output units as well. Neural
-networks in general can contain differing number of hidden layers,
-hidden units, input and output units and vary based on the data they
-have and the problem they are trying to solve. In general data is fed
-into the model, it is passed through the network using weights, and then
-often trained using a technique called backwards propagation. This
+The figure above shows an example of what the underlying structure of a
+neural network looks like (See figure 4 \citet{Investopedia}). The
+neural network show in this example consists of one input layer, one
+hidden layer with 4 hidden units, and then one output layer. The input
+layer would be the exact data you are feeding into the model, so for
+this picture this would mean there was two examples being fed into
+network to train the model. Then we can see how each of the input layers
+are connected to three of the gray nodes in the hidden layer. While this
+model only has one hidden layer and the inputs are only connected to 3
+of the hidden units, in other models one could create multiple hidden
+layers, each with a different number of hidden units, and the number of
+units that are connected together from layer to layer can vary as well.
+After that we can see that there is one output layer for this example,
+but other networks can contain varying numbers of output units as well.
+Neural networks in general can contain differing number of hidden
+layers, hidden units, input and output units and vary based on the data
+they have and the problem they are trying to solve. In general data is
+fed into the model, it is passed through the network using weights, and
+then often trained using a technique called backwards propagation. This
 technique is able to optimize the model by comparing the result found by
 the model to the true results, and then working backwards through the
 model to update the weights so that the model can better classify the
@@ -399,12 +382,12 @@ to self-driving cars and everything inbetween.
 \subsection{Convolutional Neural Networks
 (CNN)}\label{convolutional-neural-networks-cnn}}
 
-As mentioned earlier, CNN's a specific form of Neural Network that is
-based heavily on how the visual cortext of the human brain works when
+~~~~~As mentioned earlier, CNN's a specific form of Neural Network that
+is based heavily on how the visual cortext of the human brain works when
 recogizing images, which is what allows it to perform extremely well on
 image classification tasks. At a high level CNN's work by ``combining
 the low level features in a layer-wise fashion to form high-level
-features'' (book 519). So rather than just looking at each pixel of an
+features'' \citet{PML}. So rather than just looking at each pixel of an
 image separately, this model works to combine pixels into distinct
 features that can then be used to identify exact objects within the
 images. In order for the model to actual identify distinct features it
@@ -412,7 +395,7 @@ relies on an idea called feature mapping that groups patches of pixels
 together in the image and combines them into one feature in the new
 feature map. This is based on the underlying assumption that in the
 context of image data, ``nearby pixels are typically more relevant to
-each other than picels that are far away from each other'' (book 520).
+each other than pixels that are far away from each other'' \citet{PML}.
 
 In order to actually perform this feature mapping though a CNN relies on
 creating a series of different types of layers in the form of
@@ -422,49 +405,49 @@ layers.
 \hypertarget{convolution-layers}{%
 \subsubsection{Convolution layers}\label{convolution-layers}}
 
-Convolution layers is one of the first layers that begins extracting
-features from the input images. This layer works by taking an input
-matrix that represents the image and a filter matrix, of potentially a
-different size, with a set of weifhts. These two matrices are multiplied
-together to create a feature map that begins to identify the low level
-features such as edges, blurriness, or sharpness of the image.
+~~~~~Convolution layers is one of the first layers that begins
+extracting features from the input images. This layer works by taking an
+input matrix that represents the image and a filter matrix, of
+potentially a different size, with a set of weights. These two matrices
+are multiplied together to create a feature map that begins to identify
+the low level features such as edges, blurriness, or sharpness of the
+image.
 
 \hypertarget{subsampling-and-pooling-layers}{%
 \subsubsection{Subsampling and Pooling
 Layers}\label{subsampling-and-pooling-layers}}
 
-Another type of key layer is the subsampling and pooling layers. Usually
-the feature map that is created from the previous convolution layer is
-then fed into a subsampling/pooling layer. These layers work by
+~~~~~Another type of key layer is the subsampling and pooling layers.
+Usually the feature map that is created from the previous convolution
+layer is then fed into a subsampling/pooling layer. These layers work by
 combining small subsections of the feature map in order to simplify the
 feature map. The advantages of this include leading to higher
 computational efficiency by decreasing the size of the features and the
 number of parameters that are required to learn, as well as introducing
 local invariance that helps to generate feature that are more robust to
-noise from the input images
-(\url{https://www.mathworks.com/discovery/convolutional-neural-network-matlab.html}).
+noise from the input images \citet{Mathworks}.
 
 \hypertarget{dropout-layers}{%
 \subsubsection{Dropout layers}\label{dropout-layers}}
 
-Dropout layers are then used to prevent over-fitting of the data set. It
-can be very easy to create a CNN that gets over-trained but then fails
-to perform well on the testing set of data. To prevent over-fitting and
-make the model work well for a broader range of images for general
-performance, dropout layers are introduced as a form of regularization.
-Dropout is usually applied to hidden units of layers and works by
-``during the training phase of a neural network, a fraction of the
-hidden units are randomly dropped at every iteration. This dropping out
-of random units requires the remaining units to rescale to account for
-the missing units which forces the network to learn a redundant
-representation of the data'' (book 537). This makes it so the model is
+~~~~~Dropout layers are then used to prevent over-fitting of the data
+set. It can be very easy to create a CNN that gets over-trained but then
+fails to perform well on the testing set of data. To prevent
+over-fitting and make the model work well for a broader range of images
+for general performance, dropout layers are introduced as a form of
+regularization. Dropout is usually applied to hidden units of layers and
+works by ``during the training phase of a neural network, a fraction of
+the hidden units are randomly dropped at every iteration. This dropping
+out of random units requires the remaining units to rescale to account
+for the missing units which forces the network to learn a redundant
+representation of the data'' \citet{PML}. This makes it so the model is
 more generalizable and robust to changes in patterns in the data and
-prevent overfitting.
+prevent over-fitting.
 
 \hypertarget{challenges}{%
 \subsubsection{Challenges}\label{challenges}}
 
-When working with CNN's, these different types of layers that the
+~~~~~When working with CNN's, these different types of layers that the
 network can be built off can all be included multiple times and in
 different orders. For example one could create a network of just a
 convolution layer and a dropout layer or someone could create a model
@@ -480,42 +463,237 @@ and altered when it comes to building the model, finding the best
 possible input parameters and underlying structure of the model can
 become computationally expensive very quickly.
 
-On top of CNN's being very computationally expensive to run, being able
-to interpret the outputs and inputs of individual layers of the network
-is its own separate issue. Often these types of models are referred to
-as ``black box'' models because while a human can understand the input
-and outputs of the models, it is often hard to decipher and understand
-what exactly the model is doing inside the box. While there has been
-promising developments in this area such as Visualizing Activation
-Layers (add a link ) and Occlusion Sensitivity (add a link) , this still
-remains an area of the field that a lot of future work can be done in.
-So while CNN's have been shown to do an incredible job at image
+~~~~~On top of CNN's being very computationally expensive to run, being
+able to interpret the outputs and inputs of individual layers of the
+network is its own separate issue. Often these types of models are
+referred to as ``black box'' models because while a human can understand
+the input and outputs of the models, it is often hard to decipher and
+understand what exactly the model is doing inside the box. While there
+has been promising developments in this area such as Visualizing
+Activation Layers and Occlusion Sensitivity, this still remains an area
+of the field that a lot of future work can be done in \citet{Deep}.
+While CNN's have been shown to do an incredible job at image
 classification tasks, optimizing and understanding these types of models
 is an area that can cause problems and issues.
 
 \hypertarget{cnns-with-medical-images}{%
 \subsection{CNN's with Medical Images}\label{cnns-with-medical-images}}
 
-For my project, I wanted to use Convolutional Neural Networks to see how
-well this type of network could perform on the task of trying to
+~~~~~For my project, I wanted to use Convolutional Neural Networks to
+see how well this type of network could perform on the task of trying to
 classify whether or not someone had pneumonia based just of a CT scan.
 At this point I have already gotten my images into a form that allows
 them to be passed as inputs to build a model, so the next step was for
 me to begin training the model.
 
-\hypertarget{come-back-and-describe-this}{%
-\paragraph{come back and describe
-this}\label{come-back-and-describe-this}}
+To begin training the model I started off by first splitting my data
+into training, validation, and testing sets. The training set would be
+used to train the model, the validation set would be used to tune the
+parameters in the network, and then the test set would then be used to
+assess the performance of the final model and see how generalizable the
+results are when given separate input images.
 
-I first started off by having my data split into training, validation,
-and testing sets. The training set would be used to train the model, the
+After splitting up the data into their different sets I found that
+overall the data set contained many more pictures of people than
+pneumonia than people who did not have pneumonia. In fact the training
+data contains 74\% picture of people with pneumonia and 26\% being
+normal images.
 
-\hypertarget{put-in-an-image-that-shows-the-original-split-in-the-data}{%
-\subparagraph{put in an image that shows the original split in the
-data}\label{put-in-an-image-that-shows-the-original-split-in-the-data}}
+\includegraphics[height=0.5\textheight]{report_files/figure-latex/unnamed-chunk-1-1}
 
-\hypertarget{future-work}{%
-\section{Future Work}\label{future-work}}
+What this tells us is that if a random person were to guess that every
+picture was a picture of pneumonia, that they would be correct 76\% of
+the time. So when I build out my models, I will be looking for a model
+that is able to achieve better than 76\% accuracy to say it is an
+improvement over a baseline random guessing model.
+
+\hypertarget{model-1}{%
+\subsection{Model 1}\label{model-1}}
+
+~~~~~Now that I had an understanding of what my training set looked
+like, I wanted to try building my first convolutional neural network.
+For my first model I decided to build a model that had one convolution
+layer, one pooling layer, one flattening layer, a dropout layer that
+removed half of the available units available in the previous layer
+during each new training iteration, and then finally one dense layer.
+The flattening layer works to replace all dimensions of the previous
+tensors down to one dimension, which is the dimension size we want our
+output layer to be. The dropout layer is used to make the model more
+generalizable and requires the model to fit the units with only half the
+units of the previous layer available during any iteration. The final
+dense layer is used to create a layer of units, in this case one unit,
+where every unit in this new layer is connected to every unit in the
+previous layer, making it densely connected. See Figure 5 for what this
+model looks likes. From looking at Figure 5 one can see that there are
+13,121 trainable parameters. These are all the weights between the
+different layers that the model will try to optimize during each
+training run.
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.75\linewidth,height=0.25\textheight]{images/model1} 
+
+}
+
+\caption{Neural Network example}\label{fig:sample-fig5}
+\end{figure}
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.5\linewidth,height=0.25\textheight]{images/model1out} 
+
+}
+
+\caption{Neural Network example}\label{fig:sample-fig6}
+\end{figure}
+
+After training this model we can see that although it starts at around
+being 75\% accurate on both the training and validation sets, that even
+after 5 epochs that the model does not do any better at being able to
+discern between whether or not an image is normal or pneumonia than just
+random guessing. This suggests that either the model does not have
+enough layers to it and is not able to extract distinguishable features
+from the images or that there were not enough epochs to train the model.
+It is also worth noting that this model took 2 and a half minutes to
+complete its training, with roughly 30 seconds per epoch. This long run
+time is due to the large number of trainable parameters in the model.
+
+\hypertarget{model-2}{%
+\subsection{Model 2}\label{model-2}}
+
+~~~~~Since model 1 did not do any better than one would do than just
+randomly guessing, I decided to try to improve upon the first model by
+adding a second convolution layer after the first pooling layer, as well
+as a second dense layer at the end of the model. I also decided to
+increase the number of epochs from 5 to 10 to see if allowing the model
+a longer period of time to train itself would help improve the accuracy
+of the model at all. My hopes were that adding these new layers would
+help the model discover features in the images that it wasnt able to
+detect with the first model and adding more epochs would give the model
+more time to find these features. Figure 7 shows how the new model is
+constructed. We can see that by adding these two new layers to the model
+that there are now 34,659 parameters that the model is going to try to
+maximize during its training process.
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.75\linewidth,height=0.25\textheight]{images/model2} 
+
+}
+
+\caption{Neural Network example}\label{fig:sample-fig7}
+\end{figure}
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.75\linewidth,height=0.25\textheight]{images/model2out} 
+
+}
+
+\caption{Neural Network example}\label{fig:sample-fig8}
+\end{figure}
+
+Even after adding a second convolution layer and a second dense layer at
+the end, we can see that this model again does not do any better than
+the previous model. One can see that the accuracy stays right around
+75\% for both the training and validation sets, and that even after
+increasing the complexity of the model slightly and increasing the
+number of epochs that the model is still not any better than guessing
+Pneumonia every time. This model also took roughly 5 minutes to run with
+every epoch taking 30 seconds to run.
+
+\hypertarget{model-3}{%
+\subsection{Model 3}\label{model-3}}
+
+~~~~~Since my second model still did not do much better than someone
+randomly guessing, for my third model I decided to increase the
+complexity of the model substantially. Since the previous models did not
+appear to be able to detect any distinguishable features from the
+images, by increasing the number of layers in the model I believe it
+should help the model finally be able to detect the underlying features.
+For this model I decided to have 4 pairs of convolution, pooling, and
+dropout layers, followed by a flattening layer and then two dense
+layers. As we can see from Figure 9, this model now has 98,017 trainable
+parameters that the model will try to optimize.
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.75\linewidth,height=0.25\textheight]{images/model3} 
+
+}
+
+\caption{Neural Network example}\label{fig:sample-fig9}
+\end{figure}
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.75\linewidth,height=0.25\textheight]{images/model3out} 
+
+}
+
+\caption{Neural Network example}\label{fig:sample-fig10}
+\end{figure}
+
+As we can see from this output, the model is finally able to discern
+between images that contain pneumonia and normal images. As we can, over
+the course of 10 epochs the model is able to increase it accuracy from
+under 75\% to close to 90\% by the 10th epoch. From the graph we can
+also see that the validation accuracy score is always slightly under the
+training accuracy score, which suggests that the model might be slightly
+over-fitting the data, but because I already included 4 dropout layer in
+the model and the scores are still relatively close, this is not
+something to worry about too much. Now that I have found a model that is
+able to achieve close to 90\% accuracy, I am going to move on and try
+this model on the testing set. This model also took close to 5 minutes
+to run even though the number of trainable parameters increased
+substantially.
+
+\hypertarget{results}{%
+\subsection{Results}\label{results}}
+
+~~~~~After running model 3 on the testing set, the model was able to
+achieve an accuracy score of 88.94\% and a loss score of 0.325 (which
+would ideally be at 0 if there was perfect accuracy). The testing set
+contained 234 normal images and 390 pneumonia images so if one were to
+guess pneumonia every time they would be correct 62.5\% of the time.
+While in an ideal world the model would be able to achieve a perfect
+100\% accuracy and 0 loss, being able to train a model that achieves an
+accuracy of 89\% on a task as challenging as being able to identify
+whether or not someone has pneumonia is a very promising result.
+
+When we break down the accuracy score further and look into how the
+model did at identifying the two different classes one can begin to look
+into areas where the model does very well and where the model struggles.
+By looking at the confusion matrix in Figure 11, we can see that the
+model does an extremely good job of identifying when the image is of
+someone who has pneumonia, being able to predict is correctly 96.4\% of
+the time. We can also see that the model is only able to correctly
+predict whether someone is normal at a 76.5\% of the time. What this
+output tells us is that the model is more likely to identify a patient
+as having pneumonia when they have do not have it, rather than the
+opposite scenario of telling a patient they do not have pneumonia when
+they in fact have it which is probably the more dangerous scenario. When
+thinking about why the model does such a better job at identifying
+patients who have pneumonia, it comes back to the type of data we used
+to train the model. Since the training and validation data contained 3x
+as many pictures of pneumonia, it makes sense that the model does a much
+better job of being able to recognize when someone has pneumonia. So
+while being able to achieve 89\% accuracy with a convolutional neural
+network is very promising, these results show that there is future work
+that can be done that would be able to improve the model's accuracy even
+more.
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.75\linewidth,height=0.25\textheight]{images/matrix} 
+
+}
+
+\caption{Neural Network example}\label{fig:sample-fig11}
+\end{figure}
+
+\hypertarget{conclusion-and-future-work}{%
+\section{Conclusion and Future Work}\label{conclusion-and-future-work}}
 
 \begin{itemize}
 \tightlist
@@ -527,6 +705,8 @@ data}\label{put-in-an-image-that-shows-the-original-split-in-the-data}}
   be detected in ct scans (enhancing images
   themself)\url{https://healthitanalytics.com/news/deep-learning-model-can-enhance-standard-ct-scan-technology}
 \end{itemize}
+
+`
 
 \bibliographystyle{agsm}
 \bibliography{bibliography.bib}

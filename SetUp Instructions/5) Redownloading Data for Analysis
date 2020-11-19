@@ -1,6 +1,0 @@
-Redownloading Data For Model Building
-
-After getting your account_credentials.json and Oauthclient.json files downloaded and uploaded to the appropriate folder, the next step is to run the GoogleCloudSetup.Rmd file. There are instructions on this Rmd file on what to change in order to actually get the data and where you should redownload the data for this project in order to run the models later on. 
-
-Side note: While this may seem counterintuitive (downloading and then deleting and then redownloading) the purpose of this is to save space on your computer. Since the data we are working with is close to 2 GB of data. Since the folder is so large and contains so many separate image files, we want to avoid having to upload and store all this data in our Github project or on our computer for long periods of time. While it is necessary to redownload the data for performing analysis, this folder can be deleted off your computer as soon as the analysis is complete (although it would have to be redownloaded again if you want to go back and do analysis on it (See step 4 to do this)).
-

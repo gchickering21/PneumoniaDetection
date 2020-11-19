@@ -9,7 +9,7 @@ output: pdf_document
 # install.packages("cloudml")
 # library(cloudml)
 # gcloud_install()
-#install_tensorflow(version = "2.1.0")
+#install_tensorflow(version = "2.0.0")
 ```
 
 

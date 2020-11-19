@@ -1,5 +1,0 @@
-Google Cloud Storage Setup
-
-- After the data has been successfully downloaded off the Kaggle site and your project has been setup. The next step is to load the data into Google Cloud Storage. Please follow the instructions associated on this website in order to actually the load the dataset we will be working with into your own Google Cloud Storage Bucket (https://cloud.google.com/storage/docs/creating-buckets). Once you have created your actual bucket, it is now time to upload the dataset into the Google Cloud Storage bucket. 
-
-On the google cloud storage site, click the "Upload Folder" Button and select the appropriate folder containing the data we will be using for this project. After the data has been uploaded to your bucket, you can delete this file off your computer for the time being. 
