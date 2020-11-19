@@ -1,0 +1,4 @@
+Redownloading Data For Model Building
+
+After getting your account_credentials.json and Oauthclient.json files downloaded and uploaded to the appropriate folder, the next step is to run the GoogleCloudSetup.Rmd file. This file will walk through how to check to make sure your Google Account is setup and then how to download the data. 
+
