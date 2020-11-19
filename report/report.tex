@@ -24,46 +24,6 @@
 %% load any required packages here
 
 
-\usepackage{color}
-\usepackage{fancyvrb}
-\newcommand{\VerbBar}{|}
-\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
-\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
-% Add ',fontsize=\small' for more characters per line
-\usepackage{framed}
-\definecolor{shadecolor}{RGB}{248,248,248}
-\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
-\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
-\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
-\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
-\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
-\newcommand{\BuiltInTok}[1]{#1}
-\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
-\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
-\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
-\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
-\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
-\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
-\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
-\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
-\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
-\newcommand{\ExtensionTok}[1]{#1}
-\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
-\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
-\newcommand{\ImportTok}[1]{#1}
-\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
-\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
-\newcommand{\NormalTok}[1]{#1}
-\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
-\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
-\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
-\newcommand{\RegionMarkerTok}[1]{#1}
-\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
-\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
-\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
-\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
-\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
-\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
 
 % Pandoc citation processing
 
@@ -288,8 +248,8 @@ imagery data set,this primarily consisted of resizing the images on a
 pixel by pixel basis so they were all the same size, and then converted
 them to a grayscale color. This made the underlying structure of the
 images the same for all the images in the data set. See the Figure 3 for
-an example between a patient with and without pneumonia after
-adjustments were made.
+an example of two patients, with and without pneumonia after adjustments
+were made.
 
 \begin{figure}
 \includegraphics[width=0.49\linewidth,height=0.25\textheight]{images/pneumonia} \includegraphics[width=0.49\linewidth,height=0.25\textheight]{images/normal} \caption{Patient CT Scans. At left, patient with pneumonia. At right, a patient without pnuemonia}\label{fig:sample-fig3}
@@ -297,19 +257,19 @@ adjustments were made.
 
 After getting all the images into the same structure, I needed to
 convert them to a form where I could actually perform analysis on the
-images. In order to do this I relied on the \emph{tensorflow} R
-packages. Tensorflow is a ``scalable and multiplatform programming
-interface for implementing and running machine learning algorithms''
-\citet{PML}. Tensorflow allows execution on both CPU's and GPU's which
-help speed up processing time on complicated algorithms. This package is
-built around a ``computation graph composed as a set of nodes where each
-node represents an operation that may have zero or more input or output.
-A tensor is created as a symbolic handle to refer to the input and
-output of these operations'' \citet{PML}. A tensor is best understood as
-either a scalar, vector , matrices and so on, which all correspond to a
-different rank tensor (See Figure 4). These tensors are created from the
-values in the data you are working with and then are used to build and
-create the complex models one wants to work with.
+images. In order to do this I relied on the \emph{tensorflow} R package.
+Tensorflow is a ``scalable and multiplatform programming interface for
+implementing and running machine learning algorithms'' \citet{PML}.
+Tensorflow allows execution on both CPU's and GPU's which help speed up
+processing time on complicated algorithms. This package is built around
+a ``computation graph composed as a set of nodes where each node
+represents an operation that may have zero or more input or output. A
+tensor is created as a symbolic handle to refer to the input and output
+of these operations'' \citet{PML}. A tensor is best understood as either
+a scalar, vector , matrices and so on, which all correspond to a
+different rank tensors (See Figure 4 \citet{PML}). These tensors are
+created from the values in the data you are working with and then are
+used to build and create the complex models one wants to work with.
 
 \begin{figure}
 
@@ -323,11 +283,11 @@ create the complex models one wants to work with.
 For the images in my data set, by using Tensorflow I was able to convert
 the images into a set of tensors that represented the pixels of the
 images themselves. Since the images had been resized to a 64x64 pixel
-picture in grayscale coloring, this became a 64x64x1 tensor for each
-image. These tensors were then combined with their appropriate label for
-the type of image they were, either Normal or Pneumonia, creating a
-nicely formatted data set where we could then start to create models to
-best classify the data.
+picture in grayscale coloring, this became a 64x64x1 tensor, or Rank 3
+tensor, for each image. These tensors were then combined with their
+appropriate label for the type of image they were, either Normal or
+Pneumonia, creating a nicely formatted data set where we could then
+start to create models to best classify the data.
 
 \hypertarget{keras-and-convolutional-neural-networks}{%
 \section{Keras and Convolutional Neural
@@ -370,15 +330,15 @@ have been shown to work extremely well for image classification tasks.
 \subsection{Neural Networks}\label{neural-networks}}
 
 ~~~~~Convolutional Neural Networks (CNN) at a high level are a form of
-deep learning thattakes an image as an input and eventually classifies
+deep learning that takes an image as an input and eventually classifies
 it under a certain category. These types of networks are used heavily to
 perform tasks such as facial recognition, object detection, and image
 classification to just list a few. CNN's are a specific type of neural
-network, which falls under the branch of machine learning called deep
+network, which falls under a branch of machine learning called deep
 learning. Neural networks are extremely popular today due to recent
-advances in both the algorithms for the models and the computer
-architecture which allows for much faster processing times of these
-complex models.
+advances in both the algorithms used to build the models as well as the
+computer architecture which allows for much faster processing times of
+these complex models.
 
 \begin{figure}
 
@@ -404,33 +364,33 @@ units that are connected together from layer to layer can vary as well.
 After that we can see that there is one output layer for this example,
 but other networks can contain varying numbers of output units as well.
 Neural networks in general can contain differing number of hidden
-layers, hidden units, input and output units and vary based on the data
-they have and the problem they are trying to solve. In general data is
-fed into the model, it is passed through the network using weights, and
-then often trained using a technique called backwards propagation. This
-technique is able to optimize the model by comparing the result found by
-the model to the true results, and then working backwards through the
-model to update the weights so that the model can better classify the
-input data. Neural networks in general have been shown to be extremely
-successful at a broad range of tasks such as natural language processing
-to self-driving cars and everything inbetween.
+layers, hidden units, input and output units which will all depend based
+on the data they have and the problem one is trying to solve. In general
+data is fed into the model, it is passed through the network using
+weights, and then often trained using a technique called backwards
+propagation. This technique is able to optimize the model by comparing
+the result found by the model to the true results, and then working
+backwards through the model to update the weights so that the model can
+better classify the input data. Neural networks in general have been
+shown to be extremely successful at a broad range of tasks such as
+natural language processing or self-driving cars.
 
 \hypertarget{convolutional-neural-networks-cnn}{%
 \subsection{Convolutional Neural Networks
 (CNN)}\label{convolutional-neural-networks-cnn}}
 
-~~~~~As mentioned earlier, CNN's a specific form of Neural Network that
-is based heavily on how the visual cortext of the human brain works when
-recogizing images, which is what allows it to perform extremely well on
-image classification tasks. At a high level CNN's work by ``combining
-the low level features in a layer-wise fashion to form high-level
-features'' \citet{PML}. So rather than just looking at each pixel of an
-image separately, this model works to combine pixels into distinct
-features that can then be used to identify exact objects within the
-images. In order for the model to actual identify distinct features it
-relies on an idea called feature mapping that groups patches of pixels
-together in the image and combines them into one feature in the new
-feature map. This is based on the underlying assumption that in the
+~~~~~As previously mentioned , CNN's a specific form of Neural Network
+that is based heavily on how the visual cortext of the human brain works
+when recogizing images, which is what allows it to perform extremely
+well on image classification tasks. At a high level CNN's work by
+``combining the low level features in a layer-wise fashion to form
+high-level features'' \citet{PML}. So rather than just looking at each
+pixel of an image separately, this model works to combine pixels into
+distinct features that can then be used to identify exact objects within
+the images. In order for the model to actual identify distinct features
+it relies on an idea called feature mapping that groups patches of
+pixels together in the image and combines them into one feature in the
+new feature map. This is based on the underlying assumption that in the
 context of image data, ``nearby pixels are typically more relevant to
 each other than pixels that are far away from each other'' \citet{PML}.
 
@@ -565,29 +525,6 @@ model looks likes. From looking at Figure 5 one can see that there are
 13,121 trainable parameters. These are all the weights between the
 different layers that the model will try to optimize during each
 training run.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{model1<-}\StringTok{ }\KeywordTok{keras_model_sequential}\NormalTok{() }\OperatorTok{%>%}\StringTok{ }
-\StringTok{  }\KeywordTok{layer_conv_2d}\NormalTok{(}\DataTypeTok{filters =} \DecValTok{32}\NormalTok{, }\DataTypeTok{kernel_size =} \KeywordTok{c}\NormalTok{(}\DecValTok{3}\NormalTok{,}\DecValTok{3}\NormalTok{), }\DataTypeTok{activation =} \StringTok{"relu"}\NormalTok{, }
-                \DataTypeTok{input_shape =} \KeywordTok{c}\NormalTok{(}\DecValTok{64}\NormalTok{,}\DecValTok{64}\NormalTok{,}\DecValTok{1}\NormalTok{)) }\OperatorTok{%>%}
-\StringTok{  }\KeywordTok{layer_max_pooling_2d}\NormalTok{(}\DataTypeTok{pool_size =} \KeywordTok{c}\NormalTok{(}\DecValTok{3}\NormalTok{,}\DecValTok{3}\NormalTok{)) }\OperatorTok{%>%}
-\StringTok{  }\KeywordTok{layer_flatten}\NormalTok{() }\OperatorTok{%>%}
-\StringTok{  }\KeywordTok{layer_dropout}\NormalTok{(}\DataTypeTok{rate=}\FloatTok{0.5}\NormalTok{) }\OperatorTok{%>%}\StringTok{ }
-\StringTok{  }\KeywordTok{layer_dense}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DataTypeTok{activation=}\StringTok{"softmax"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{model1 }\OperatorTok{%>%}\StringTok{ }\KeywordTok{compile}\NormalTok{(}
-  \DataTypeTok{optimizer =} \StringTok{"adam"}\NormalTok{,}
-  \DataTypeTok{loss =} \StringTok{"binary_crossentropy"}\NormalTok{,}
-  \DataTypeTok{metrics =} \StringTok{"accuracy"}
-\NormalTok{)}
-\KeywordTok{summary}\NormalTok{(model1)}
-\end{Highlighting}
-\end{Shaded}
 
 \begin{verbatim}
 ## Model: "sequential"
