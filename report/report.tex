@@ -24,6 +24,46 @@
 %% load any required packages here
 
 
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
 
 % Pandoc citation processing
 
@@ -109,7 +149,7 @@ when working with the R Studio Environment.
 
 }
 
-\caption{Big Data in Healthcare}\label{fig:sample-fig}
+\caption{Big Data in Healthcare}\label{fig:sample-fig1}
 \end{figure}
 
 \hypertarget{introduction}{%
@@ -132,19 +172,18 @@ can be used to potentially help doctors identify whether or not someone
 has pneumonia that they might have missed, and reduce the amount of
 hours and amount of expertise required to view CT scans.
 
-When working with medical imagery data sets though one of the first
-problems someone may run into is how to process and handle these large
-data sets. When trying to perform analysis on small and medium sized
-data sets within R, one would rarely run into complications that would
-be attributed to how R is loading and dealing with the data itself. But
-what happens when one moves from the world of medium sized data to the
-world of Big Data and large data sets? While many of us have probably
-been able to read in and load our data for projects into the R Studio
-environment without issues and without having to worry about whether the
-entirety of our data can even be loaded in, one may begin to run into
-complications the larger the data set becomes.If you do end up crossing
-into the threshold where R can no longer store all the data in an
-effective way, there are multiple potential solutions in the forms of
+When working with medical imagery data sets one of the first problems
+someone may run into is how to process and handle these large data sets.
+When trying to perform analysis on small and medium sized data sets
+within R, one rarely run into complications that would be attributed to
+how R is loading and dealing with the data itself. But what happens when
+one moves from the world of medium sized data to the world of Big Data
+and large data sets? While most of the time one can load data into the R
+Studio environment without issues and without having to worry about
+whether the entirety of our data can even be loaded in, one may begin to
+run into complications the larger the data set becomes. If one ends up
+crossing into the threshold where R can no longer store all the data in
+an effective way, there are multiple potential solutions in the forms of
 choosing random subsets of the data, buying a computer with larger
 memory, or use parallelization and using multiple clusters to perform
 the analysis. It is this solution of choosing random subsets of data,
@@ -161,18 +200,17 @@ data set substantially increases and one no longer wants to store large
 data sets directly on their machine. One solution to this problem is to
 take advantage of a cloud computing service and store the data directly
 in the cloud, freeing up space and memory on your personal computer. By
-storing the data on a cloud computing service, this can become
-especially useful when a project begins to get scaled up whether that is
-through adding new members to work on the project or when more and more
-data gets added to the project. In this project I will take advantage of
-Google Cloud Storage to store my data, which will look and store my data
-on the cloud without having to take up any space on my local machine.
+storing the data on a cloud computing service, this becomes especially
+useful when a project begins to get scaled up whether that is through
+adding new members to work on the project or when more and more data
+gets added to the project. In this project I will take advantage of
+Google Cloud Storage to store my data, saving space on my local machine.
 
 By combining Google Cloud Storage with Keras and Tensorflow, this will
-allow me to utilize a large data set that consisting of medical images.
-This data set will then be used to train and create a convolutional
-neural networks that will try to identify whether or not someone has
-pneumonia from the images.
+allow me to utilize a large data medcical imagery data set that is made
+up of CT scans. This data set will then be used to train and create
+convolutional neural networks that will try to identify whether or not
+someone has pneumonia from the images.
 
 This project will allow me to answer the questions of what is the best
 way to store large data sets and perform computationally expensive
@@ -192,15 +230,24 @@ to store this data directly on their machine and use of large chunks of
 their limited memory that is available. With the advancement of cloud
 service solutions in recent years though, one can now use a platform
 such as Google Cloud Platform, Amazon Web Services, or Microsoft Azure,
-people can store large amounts of data directly on these platforms and
-take advantage of these companies large data warehouses for a small
-cost. This can allow one to free up space and memory on their own
-personal machine and access the data directly from these servers
-whenever they desire.
+to store large amounts of data directly on these platforms and take
+advantage of these companies large data warehouses for a small cost.
+This can allow one to free up space and memory on their own personal
+machine and access the data directly from these servers whenever they
+desire.
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.75\linewidth,height=0.25\textheight]{images/cloud_storage} 
+
+}
+
+\caption{Google Cloud Storage Platform}\label{fig:sample-fig2}
+\end{figure}
 
 For this project, I am going to focus on how to setup and store medical
 imagery in Google Cloud Storage and learn how this can be connected to R
-Studio so that I can then before analysis on these images. The data set
+Studio so that I can then perform analysis on these images. The data set
 I will be working with is a labeled Chest X-Ray images (\citet{Medical})
 which will be used to detect and classify whether or not someone has
 pneumonia. This data set is roughly 2 GB in size and contains CT scans
@@ -215,23 +262,15 @@ could delete the data set off my computer for the time being and free up
 memory space (See Figure 2 for an example of the Google Cloud Platform
 Console).
 
-\begin{figure}
-
-{\centering \includegraphics[width=0.75\linewidth,height=0.25\textheight]{images/cloud_storage} 
-
-}
-
-\caption{Google Cloud Storage Platform}\label{fig:sample-fig2}
-\end{figure}
-
 In order to actually work with this data in R Studio though, a
 connection between R and Google Cloud was required to be setup. By
 utilizing the \emph{googleCloudStorageR} package, I was able to setup a
 connection that allowed me to download the data from my Cloud Storage
 bucket and onto my desktop where it could then be read into R Studio
-without having to store the files themselves within R Studio. This
-allowed me to not have to store the data in my actual Github repository
-but still be able to perform analysis and build models on the images.
+without having to store the files themselves within R Studio (See
+Apendix for code on how to setup this connection). This allowed me to
+not have to store the data in my actual Github repository but still be
+able to perform analysis and build models on the image dataset.
 
 \hypertarget{image-transformation-and-tensorflow}{%
 \section{Image Transformation and
@@ -239,23 +278,21 @@ Tensorflow}\label{image-transformation-and-tensorflow}}
 
 ~~~~~Once the images are in a place where they could be loaded into R,
 one needs to put the images into a format where R can actually perform
-analysis on them. For images, this can consist of different image
-transformations and adjustments such as cropping, brightness,
-contrasting, changing the color scale, or resizing an image. This sort
-of data augmentation, when performed on all the images in the data set
-can help create a more consistent form between all the images. By
-putting all the images in grayscale or cropping photos, this makes all
-the images' underlying form more consistent and makes it easier for
-models to distinguish differences in the images themselves. For the
-images in my medical imagery data set, this primarily consisted of
-resizing the images on a pixel by pixel basis so they were all the same
-size, and then converted them to a grayscale color. This made the
-underlying structure of the images the same for all the images in the
-data set. See figure below for how the images looked after adjustments
-were made.
+analysis on them. For images, this means making it so they all have the
+same underlying which can require different image transformations and
+adjustments such as cropping, brightness, contrasting, changing the
+color scale, or resizing an image. This sort of data augmentation, when
+performed on all the images in the data set can help create a more
+consistent form between all the images. For the images in my medical
+imagery data set,this primarily consisted of resizing the images on a
+pixel by pixel basis so they were all the same size, and then converted
+them to a grayscale color. This made the underlying structure of the
+images the same for all the images in the data set. See the Figure 3 for
+an example between a patient with and without pneumonia after
+adjustments were made.
 
 \begin{figure}
-\includegraphics[width=0.49\linewidth,height=0.25\textheight]{images/pneumonia} \includegraphics[width=0.49\linewidth,height=0.25\textheight]{images/normal} \caption{Patient CT Scans. At left, patient with pneumonia. At right, a patient without pnuemonia}\label{fig:graunt}
+\includegraphics[width=0.49\linewidth,height=0.25\textheight]{images/pneumonia} \includegraphics[width=0.49\linewidth,height=0.25\textheight]{images/normal} \caption{Patient CT Scans. At left, patient with pneumonia. At right, a patient without pnuemonia}\label{fig:sample-fig3}
 \end{figure}
 
 After getting all the images into the same structure, I needed to
@@ -270,9 +307,9 @@ node represents an operation that may have zero or more input or output.
 A tensor is created as a symbolic handle to refer to the input and
 output of these operations'' \citet{PML}. A tensor is best understood as
 either a scalar, vector , matrices and so on, which all correspond to a
-different rank tensor (See Figure 3 below). These tensors are created
-from the values in the data you are working with and then are used to
-build and create the complex models one wants to work with.
+different rank tensor (See Figure 4). These tensors are created from the
+values in the data you are working with and then are used to build and
+create the complex models one wants to work with.
 
 \begin{figure}
 
@@ -280,7 +317,7 @@ build and create the complex models one wants to work with.
 
 }
 
-\caption{Tensors in Tensorflow}\label{fig:sample-fig3}
+\caption{Tensors in Tensorflow}\label{fig:sample-fig4}
 \end{figure}
 
 For the images in my data set, by using Tensorflow I was able to convert
@@ -349,11 +386,11 @@ complex models.
 
 }
 
-\caption{Neural Network example}\label{fig:sample-fig4}
+\caption{Neural Network example}\label{fig:sample-fig5}
 \end{figure}
 
 The figure above shows an example of what the underlying structure of a
-neural network looks like (See figure 4 \citet{Investopedia}). The
+neural network looks like (See Figure 4 \citet{Investopedia}). The
 neural network show in this example consists of one input layer, one
 hidden layer with 4 hidden units, and then one output layer. The input
 layer would be the exact data you are feeding into the model, so for
@@ -499,12 +536,12 @@ pneumonia than people who did not have pneumonia. In fact the training
 data contains 74\% picture of people with pneumonia and 26\% being
 normal images.
 
-\includegraphics[height=0.5\textheight]{report_files/figure-latex/unnamed-chunk-1-1}
+\includegraphics[width=0.75\linewidth,height=0.25\textheight]{report_files/figure-latex/unnamed-chunk-4-1}
 
 What this tells us is that if a random person were to guess that every
-picture was a picture of pneumonia, that they would be correct 76\% of
+picture was a picture of pneumonia, that they would be correct 74\% of
 the time. So when I build out my models, I will be looking for a model
-that is able to achieve better than 76\% accuracy to say it is an
+that is able to achieve better than 74\% accuracy to say it is an
 improvement over a baseline random guessing model.
 
 \hypertarget{model-1}{%
@@ -529,23 +566,49 @@ model looks likes. From looking at Figure 5 one can see that there are
 different layers that the model will try to optimize during each
 training run.
 
-\begin{figure}
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{model1<-}\StringTok{ }\KeywordTok{keras_model_sequential}\NormalTok{() }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{layer_conv_2d}\NormalTok{(}\DataTypeTok{filters =} \DecValTok{32}\NormalTok{, }\DataTypeTok{kernel_size =} \KeywordTok{c}\NormalTok{(}\DecValTok{3}\NormalTok{,}\DecValTok{3}\NormalTok{), }\DataTypeTok{activation =} \StringTok{"relu"}\NormalTok{, }
+                \DataTypeTok{input_shape =} \KeywordTok{c}\NormalTok{(}\DecValTok{64}\NormalTok{,}\DecValTok{64}\NormalTok{,}\DecValTok{1}\NormalTok{)) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{layer_max_pooling_2d}\NormalTok{(}\DataTypeTok{pool_size =} \KeywordTok{c}\NormalTok{(}\DecValTok{3}\NormalTok{,}\DecValTok{3}\NormalTok{)) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{layer_flatten}\NormalTok{() }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{layer_dropout}\NormalTok{(}\DataTypeTok{rate=}\FloatTok{0.5}\NormalTok{) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{layer_dense}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DataTypeTok{activation=}\StringTok{"softmax"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
 
-{\centering \includegraphics[width=0.75\linewidth,height=0.25\textheight]{images/model1} 
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{model1 }\OperatorTok{%>%}\StringTok{ }\KeywordTok{compile}\NormalTok{(}
+  \DataTypeTok{optimizer =} \StringTok{"adam"}\NormalTok{,}
+  \DataTypeTok{loss =} \StringTok{"binary_crossentropy"}\NormalTok{,}
+  \DataTypeTok{metrics =} \StringTok{"accuracy"}
+\NormalTok{)}
+\KeywordTok{summary}\NormalTok{(model1)}
+\end{Highlighting}
+\end{Shaded}
 
-}
-
-\caption{Neural Network example}\label{fig:sample-fig5}
-\end{figure}
-
-\begin{figure}
-
-{\centering \includegraphics[width=0.5\linewidth,height=0.25\textheight]{images/model1out} 
-
-}
-
-\caption{Neural Network example}\label{fig:sample-fig6}
-\end{figure}
+\begin{verbatim}
+## Model: "sequential"
+## ________________________________________________________________________________
+## Layer (type)                        Output Shape                    Param #     
+## ================================================================================
+## conv2d (Conv2D)                     (None, 62, 62, 32)              320         
+## ________________________________________________________________________________
+## max_pooling2d (MaxPooling2D)        (None, 20, 20, 32)              0           
+## ________________________________________________________________________________
+## flatten (Flatten)                   (None, 12800)                   0           
+## ________________________________________________________________________________
+## dropout (Dropout)                   (None, 12800)                   0           
+## ________________________________________________________________________________
+## dense (Dense)                       (None, 1)                       12801       
+## ================================================================================
+## Total params: 13,121
+## Trainable params: 13,121
+## Non-trainable params: 0
+## ________________________________________________________________________________
+\end{verbatim}
 
 After training this model we can see that although it starts at around
 being 75\% accurate on both the training and validation sets, that even
@@ -575,24 +638,6 @@ constructed. We can see that by adding these two new layers to the model
 that there are now 34,659 parameters that the model is going to try to
 maximize during its training process.
 
-\begin{figure}
-
-{\centering \includegraphics[width=0.75\linewidth,height=0.25\textheight]{images/model2} 
-
-}
-
-\caption{Neural Network example}\label{fig:sample-fig7}
-\end{figure}
-
-\begin{figure}
-
-{\centering \includegraphics[width=0.75\linewidth,height=0.25\textheight]{images/model2out} 
-
-}
-
-\caption{Neural Network example}\label{fig:sample-fig8}
-\end{figure}
-
 Even after adding a second convolution layer and a second dense layer at
 the end, we can see that this model again does not do any better than
 the previous model. One can see that the accuracy stays right around
@@ -615,24 +660,6 @@ For this model I decided to have 4 pairs of convolution, pooling, and
 dropout layers, followed by a flattening layer and then two dense
 layers. As we can see from Figure 9, this model now has 98,017 trainable
 parameters that the model will try to optimize.
-
-\begin{figure}
-
-{\centering \includegraphics[width=0.75\linewidth,height=0.25\textheight]{images/model3} 
-
-}
-
-\caption{Neural Network example}\label{fig:sample-fig9}
-\end{figure}
-
-\begin{figure}
-
-{\centering \includegraphics[width=0.75\linewidth,height=0.25\textheight]{images/model3out} 
-
-}
-
-\caption{Neural Network example}\label{fig:sample-fig10}
-\end{figure}
 
 As we can see from this output, the model is finally able to discern
 between images that contain pneumonia and normal images. As we can, over
@@ -682,15 +709,6 @@ while being able to achieve 89\% accuracy with a convolutional neural
 network is very promising, these results show that there is future work
 that can be done that would be able to improve the model's accuracy even
 more.
-
-\begin{figure}
-
-{\centering \includegraphics[width=0.75\linewidth,height=0.25\textheight]{images/matrix} 
-
-}
-
-\caption{Neural Network example}\label{fig:sample-fig11}
-\end{figure}
 
 \hypertarget{conclusion-and-future-work}{%
 \section{Conclusion and Future Work}\label{conclusion-and-future-work}}

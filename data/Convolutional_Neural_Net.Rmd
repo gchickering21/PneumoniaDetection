@@ -3,6 +3,7 @@ title: "Pneumonia"
 author: "Graham Chickering"
 date: "11/13/2020"
 output:
+  pdf_document: default
   html_document:
     df_print: paged
 ---
@@ -136,7 +137,9 @@ model1 %>% compile(
 )
 summary(model1)
 ```
- For my first model I decided to build a model that had one convolution layer, one pooling layer, one flattening layer, a dropout layer that removed half of the available units available in the previous layer during each new training iteration, and then finally one dense layer. The flattening layer works to replace all dimensions of the previous tensors down to one dimension, which is the dimension size we want our output layer to be. The dropout layer is used to make the model more generalizable and requires the model to fit the units with only half the units of the previous layer available during any iteration. The final dense layer is used to create  a layer of units, in this case one unit, where every unit in this new layer is connected to every unit in the previous layer, making it densely connected. See Figure 5 for what this model looks likes. From looking at Figure 5 one can see that there are 13,121 trainable parameters. These are all the weights between the different layers that the model will try to optimize during each training run.
+ For my first model I decided to build a model that had one convolution layer, one pooling layer, one flattening layer, a dropout layer that removed half of the available units available in the previous layer during each new training iteration, and then finally one dense layer. The flattening layer works to replace all dimensions of the previous tensors down to one dimension, which is the dimension size we want our output layer to be. The dropout layer is used to make the model more generalizable and requires the model to fit the units with only half the units of the previous layer available during any iteration. The final dense layer is used to create  a layer of units, in this case one unit, where every unit in this new layer is connected to every unit in the previous layer, making it densely connected. From looking at the output one can see that there are 13,121 trainable parameters. These are all the weights between the different layers that the model will try to optimize during each training run.
+ 
+ After creating the model itself we have to select the parameters that will be used to actually used to optimize and compare the models. For my optimizer, I used the Adam optimizer which is a robust, gradient based optimization method that has been shown to work extremely well for machine learning problems. For my loss metric, I will be using binary cross entropy to compute the loss. Binary cross entropy is a loss function that measures the performance of a binary classification model where the probability output is between 0 and 1. It calculates the loss by comparing the predicted class value to the true class value and tries to minimize this difference. Therefore the model will use this to minimize the loss and get the loss value as close to zero as it can. For comparing the models themselves I will be comparing the model's accuracy scores which just tells us what percentage of pictures the model will correctly classify. We will use these metrics to compare all the models I create. 
 
 
 ```{r}
@@ -162,6 +165,7 @@ hist <- model1 %>% fit_generator(
 
 ```{r}
 plot(hist)
+model1 %>% save_model_hdf5("my_model1.h5")
 ```
 
 
@@ -207,6 +211,7 @@ hist2 <- model2 %>% fit_generator(
 ```
 ```{r}
 plot(hist2)
+model2 %>% save_model_hdf5("my_model2.h5")
 ```
 
 
