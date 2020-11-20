@@ -78,7 +78,7 @@
 Convolutional Networks are a specific type of Neural Networks that have
 shown to be particularly effective at being able to identify distinct
 objects within images. This technique can be used to identify different
-sorts of condition, such as pneumonia, within medical images as well as
+sorts of conditions, such as pneumonia, within medical images as well as
 detect other sorts of tumors or cancers. In theory this type of network
 is designed based on how the human brain works and the idea that
 multiple levels of neurons are connected together in order to detect and
@@ -227,10 +227,10 @@ connection between R and Google Cloud was required to be setup. By
 utilizing the \emph{googleCloudStorageR} package, I was able to setup a
 connection that allowed me to download the data from my Cloud Storage
 bucket and onto my desktop where it could then be read into R Studio
-without having to store the files themselves within R Studio (See
-Apendix for code on how to setup this connection). This allowed me to
-not have to store the data in my actual Github repository but still be
-able to perform analysis and build models on the image dataset.
+without having to store the files themselves within R Studio
+\citet{GoogleyR}. This allowed me to not have to store the data in my
+actual Github repository but still be able to perform analysis and build
+models on the image dataset.
 
 \hypertarget{image-transformation-and-tensorflow}{%
 \section{Image Transformation and
@@ -257,19 +257,20 @@ were made.
 
 After getting all the images into the same structure, I needed to
 convert them to a form where I could actually perform analysis on the
-images. In order to do this I relied on the \emph{tensorflow} R package.
-Tensorflow is a ``scalable and multiplatform programming interface for
-implementing and running machine learning algorithms'' \citet{PML}.
-Tensorflow allows execution on both CPU's and GPU's which help speed up
-processing time on complicated algorithms. This package is built around
-a ``computation graph composed as a set of nodes where each node
-represents an operation that may have zero or more input or output. A
-tensor is created as a symbolic handle to refer to the input and output
-of these operations'' \citet{PML}. A tensor is best understood as either
-a scalar, vector , matrices and so on, which all correspond to a
-different rank tensors (See Figure 4 \citet{PML}). These tensors are
-created from the values in the data you are working with and then are
-used to build and create the complex models one wants to work with.
+images. In order to do this I relied on the \emph{tensorflow} R package
+\citet{Tensorflow2}. Tensorflow is a ``scalable and multiplatform
+programming interface for implementing and running machine learning
+algorithms'' \citet{PML}. Tensorflow allows execution on both CPU's and
+GPU's which help speed up processing time on complicated algorithms.
+This package is built around a ``computation graph composed as a set of
+nodes where each node represents an operation that may have zero or more
+input or output. A tensor is created as a symbolic handle to refer to
+the input and output of these operations'' \citet{PML}. A tensor is best
+understood as either a scalar, vector , matrices and so on, which all
+correspond to a different rank tensors (See Figure 4 \citet{PML}). These
+tensors are created from the values in the data you are working with and
+then are used to build and create the complex models one wants to work
+with.
 
 \begin{figure}
 
@@ -315,16 +316,17 @@ that would would be able to discern between someone who has pneumonia
 versus someone who does not have pneumonia. In order to do this I
 utilized the \emph{keras} package in order to build a convolutional
 neural network to be able to distinguish between the two different
-diagnosis. Keras is a ``high-level neural network API that is built to
-run off other libraries such as Tensorflow to provide a user-friendly
-interface to building complex models'' \citet{PML}. Keras, when working
-with Tensorflow, helps to provide the framework to begin building
-complex neural network models. This package will allow me to be able to
-not only train and build the model, but be able to test the model on
-another subset of images and be able to begin to predict whether or not
-someone has pneumonia from looking at a specific image. Specifically I
-used the keras package to build out a convolutional neural network that
-have been shown to work extremely well for image classification tasks.
+diagnosis \citet{Keras2}. Keras is a ``high-level neural network API
+that is built to run off other libraries such as Tensorflow to provide a
+user-friendly interface to building complex models'' \citet{PML}. Keras,
+when working with Tensorflow, helps to provide the framework to begin
+building complex neural network models. This package will allow me to be
+able to not only train and build the model, but be able to test the
+model on another subset of images and be able to begin to predict
+whether or not someone has pneumonia from looking at a specific image.
+Specifically I used the keras package to build out a convolutional
+neural network that have been shown to work extremely well for image
+classification tasks.
 
 \hypertarget{neural-networks}{%
 \subsection{Neural Networks}\label{neural-networks}}
@@ -356,9 +358,9 @@ After that we can see that there is one output layer for this example,
 but other networks can contain varying numbers of output units as well.
 Neural networks in general can contain differing number of hidden
 layers, hidden units, input and output units which will all depend based
-on the data they have and the problem one is trying to solve. In general
-data is fed into the model, it is passed through the network using
-weights, and then often trained using a technique called backwards
+on the data they have and the problem one is trying to solve. In
+general, data is fed into the model, it is passed through the network
+using weights, and then often trained using a technique called backwards
 propagation. This technique is able to optimize the model by comparing
 the result found by the model to the true results, and then working
 backwards through the model to update the weights so that the model can
@@ -379,7 +381,7 @@ natural language processing or self-driving cars.
 \subsection{Convolutional Neural Networks
 (CNN)}\label{convolutional-neural-networks-cnn}}
 
-~~~~~As previously mentioned , CNN's a specific form of Neural Network
+~~~~~As previously mentioned, CNN's a specific form of Neural Network
 that is based heavily on how the visual cortext of the human brain works
 when recogizing images, which is what allows it to perform extremely
 well on image classification tasks. At a high level CNN's work by
@@ -492,11 +494,9 @@ results are when given separate input images.
 
 After splitting up the data into their different sets I found that
 overall the data set contained many more pictures of people than
-pneumonia than people who did not have pneumonia. In fact the training
+pneumonia than people who did not have pneumonia. In fact, the training
 data contains 74\% picture of people with pneumonia and 26\% being
 normal images.
-
-\includegraphics[width=0.5\linewidth,height=0.4\textheight]{report_files/figure-latex/unnamed-chunk-4-1}
 
 What this tells us is that if a random person were to guess that every
 picture was a picture of pneumonia, that they would be correct 74\% of
@@ -650,77 +650,108 @@ substantially.
 \subsection{Results}\label{results}}
 
 ~~~~~After running model 3 on the testing set, the model was able to
-achieve an accuracy score of 88.94\% and a loss score of 0.325 (which
-would ideally be at 0 if there was perfect accuracy). The testing set
-contained 234 normal images and 390 pneumonia images so if one were to
-guess pneumonia every time they would be correct 62.5\% of the time.
-While ideally the model would be able to achieve a perfect 100\%
-accuracy and 0 loss, being able to train a model that achieves an
-accuracy of 89\% on a task as challenging as being able to identify
+achieve an accuracy score of 84.6\% and a loss score of 0.381 . The
+testing set contained 234 normal images and 390 pneumonia images so if
+one were to guess pneumonia every time they would be correct 62.5\% of
+the time. While ideally the model would be able to achieve a perfect
+100\% accuracy and 0 loss, being able to train a model that achieves an
+accuracy of 85\% on a task as challenging as being able to identify
 whether or not someone has pneumonia is a very promising result.
 
 \begin{tabular}{r|r}
 \hline
 loss & accuracy\\
 \hline
-5.749964 & 0.625\\
+0.3810876 & 0.8461539\\
 \hline
 \end{tabular}
 
-\begin{tabular}{l|l|r}
-\hline
-key & value & count\\
-\hline
-NORMAL & 0 & 234\\
-\hline
-PNEUMONIA & 1 & 390\\
-\hline
-\end{tabular}
+When looking at Figure 12, we can break down the accuracy score further
+and look into how the model did at identifying the two different classes
+one can begin to look into areas where the model does very well and
+where the model struggles. By looking at the confusion matrix in Figure
+12, we can see that the model does an extremely good job of identifying
+when the image is of someone who has pneumonia, being able to predict is
+correctly 96.7\% of the time. We can also see that the model is only
+able to correctly predict whether someone is normal at a 66.2\% of the
+time. What this output tells us is that the model is more likely to
+identify a patient as having pneumonia when they have do not have it,
+rather than the opposite scenario of telling a patient they do not have
+pneumonia when they in fact have it which is probably the more dangerous
+scenario. When thinking about why the model does such a better job at
+identifying patients who have pneumonia, it comes back to the type of
+data we used to train the model. Since the training and validation data
+contained 3x as many pictures of pneumonia, it makes sense that the
+model does a much better job of being able to recognize when someone has
+pneumonia. So while being able to achieve 85\% accuracy with a
+convolutional neural network is very promising, these results show that
+there is future work that can be done that would be able to improve the
+model's accuracy even more.
 
-\begin{verbatim}
-## Warning: The `x` argument of `as_tibble.matrix()` must have unique column names if `.name_repair` is omitted as of tibble 2.0.0.
-## Using compatibility `.name_repair`.
-## This warning is displayed once every 8 hours.
-## Call `lifecycle::last_warnings()` to see where this warning was generated.
-\end{verbatim}
+\begin{figure}
 
-When we break down the accuracy score further and look into how the
-model did at identifying the two different classes one can begin to look
-into areas where the model does very well and where the model struggles.
-By looking at the confusion matrix in Figure 11, we can see that the
-model does an extremely good job of identifying when the image is of
-someone who has pneumonia, being able to predict is correctly 96.4\% of
-the time. We can also see that the model is only able to correctly
-predict whether someone is normal at a 76.5\% of the time. What this
-output tells us is that the model is more likely to identify a patient
-as having pneumonia when they have do not have it, rather than the
-opposite scenario of telling a patient they do not have pneumonia when
-they in fact have it which is probably the more dangerous scenario. When
-thinking about why the model does such a better job at identifying
-patients who have pneumonia, it comes back to the type of data we used
-to train the model. Since the training and validation data contained 3x
-as many pictures of pneumonia, it makes sense that the model does a much
-better job of being able to recognize when someone has pneumonia. So
-while being able to achieve 89\% accuracy with a convolutional neural
-network is very promising, these results show that there is future work
-that can be done that would be able to improve the model's accuracy even
-more.
+{\centering \includegraphics[width=0.75\linewidth,height=0.25\textheight]{images/heatmap} 
 
-\includegraphics{report_files/figure-latex/unnamed-chunk-11-1.pdf} \#
-Conclusion and Future Work
+}
 
-\begin{itemize}
-\tightlist
-\item
-  working with google cloud platform environment, not having to store
-  the data on my computer at all -model could have been optimized
-\item
-  further application areas, such as lesions and other things that can
-  be detected in ct scans (enhancing images
-  themself)\url{https://healthitanalytics.com/news/deep-learning-model-can-enhance-standard-ct-scan-technology}
-\end{itemize}
+\caption{Confusion Matrix of Testing Set Results}\label{fig:sample-fig12}
+\end{figure}
 
-`
+\hypertarget{conclusion-and-future-work}{%
+\section{Conclusion and Future Work}\label{conclusion-and-future-work}}
+
+~~~~~Through this project I was able to explore different ways of
+dealing with large data sets, learn how to transform images, and learn
+how to work with complex neural networks. In order to achieve my final
+goal of creating a model that successfully is able to detect whether or
+not someone has pneumonia from a CT scan, I first had to learn how to
+store a large data set with Google Cloud Storage and connect that with
+the R Studio environment. The next task involved having to learn how to
+convert images into a form that they could actually be used to train
+models using the Keras package was its own separate task, and finally
+had tp learn how convolutional neural networks worked in order to be
+able to train my own models with the data set highlighted how to work
+with large nontraditional data within the R Studio Environment. While I
+would have liked to achieve a higher accuracy score on my final model,
+this work shows how exciting this field of machine learning is and just
+began to scratch the surface of the different application areas of this
+type of model.
+
+When reflecting back and thinking about ways that this worked could be
+built on in the future, the first thing that comes to mind is learning
+how to use image augmentation techniques to build off the underlying
+images. Having a training set that contained a much higher percentage of
+patients with pneumonia than patients without pneumonia drastically
+affected the final model that was created. As one could see from the
+final confusion matrix the model did an incredible job correctly
+predicting when a patient had pneumonia but did poorly when predicting
+if a patient was normal. This is largely due to the training set that it
+was fed and is the first area that could be used to improve the model.
+
+The second way this project could be improved upon in the future would
+have been to work entirely within the Google Cloud Environment. While it
+worked to store the data within the Cloud Environment, in order to work
+with RStudio on my desktop, this required having to download the data
+from the Cloud onto my desktop to perform analysis on the data. Since
+Google Cloud now offers an R Studio that runs directly within their
+cloud environment, this would have greatly improved the efficiency of
+this project. Not only would this have meant that the data never would
+have had to be downloaded onto my computer, but also could have taken
+advantage of the Google Cloud AI Platform.
+
+The Google Cloud AI Platform would have first helped by speeding up the
+run time of the models I created. As I mentioned in the report, running
+and training these models took upwards of 5 minutes each and this didn't
+include any optimization techniques. Using the AI platform would have
+allowed me to speed up the training time and also try out different
+optimization methods that would have helped improve the accuracy of my
+model even further. So while overall this project was very successful in
+what I set out to learn, there are certainly still areas that could be
+improved upon in the future.
+
+Note: Other sources that were extremely beneficial towards this project
+include \citet{PAD}, \citet{Medium}, \citet{CloudStorage},
+\citet{Kaggle}, \citet{RPubs},and \citet{Shirin} \newpage
 
 \bibliographystyle{agsm}
 \bibliography{bibliography.bib}
