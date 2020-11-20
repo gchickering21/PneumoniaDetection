@@ -21,7 +21,7 @@ library(mdsr)
 library(knitr)
 library(kableExtra)
 library(googleCloudStorageR)
-library(googleAuthR)
+library(cloudml)
 library(tensorflow)
 library(reticulate) 
 library(tfdatasets)
@@ -86,11 +86,10 @@ For the images in my data set, by using Tensorflow I was able to convert the ima
 
 |      Convolutional Neural Networks (CNN) at a high level are a form of deep learning that takes an image as an input and eventually classifies it under a certain category. These types of networks are used heavily to perform tasks such as facial recognition, object detection, and image classification to just list a few. CNN's are a specific type of neural network, which falls under a branch of machine learning called deep learning. Neural networks are extremely popular today due to recent advances in both the algorithms used to build the models as well as the computer architecture which allows for much faster processing times of these complex models.
 
+The figure above shows an example of what the underlying structure of a neural network looks like (See Figure 4 @Investopedia). The neural network show in this example consists of one input layer, one hidden layer with 4 hidden units, and then one output layer. The input layer would be the exact data you are feeding into the model, so for this picture this would mean there was two examples being fed into network to train the model. Then we can see how each of the input layers are connected to three of the gray nodes in the hidden layer. While this model only has one hidden layer and the inputs are only connected to 3 of the hidden units, in other models one could create multiple hidden layers, each with a different number of hidden units, and the number of units that are connected together from layer to layer can vary as well. After that we can see that there is one output layer for this example, but other networks can contain varying numbers of output units as well. Neural networks in general can contain differing number of hidden layers, hidden units, input and output units which will all depend based on the data they have and the problem one is trying to solve. In general data is fed into the model, it is passed through the network using weights, and then often trained using a technique called backwards propagation. This technique is able to optimize the model by comparing the result found by the model to the true results, and then working backwards through the model to update the weights so that the model can better classify the input data. Neural networks in general have been shown to be extremely successful at a broad range of tasks such as natural language processing or self-driving cars. 
 ```{r sample-fig5, echo=FALSE, fig.align="center", out.width = "75%", out.height = "25%", fig.cap="Neural Network example"}
 knitr::include_graphics("images/neural_net.jpeg")
 ```
-
-The figure above shows an example of what the underlying structure of a neural network looks like (See Figure 4 @Investopedia). The neural network show in this example consists of one input layer, one hidden layer with 4 hidden units, and then one output layer. The input layer would be the exact data you are feeding into the model, so for this picture this would mean there was two examples being fed into network to train the model. Then we can see how each of the input layers are connected to three of the gray nodes in the hidden layer. While this model only has one hidden layer and the inputs are only connected to 3 of the hidden units, in other models one could create multiple hidden layers, each with a different number of hidden units, and the number of units that are connected together from layer to layer can vary as well. After that we can see that there is one output layer for this example, but other networks can contain varying numbers of output units as well. Neural networks in general can contain differing number of hidden layers, hidden units, input and output units which will all depend based on the data they have and the problem one is trying to solve. In general data is fed into the model, it is passed through the network using weights, and then often trained using a technique called backwards propagation. This technique is able to optimize the model by comparing the result found by the model to the true results, and then working backwards through the model to update the weights so that the model can better classify the input data. Neural networks in general have been shown to be extremely successful at a broad range of tasks such as natural language processing or self-driving cars. 
 
 ## Convolutional Neural Networks (CNN)
 
@@ -116,9 +115,6 @@ In order to actually perform this feature mapping though a CNN relies on creatin
 ## CNN's with Medical Images
 
 |      For my project, I wanted to use Convolutional Neural Networks to see how well this type of network could perform on the task of trying to classify whether or not someone had pneumonia based just of a CT scan. At this point I have already gotten my images into a form that allows them to be passed as inputs to build a model, so the next step was for me to begin training the model.
-
-To begin training the model I started off by first splitting my data into training, validation, and testing sets. The training set would be used to train the model, the validation set would be used to tune the parameters in the network, and then the test set would then be used to assess the performance of the final model and see how generalizable the results are when given separate input images.
-
 ```{r, echo=FALSE}
 chest_list <- c("NORMAL","PNEUMONIA")
 output_n<-length(chest_list)
@@ -134,16 +130,15 @@ batch_size<-32
 
 # path to image folders
 ##comeback and change this
-train_image_files_path <- file.path("/Users/grahamchickering/Downloads/chest_xray/train")
+train_image_files_path <- file.path("medical_images/chest_xray/train")
 ```
 
-```{r, message=FALSE,echo=FALSE}
+```{r, message=FALSE, echo=FALSE}
 train_data_gen = image_data_generator(
   rescale = 1/255,
   validation_split=0.2
 )
 ```
-
 
 ```{r, echo=FALSE}
 train_image_array_gen <- flow_images_from_directory(train_image_files_path, 
@@ -169,10 +164,11 @@ val_image_array_gen <- flow_images_from_directory(train_image_files_path,
                                           seed = 27)
 ```
 
+To begin training the model I started off by first splitting my data into training, validation, and testing sets. The training set would be used to train the model, the validation set would be used to tune the parameters in the network, and then the test set would then be used to assess the performance of the final model and see how generalizable the results are when given separate input images.
+
 After splitting up the data into their different sets I found that overall the data set contained many more pictures of people than pneumonia than people who did not have pneumonia. In fact the training data contains 74% picture of people with pneumonia and 26% being normal images. 
 
-
-```{r, echo=FALSE,out.width = "75%", out.height = "25%" }
+```{r, out.height="40%", out.width="50%", echo=FALSE}
 tb<-tribble(
   ~Type, ~Count,
   "Normal",1073,
@@ -182,57 +178,35 @@ tb<-tribble(
 count<-ggplot(data=tb, aes(x=Type, y=Count)) +
   geom_bar(stat="identity", color="blue", fill=rgb(0.1,0.4,0.5,0.7) ) + ggtitle("Count of Different Image Types in Training Set")
 count
-
-chest_classes_indices <- train_image_array_gen$class_indices
-```
-
-```{r, echo=FALSE}
-# number of training samples
-train_samples <- train_image_array_gen$n
-# number of validation samples
-valid_samples <- val_image_array_gen$n
-
-# define batch size and number of epochs
-batch_size <- 32
-epochs <- 10
 ```
 
 What this tells us is that if a random person were to guess that every picture was a picture of pneumonia, that they would be correct 74% of the time. So when I build out my models, I will be looking for a model that is able to achieve better than 74% accuracy to say it is an improvement over a baseline random guessing model. 
 
 ## Model 1
-
-|      Now that I had an understanding of what my training set looked like, I wanted to try building my first convolutional neural network. For my first model I decided to build a model that had one convolution layer, one pooling layer, one flattening layer, a dropout layer that removed half of the available units available in the previous layer during each new training iteration, and then finally one dense layer. The flattening layer works to replace all dimensions of the previous tensors down to one dimension, which is the dimension size we want our output layer to be. The dropout layer is used to make the model more generalizable and requires the model to fit the units with only half the units of the previous layer available during any iteration. The final dense layer is used to create  a layer of units, in this case one unit, where every unit in this new layer is connected to every unit in the previous layer, making it densely connected. See Figure 5 for what this model looks likes. From looking at Figure 5 one can see that there are 13,121 trainable parameters. These are all the weights between the different layers that the model will try to optimize during each training run.
-```{r, warning=FALSE, message=FALSE, echo=FALSE}
-model1<- keras_model_sequential() %>% 
-  layer_conv_2d(filters = 32, kernel_size = c(3,3), activation = "relu", 
-                input_shape = c(64,64,1)) %>%
-  layer_max_pooling_2d(pool_size = c(3,3)) %>%
-  layer_flatten() %>%
-  layer_dropout(rate=0.5) %>% 
-  layer_dense(1, activation="softmax")
-
-model1 %>% compile(
-  optimizer = "adam",
-  loss = "binary_crossentropy",
-  metrics = "accuracy"
-)
-  
-
+```{r sample-fig6, echo=FALSE, fig.align="center", out.width = "75%", out.height = "25%", fig.cap="Model 1 Summary"}
+knitr::include_graphics("images/model1.png")
 ```
 
-```{r, echo=FALSE}
-summary(model1)
+```{r sample-fig7, echo=FALSE, fig.align="center", out.width = "75%", out.height = "25%", fig.cap="Model 1 Accuracy"}
+knitr::include_graphics("images/model1out.png")
 ```
 
+|      Now that I had an understanding of what my training set looked like, I wanted to try building my first convolutional neural network. For my first model I decided to build a model that had one convolution layer, one pooling layer, one flattening layer, a dropout layer that removed half of the available units available in the previous layer during each new training iteration, and then finally one dense layer. The flattening layer works to replace all dimensions of the previous tensors down to one dimension, which is the dimension size we want our output layer to be. The dropout layer is used to make the model more generalizable and requires the model to fit the units with only half the units of the previous layer available during any iteration. The final dense layer is used to create  a layer of units, in this case one unit, where every unit in this new layer is connected to every unit in the previous layer, making it densely connected. See Figure 6 for what this model looks likes. From looking at Figure 6 one can see that there are 13,121 trainable parameters. These are all the weights between the different layers that the model will try to optimize during each training run.
 
-After training this model we can see that although it starts at around being 75% accurate on both the training and validation sets, that even after 5 epochs that the model does not do any better at being able to discern between whether or not an image is normal or pneumonia than just random guessing. This suggests that either the model does not have enough layers to it and is not able to extract distinguishable features from the images or that there were not enough epochs to train the model. It is also worth noting that this model took 2 and a half minutes to complete its training, with roughly 30 seconds per epoch. This long run time is due to the large number of trainable parameters in the model.
+After training this model we can see  from looking at Figure 7 that although it starts at around being 75% accurate on both the training and validation sets, that even after 5 epochs that the model does not do any better at being able to discern between whether or not an image is normal or pneumonia than just random guessing. This suggests that either the model does not have enough layers to it and is not able to extract distinguishable features from the images or that there were not enough epochs to train the model. It is also worth noting that this model took 2 and a half minutes to complete its training, with roughly 30 seconds per epoch. This long run time is due to the large number of trainable parameters in the model.
+
 
 ## Model 2
+```{r sample-fig8, echo=FALSE, fig.align="center", out.width = "75%", out.height = "25%", fig.cap="Model 2 Summary"}
+knitr::include_graphics("images/model2.png")
+```
 
-|      Since model 1 did not do any better than one would do than just randomly guessing, I decided to try to improve upon the first model by adding a second convolution layer after the first pooling layer, as well as a second dense layer at the end of the model. I also decided to increase the number of epochs from 5 to 10 to see if allowing the model a longer period of time to train itself would help improve the accuracy of the model at all. My hopes were that adding these new layers would help the model discover features in the images that it wasnt able to detect with the first model and adding more epochs would give the model more time to find these features. Figure 7 shows how the new model is constructed. We can see that by adding these two new layers to the model that there are now 34,659 parameters that the model is going to try to maximize during its training process. 
+```{r sample-fig9, echo=FALSE, fig.align="center", out.width = "75%", out.height = "25%", fig.cap="Model 2 Accuracy"}
+knitr::include_graphics("images/model2out.png")
+```
+|      Since model 1 did not do any better than one would do than just randomly guessing, I decided to try to improve upon the first model by adding a second convolution layer after the first pooling layer, as well as a second dense layer at the end of the model. I also decided to increase the number of epochs from 5 to 10 to see if allowing the model a longer period of time to train itself would help improve the accuracy of the model at all. My hopes were that adding these new layers would help the model discover features in the images that it wasnt able to detect with the first model and adding more epochs would give the model more time to find these features. Figure 8 shows how the new model is constructed. We can see that by adding these two new layers to the model that there are now 34,659 parameters that the model is going to try to maximize during its training process. 
 
-Even after adding a second convolution layer and a second dense layer at the end, we can see that this model again does not do any better than the previous model. One can see that the accuracy stays right around 75% for both the training and validation sets, and that even after increasing the complexity of the model slightly and increasing the number of epochs that the model is still not any better than guessing Pneumonia every time. This model also took roughly 5 minutes to run with every epoch taking 30 seconds to run. 
-
+Even after adding a second convolution layer and a second dense layer at the end, we can see that this model again does not do any better than the previous model by looking at Figure 9. One can see that the accuracy stays right around 75% for both the training and validation sets, and that even after increasing the complexity of the model slightly and increasing the number of epochs that the model is still not any better than guessing Pneumonia every time. This model also took roughly 5 minutes to run with every epoch taking 30 seconds to run. 
 
 ## Model 3 
 
@@ -240,12 +214,124 @@ Even after adding a second convolution layer and a second dense layer at the end
 
 As we can see from this output, the model is finally able to discern between images that contain pneumonia and normal images. As we can, over the course of 10 epochs the model is able to increase it accuracy from under 75% to close to 90% by the 10th epoch. From the graph we can also see that the validation accuracy score is always slightly under the training accuracy score, which suggests that the model might be slightly over-fitting the data, but because I already included 4 dropout layer in the model and the scores are still relatively close, this is not something to worry about too much. Now that I have found a model that is able to achieve close to 90% accuracy, I am going to move on and try this model on the testing set. This model also took close to 5 minutes to run even though the number of trainable parameters increased substantially.
 
+```{r sample-fig10, echo=FALSE, fig.align="center", out.width = "75%", out.height = "25%", fig.cap="Model 3 Summary"}
+knitr::include_graphics("images/model3.png")
+```
+
+```{r sample-fig11, echo=FALSE, fig.align="center", out.width = "75%", out.height = "25%", fig.cap="Model 3 Accuracy"}
+knitr::include_graphics("images/model3out.png")
+```
+
 ## Results
 
-|      After running model 3 on the testing set, the model was able to achieve an accuracy score of 88.94% and a loss score of 0.325 (which would ideally be at 0 if there was perfect accuracy). The testing set contained 234 normal images and 390 pneumonia images so if one were to guess pneumonia every time they would be correct 62.5% of the time. While in an ideal world the model would be able to achieve a perfect 100% accuracy and 0 loss, being able to train a model that achieves an accuracy of 89% on a task as challenging as being able to identify whether or not someone has pneumonia is a very promising result. 
+```{r, echo=FALSE}
+model3 <- load_model_hdf5("setup/my_model3.h5")
+```
 
+```{r, echo=FALSE}
+chest_list <- c("NORMAL","PNEUMONIA")
+output_n<-length(chest_list)
+
+img_width <- 64
+img_height <- 64
+target_size <- c(img_width, img_height)
+
+#this is for grayscale images
+channels <- 1
+
+batch_size<-32
+ test_image_files_path<-file.path("setup/medical_images/chest_xray/test")
+```
+
+```{r, echo=FALSE}
+test_datagen <- image_data_generator(rescale = 1/255)
+
+test_generator <- flow_images_from_directory(
+        test_image_files_path,
+        test_datagen,
+        color_mode="grayscale",
+        target_size = target_size,
+        class_mode = "binary",
+        classes = chest_list,
+        batch_size = 1,
+        shuffle = FALSE,
+        seed = 42)
+```
+
+|      After running model 3 on the testing set, the model was able to achieve an accuracy score of 88.94% and a loss score of 0.325 (which would ideally be at 0 if there was perfect accuracy). The testing set contained 234 normal images and 390 pneumonia images so if one were to guess pneumonia every time they would be correct 62.5% of the time. While ideally the model would be able to achieve a perfect 100% accuracy and 0 loss, being able to train a model that achieves an accuracy of 89% on a task as challenging as being able to identify whether or not someone has pneumonia is a very promising result.
+
+```{r, warning=FALSE, message=FALSE, echo=FALSE}
+test_results<- model3 %>%
+  evaluate_generator(test_generator, 
+                     steps = as.integer(test_generator$n)) 
+test_results<-test_results %>% as_tibble()
+knitr::kable(test_results)
+```
+
+```{r, echo=FALSE, warning=FALSE, message=FALSE}
+classes <- test_generator$classes %>%
+  factor() %>%
+  table() %>%
+  as_tibble()
+colnames(classes)[1] <- "value"
+
+indices <- test_generator$class_indices %>%
+  as.data.frame() %>%
+  gather() %>%
+  mutate(value = as.character(value)) %>%
+  left_join(classes, by = "value") 
+indices2<- indices %>% rename(count=n)
+knitr::kable(indices2)
+
+```
+
+```{r, message=FALSE, echo=FALSE}
+test_generator$reset()
+predictions <- model3 %>% 
+  predict_generator(
+    generator = test_generator,
+    steps = as.integer(test_generator$n)
+    ) %>%
+  round(digits = 2) %>%
+  as_tibble() %>% mutate(V2=1-V1)
+
+trial<-indices$key
+colnames(predictions) <- indices$key
+ #predictions
+ predictions <- predictions %>%
+    mutate(truth_idx = as.character(test_generator$classes)) %>%
+   left_join(indices, by = c("truth_idx" = "value"))
+ 
+ pred_analysis <- predictions %>%
+   mutate(img_id = seq(1:test_generator$n))  %>%
+  gather(pred_lbl, y, NORMAL:PNEUMONIA) %>%
+  group_by(img_id) %>%
+  filter(y == max(y)) %>%
+  arrange(img_id) %>%
+  group_by(key, n, pred_lbl) %>%
+  count()
+```
 When we break down the accuracy score further and look into how the model did at identifying the two different classes one can begin to look into areas where the model does very well and where the model struggles. By looking at the confusion matrix in Figure 11, we can see that the model does an extremely good job of identifying when the image is of someone who has pneumonia, being able to predict is correctly 96.4% of the time. We can also see that the model is only able to correctly predict whether someone is normal at a 76.5% of the time. What this output tells us is that the model is more likely to identify a patient as having pneumonia when they have do not have it, rather than the opposite scenario of telling a patient they do not have pneumonia when they in fact have it which is probably the more dangerous scenario. When thinking about why the model does such a better job at identifying patients who have pneumonia, it comes back to the type of data we used to train the model. Since the training and validation data contained 3x as many pictures of pneumonia, it makes sense that the model does a much better job of being able to recognize when someone has pneumonia. So while being able to achieve 89% accuracy with a convolutional neural network is very promising, these results show that there is future work that can be done that would be able to improve the model's accuracy even more. 
 
+```{r, warning=FALSE, message=FALSE, echo=FALSE}
+matrix<- pred_analysis %>%
+  mutate(prediction = case_when(
+    key == pred_lbl ~ "Wrong",
+    TRUE ~ "Correct"
+  )) %>%
+  group_by(key, prediction, n) %>%
+  summarise(sum = sum(nn)) %>%
+  mutate(percentage_pred = sum / n * 100) %>%
+  ggplot(aes(x = key, y = prediction, 
+             fill = percentage_pred,
+             label = round(percentage_pred, 2))) +
+    geom_tile() +
+    scale_fill_continuous() +
+    geom_text(color = "blue") +
+    coord_flip() +
+    scale_fill_gradient(low = "white", high = "red") + labs(title = "Percentage of Wrong vs Correct Predictions")
+matrix
+```
 # Conclusion and Future Work
 
 - working with google cloud platform environment, not having to store the data on my computer at all 

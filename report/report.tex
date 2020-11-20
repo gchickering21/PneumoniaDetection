@@ -340,15 +340,6 @@ advances in both the algorithms used to build the models as well as the
 computer architecture which allows for much faster processing times of
 these complex models.
 
-\begin{figure}
-
-{\centering \includegraphics[width=0.75\linewidth,height=0.25\textheight]{images/neural_net} 
-
-}
-
-\caption{Neural Network example}\label{fig:sample-fig5}
-\end{figure}
-
 The figure above shows an example of what the underlying structure of a
 neural network looks like (See Figure 4 \citet{Investopedia}). The
 neural network show in this example consists of one input layer, one
@@ -374,6 +365,15 @@ backwards through the model to update the weights so that the model can
 better classify the input data. Neural networks in general have been
 shown to be extremely successful at a broad range of tasks such as
 natural language processing or self-driving cars.
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.75\linewidth,height=0.25\textheight]{images/neural_net} 
+
+}
+
+\caption{Neural Network example}\label{fig:sample-fig5}
+\end{figure}
 
 \hypertarget{convolutional-neural-networks-cnn}{%
 \subsection{Convolutional Neural Networks
@@ -496,7 +496,7 @@ pneumonia than people who did not have pneumonia. In fact the training
 data contains 74\% picture of people with pneumonia and 26\% being
 normal images.
 
-\includegraphics[width=0.75\linewidth,height=0.25\textheight]{report_files/figure-latex/unnamed-chunk-4-1}
+\includegraphics[width=0.5\linewidth,height=0.4\textheight]{report_files/figure-latex/unnamed-chunk-4-1}
 
 What this tells us is that if a random person were to guess that every
 picture was a picture of pneumonia, that they would be correct 74\% of
@@ -506,6 +506,24 @@ improvement over a baseline random guessing model.
 
 \hypertarget{model-1}{%
 \subsection{Model 1}\label{model-1}}
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.75\linewidth,height=0.25\textheight]{images/model1} 
+
+}
+
+\caption{Model 1 Summary}\label{fig:sample-fig6}
+\end{figure}
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.75\linewidth,height=0.25\textheight]{images/model1out} 
+
+}
+
+\caption{Model 1 Accuracy}\label{fig:sample-fig7}
+\end{figure}
 
 ~~~~~Now that I had an understanding of what my training set looked
 like, I wanted to try building my first convolutional neural network.
@@ -520,46 +538,44 @@ generalizable and requires the model to fit the units with only half the
 units of the previous layer available during any iteration. The final
 dense layer is used to create a layer of units, in this case one unit,
 where every unit in this new layer is connected to every unit in the
-previous layer, making it densely connected. See Figure 5 for what this
-model looks likes. From looking at Figure 5 one can see that there are
+previous layer, making it densely connected. See Figure 6 for what this
+model looks likes. From looking at Figure 6 one can see that there are
 13,121 trainable parameters. These are all the weights between the
 different layers that the model will try to optimize during each
 training run.
 
-\begin{verbatim}
-## Model: "sequential"
-## ________________________________________________________________________________
-## Layer (type)                        Output Shape                    Param #     
-## ================================================================================
-## conv2d (Conv2D)                     (None, 62, 62, 32)              320         
-## ________________________________________________________________________________
-## max_pooling2d (MaxPooling2D)        (None, 20, 20, 32)              0           
-## ________________________________________________________________________________
-## flatten (Flatten)                   (None, 12800)                   0           
-## ________________________________________________________________________________
-## dropout (Dropout)                   (None, 12800)                   0           
-## ________________________________________________________________________________
-## dense (Dense)                       (None, 1)                       12801       
-## ================================================================================
-## Total params: 13,121
-## Trainable params: 13,121
-## Non-trainable params: 0
-## ________________________________________________________________________________
-\end{verbatim}
-
-After training this model we can see that although it starts at around
-being 75\% accurate on both the training and validation sets, that even
-after 5 epochs that the model does not do any better at being able to
-discern between whether or not an image is normal or pneumonia than just
-random guessing. This suggests that either the model does not have
-enough layers to it and is not able to extract distinguishable features
-from the images or that there were not enough epochs to train the model.
-It is also worth noting that this model took 2 and a half minutes to
-complete its training, with roughly 30 seconds per epoch. This long run
-time is due to the large number of trainable parameters in the model.
+After training this model we can see from looking at Figure 7 that
+although it starts at around being 75\% accurate on both the training
+and validation sets, that even after 5 epochs that the model does not do
+any better at being able to discern between whether or not an image is
+normal or pneumonia than just random guessing. This suggests that either
+the model does not have enough layers to it and is not able to extract
+distinguishable features from the images or that there were not enough
+epochs to train the model. It is also worth noting that this model took
+2 and a half minutes to complete its training, with roughly 30 seconds
+per epoch. This long run time is due to the large number of trainable
+parameters in the model.
 
 \hypertarget{model-2}{%
 \subsection{Model 2}\label{model-2}}
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.75\linewidth,height=0.25\textheight]{images/model2} 
+
+}
+
+\caption{Model 2 Summary}\label{fig:sample-fig8}
+\end{figure}
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.75\linewidth,height=0.25\textheight]{images/model2out} 
+
+}
+
+\caption{Model 2 Accuracy}\label{fig:sample-fig9}
+\end{figure}
 
 ~~~~~Since model 1 did not do any better than one would do than just
 randomly guessing, I decided to try to improve upon the first model by
@@ -570,19 +586,19 @@ a longer period of time to train itself would help improve the accuracy
 of the model at all. My hopes were that adding these new layers would
 help the model discover features in the images that it wasnt able to
 detect with the first model and adding more epochs would give the model
-more time to find these features. Figure 7 shows how the new model is
+more time to find these features. Figure 8 shows how the new model is
 constructed. We can see that by adding these two new layers to the model
 that there are now 34,659 parameters that the model is going to try to
 maximize during its training process.
 
 Even after adding a second convolution layer and a second dense layer at
 the end, we can see that this model again does not do any better than
-the previous model. One can see that the accuracy stays right around
-75\% for both the training and validation sets, and that even after
-increasing the complexity of the model slightly and increasing the
-number of epochs that the model is still not any better than guessing
-Pneumonia every time. This model also took roughly 5 minutes to run with
-every epoch taking 30 seconds to run.
+the previous model by looking at Figure 9. One can see that the accuracy
+stays right around 75\% for both the training and validation sets, and
+that even after increasing the complexity of the model slightly and
+increasing the number of epochs that the model is still not any better
+than guessing Pneumonia every time. This model also took roughly 5
+minutes to run with every epoch taking 30 seconds to run.
 
 \hypertarget{model-3}{%
 \subsection{Model 3}\label{model-3}}
@@ -612,6 +628,24 @@ this model on the testing set. This model also took close to 5 minutes
 to run even though the number of trainable parameters increased
 substantially.
 
+\begin{figure}
+
+{\centering \includegraphics[width=0.75\linewidth,height=0.25\textheight]{images/model3} 
+
+}
+
+\caption{Model 3 Summary}\label{fig:sample-fig10}
+\end{figure}
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.75\linewidth,height=0.25\textheight]{images/model3out} 
+
+}
+
+\caption{Model 3 Accuracy}\label{fig:sample-fig11}
+\end{figure}
+
 \hypertarget{results}{%
 \subsection{Results}\label{results}}
 
@@ -620,10 +654,35 @@ achieve an accuracy score of 88.94\% and a loss score of 0.325 (which
 would ideally be at 0 if there was perfect accuracy). The testing set
 contained 234 normal images and 390 pneumonia images so if one were to
 guess pneumonia every time they would be correct 62.5\% of the time.
-While in an ideal world the model would be able to achieve a perfect
-100\% accuracy and 0 loss, being able to train a model that achieves an
+While ideally the model would be able to achieve a perfect 100\%
+accuracy and 0 loss, being able to train a model that achieves an
 accuracy of 89\% on a task as challenging as being able to identify
 whether or not someone has pneumonia is a very promising result.
+
+\begin{tabular}{r|r}
+\hline
+loss & accuracy\\
+\hline
+5.749964 & 0.625\\
+\hline
+\end{tabular}
+
+\begin{tabular}{l|l|r}
+\hline
+key & value & count\\
+\hline
+NORMAL & 0 & 234\\
+\hline
+PNEUMONIA & 1 & 390\\
+\hline
+\end{tabular}
+
+\begin{verbatim}
+## Warning: The `x` argument of `as_tibble.matrix()` must have unique column names if `.name_repair` is omitted as of tibble 2.0.0.
+## Using compatibility `.name_repair`.
+## This warning is displayed once every 8 hours.
+## Call `lifecycle::last_warnings()` to see where this warning was generated.
+\end{verbatim}
 
 When we break down the accuracy score further and look into how the
 model did at identifying the two different classes one can begin to look
@@ -647,8 +706,8 @@ network is very promising, these results show that there is future work
 that can be done that would be able to improve the model's accuracy even
 more.
 
-\hypertarget{conclusion-and-future-work}{%
-\section{Conclusion and Future Work}\label{conclusion-and-future-work}}
+\includegraphics{report_files/figure-latex/unnamed-chunk-11-1.pdf} \#
+Conclusion and Future Work
 
 \begin{itemize}
 \tightlist
