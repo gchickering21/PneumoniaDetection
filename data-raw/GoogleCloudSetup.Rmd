@@ -7,6 +7,7 @@ output: pdf_document
 
 ```{r setup, include=FALSE}
 library(googleCloudStorageR)
+library(googleAuthR)
 ```
 
 Here we check your buckets that are associated and available with your own personal account_credentials.
@@ -24,7 +25,7 @@ medical_objects <- gcs_list_objects() %>% mutate(id= row_number())
 
 This is where we are going to actually copy all the images that are stored in the Google Cloud Storage Bucket into a space that can be used for this project
 ```{r, warning=FALSE, message=FALSE}
-gs_rsync(source="gs://chest-xray-medical", destination="STAT495F20-project-Chickering/data_raw", recursive=TRUE )
+gs_rsync(source="gs://chest-xray-medical", destination="/Users/grahamchickering/Desktop/Stat 495/STAT495F20-project-Chickering/data-raw", recursive=TRUE )
 ```
 This just copied 
 
