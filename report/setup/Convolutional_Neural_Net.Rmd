@@ -3,9 +3,9 @@ title: "Pneumonia"
 author: "Graham Chickering"
 date: "11/13/2020"
 output:
+  pdf_document: default
   html_document:
     df_print: paged
-  pdf_document: default
 ---
 
 ```{r, message=FALSE}
