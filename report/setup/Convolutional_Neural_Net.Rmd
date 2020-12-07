@@ -3,9 +3,9 @@ title: "Pneumonia"
 author: "Graham Chickering"
 date: "11/13/2020"
 output:
-  pdf_document: default
   html_document:
     df_print: paged
+  pdf_document: default
 ---
 
 ```{r, message=FALSE}
@@ -37,7 +37,7 @@ batch_size<-32
 
 # path to image folders
 ##comeback and change this
-train_image_files_path <- file.path("medical_images/chest_xray/train")
+train_image_files_path <- file.path("images/chest_xray/train")
 ```
 
 Here I set the target size of the image that I want to work with (64x64), as well as the number of channels for the image I will be working with which is 1 once I'm working with grayscale images. We then set the file path to where we can locate our training images folder.
@@ -209,6 +209,7 @@ hist2 <- model2 %>% fit_generator(
   #callbacks = callback_tensorboard("logs/run_b")
 )
 ```
+
 ```{r}
 plot(hist2)
 model2 %>% save_model_hdf5("my_model2.h5")
@@ -273,16 +274,14 @@ plot(hist3)
 ```
 
 
+##Testing the model
 ```{r}
 #model3 %>% save_model_hdf5("my_model3.h5")
 model3 <- load_model_hdf5("my_model3.h5")
 ```
 
-
-
-##Testing the model
 ```{r}
- test_image_files_path<-file.path("medical_images/chest_xray/test")
+ test_image_files_path<-file.path("images/chest_xray/test")
 ```
 
 ```{r}
@@ -310,7 +309,7 @@ test_results<-model3 %>%
 test_results
 ```
 
-After running model 3 on the testing set, the model was able to achieve an accuracy score of 86% and a loss score of 0.381 (which would ideally be at 0 if there was perfect accuracy). The testing set contained 234 normal images and 390 pneumonia images so if one were to guess pneumonia every time they would be correct 62.5% of the time. While ideally the model would be able to achieve a perfect 100% accuracy and 0 loss, being able to train a model that achieves an accuracy of 87% on a task as challenging as being able to identify whether or not someone has pneumonia is a very promising result. 
+After running model 3 on the testing set, the model was able to achieve an accuracy score of 84.6% and a loss score of 0.381 (which would ideally be at 0 if there was perfect accuracy). The testing set contained 234 normal images and 390 pneumonia images so if one were to guess pneumonia every time they would be correct 62.5% of the time. While ideally the model would be able to achieve a perfect 100% accuracy and 0 loss, being able to train a model that achieves an accuracy of 87% on a task as challenging as being able to identify whether or not someone has pneumonia is a very promising result. 
 
 ```{r}
 classes <- test_generator$classes %>%
@@ -377,4 +376,4 @@ matrix<- pred_analysis %>%
 matrix
 ```
 
-When we break down the accuracy score further and look into how the model did at identifying the two different classes one can begin to look into areas where the model does very well and where the model struggles. By looking at the confusion matrix in Figure 11, we can see that the model does an extremely good job of identifying when the image is of someone who has pneumonia, being able to predict is correctly 96.67% of the time. We can also see that the model is only able to correctly predict whether someone is normal at a 66.4% of the time. What this output tells us is that the model is more likely to identify a patient as having pneumonia when they have do not have it, rather than the opposite scenario of telling a patient they do not have pneumonia when they in fact have it which is probably the more dangerous scenario. When thinking about why the model does such a better job at identifying patients who have pneumonia, it comes back to the type of data we used to train the model. Since the training and validation data contained 3x as many pictures of pneumonia, it makes sense that the model does a much better job of being able to recognize when someone has pneumonia. So while being able to achieve 85% accuracy with a convolutional neural network is very promising, these results show that there is future work that can be done that would be able to improve the model's accuracy even more. 
+When we break down the accuracy score further and look into how the model did at identifying the two different classes one can begin to look into areas where the model does very well and where the model struggles. By looking at the confusion matrix, we can see that the model does an extremely good job of identifying when the image is of someone who has pneumonia, being able to predict is correctly 96.67% of the time. We can also see that the model is only able to correctly predict whether someone is normal at a 66.4% of the time. What this output tells us is that the model is more likely to identify a patient as having pneumonia when they have do not have it, rather than the opposite scenario of telling a patient they do not have pneumonia when they in fact have it which is probably the more dangerous scenario. When thinking about why the model does such a better job at identifying patients who have pneumonia, it comes back to the type of data we used to train the model. Since the training and validation data contained 3x as many pictures of pneumonia, it makes sense that the model does a much better job of being able to recognize when someone has pneumonia. So while being able to achieve 85% accuracy with a convolutional neural network is very promising, these results show that there is future work that can be done that would be able to improve the model's accuracy even more. 

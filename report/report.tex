@@ -122,7 +122,7 @@ time extracting insights from this type of data, with the recent
 advances that have been made in data science and handling big data, this
 has created new application areas within the health care industry in
 sectors such as genomics, drug trials, predicting patient health, and
-medical imagery (See Figure 1 \citet{NEJM}). Medical imaging research in
+medical imagery (See Figure 1 \citep{NEJM}). Medical imaging research in
 particular has made significant progress recently with researchers being
 able to use different machine learning algorithms to detect different
 types of lesions and cancers from CT and other types of scans. In
@@ -208,7 +208,7 @@ desire.
 For this project, I am going to focus on how to setup and store medical
 imagery in Google Cloud Storage and learn how this can be connected to R
 Studio so that I can then perform analysis on these images. The data set
-I will be working with is a labeled Chest X-Ray images (\citet{Medical})
+I will be working with is a labeled Chest X-Ray images \citep{Medical}
 which will be used to detect and classify whether or not someone has
 pneumonia. This data set is roughly 2 GB in size and contains CT scans
 of patients who either have or dont have pneumonia. Due to Github having
@@ -228,7 +228,7 @@ utilizing the \emph{googleCloudStorageR} package, I was able to setup a
 connection that allowed me to download the data from my Cloud Storage
 bucket and onto my desktop where it could then be read into R Studio
 without having to store the files themselves within R Studio
-(\citet{GoogleyR}). This allowed me to not have to store the data in my
+\citep{GoogleyR}. This allowed me to not have to store the data in my
 actual Github repository but still be able to perform analysis and build
 models on the image dataset.
 
@@ -258,16 +258,16 @@ were made.
 After getting all the images into the same structure, I needed to
 convert them to a form where I could actually perform analysis on the
 images. In order to do this I relied on the \emph{tensorflow} R package
-\citet{Tensorflow2}. Tensorflow is a ``scalable and multiplatform
+\citep{Tensorflow2}. Tensorflow is a ``scalable and multiplatform
 programming interface for implementing and running machine learning
-algorithms'' \citet{PML}. Tensorflow allows execution on both CPU's and
+algorithms'' \citep{PML}. Tensorflow allows execution on both CPU's and
 GPU's which help speed up processing time on complicated algorithms.
 This package is built around a ``computation graph composed as a set of
 nodes where each node represents an operation that may have zero or more
 input or output. A tensor is created as a symbolic handle to refer to
-the input and output of these operations'' \citet{PML}. A tensor is best
+the input and output of these operations'' \citep{PML}. A tensor is best
 understood as either a scalar, vector , matrices and so on, which all
-correspond to a different rank tensors (See Figure 4 \citet{PML}). These
+correspond to a different rank tensors (See Figure 4 \citep{PML}). These
 tensors are created from the values in the data you are working with and
 then are used to build and create the complex models one wants to work
 with.
@@ -316,9 +316,9 @@ that would would be able to discern between someone who has pneumonia
 versus someone who does not have pneumonia. In order to do this I
 utilized the \emph{keras} package in order to build a convolutional
 neural network to be able to distinguish between the two different
-diagnosis \citet{Keras2}. Keras is a ``high-level neural network API
+diagnosis \citep{Keras2}. Keras is a ``high-level neural network API
 that is built to run off other libraries such as Tensorflow to provide a
-user-friendly interface to building complex models'' \citet{PML}. Keras,
+user-friendly interface to building complex models'' \citep{PML}. Keras,
 when working with Tensorflow, helps to provide the framework to begin
 building complex neural network models. This package will allow me to be
 able to not only train and build the model, but be able to test the
@@ -343,7 +343,7 @@ computer architecture which allows for much faster processing times of
 these complex models.
 
 The figure above shows an example of what the underlying structure of a
-neural network looks like (See Figure 4 \citet{Investopedia}). The
+neural network looks like (See Figure 4 \citep{Investopedia}). The
 neural network show in this example consists of one input layer, one
 hidden layer with 4 hidden units, and then one output layer. The input
 layer would be the exact data you are feeding into the model, so for
@@ -386,7 +386,7 @@ that is based heavily on how the visual cortext of the human brain works
 when recogizing images, which is what allows it to perform extremely
 well on image classification tasks. At a high level CNN's work by
 ``combining the low level features in a layer-wise fashion to form
-high-level features'' \citet{PML}. So rather than just looking at each
+high-level features'' \citep{PML}. So rather than just looking at each
 pixel of an image separately, this model works to combine pixels into
 distinct features that can then be used to identify exact objects within
 the images. In order for the model to actual identify distinct features
@@ -394,7 +394,7 @@ it relies on an idea called feature mapping that groups patches of
 pixels together in the image and combines them into one feature in the
 new feature map. This is based on the underlying assumption that in the
 context of image data, ``nearby pixels are typically more relevant to
-each other than pixels that are far away from each other'' \citet{PML}.
+each other than pixels that are far away from each other'' \citep{PML}.
 
 In order to actually perform this feature mapping though a CNN relies on
 creating a series of different types of layers in the form of
@@ -424,7 +424,7 @@ feature map. The advantages of this include leading to higher
 computational efficiency by decreasing the size of the features and the
 number of parameters that are required to learn, as well as introducing
 local invariance that helps to generate feature that are more robust to
-noise from the input images \citet{Mathworks}.
+noise from the input images \citep{Mathworks}.
 
 \hypertarget{dropout-layers}{%
 \subsubsection{Dropout layers}\label{dropout-layers}}
@@ -439,7 +439,7 @@ works by ``during the training phase of a neural network, a fraction of
 the hidden units are randomly dropped at every iteration. This dropping
 out of random units requires the remaining units to rescale to account
 for the missing units which forces the network to learn a redundant
-representation of the data'' \citet{PML}. This makes it so the model is
+representation of the data'' \citep{PML}. This makes it so the model is
 more generalizable and robust to changes in patterns in the data and
 prevent over-fitting.
 
@@ -470,7 +470,7 @@ the input and outputs of the models, it is often hard to decipher and
 understand what exactly the model is doing inside the box. While there
 has been promising developments in this area such as Visualizing
 Activation Layers and Occlusion Sensitivity, this still remains an area
-of the field that a lot of future work can be done in \citet{Deep}.
+of the field that a lot of future work can be done in \citep{Deep}.
 While CNN's have been shown to do an incredible job at image
 classification tasks, optimizing and understanding these types of models
 is an area that can cause problems and issues.
@@ -750,8 +750,8 @@ what I set out to learn, there are certainly still areas that could be
 improved upon in the future.
 
 Note: Other sources that were extremely beneficial towards this project
-include \citet{PAD}, \citet{Medium}, \citet{CloudStorage},
-\citet{Kaggle}, \citet{RPubs},and \citet{Shirin} \newpage
+include \citep{PAD}, \citep{Medium}, \citep{CloudStorage},
+\citep{Kaggle}, \citep{RPubs},and \citep{Shirin}. \newpage
 
 \bibliographystyle{agsm}
 \bibliography{bibliography.bib}
