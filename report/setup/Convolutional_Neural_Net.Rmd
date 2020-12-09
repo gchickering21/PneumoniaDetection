@@ -165,7 +165,7 @@ hist <- model1 %>% fit_generator(
 
 ```{r}
 plot(hist)
-model1 %>% save_model_hdf5("my_model1.h5")
+#model1 %>% save_model_hdf5("my_model1.h5")
 ```
 
 
@@ -215,6 +215,9 @@ plot(hist2)
 model2 %>% save_model_hdf5("my_model2.h5")
 ```
 
+|      Since model 1 did not do any better than one would do than just randomly guessing, I decided to try to improve upon the first model by adding a second convolution layer after the first pooling layer, as well as a second dense layer at the end of the model. I also decided to increase the number of epochs from 5 to 10 to see if allowing the model a longer period of time to train itself would help improve the accuracy of the model at all. My hopes were that adding these new layers would help the model discover features in the images that it wasnt able to detect with the first model and adding more epochs would give the model more time to find these features. Figure 8 shows how the new model is constructed. We can see that by adding these two new layers to the model that there are now 34,659 parameters that the model is going to try to maximize during its training process. 
+
+Even after adding a second convolution layer and a second dense layer at the end, we can see that this model again does not do any better than the previous model by looking at Figure 9. One can see that the accuracy stays right around 75% for both the training and validation sets, and that even after increasing the complexity of the model slightly and increasing the number of epochs that the model is still not any better than guessing Pneumonia every time. This model also took roughly 5 minutes to run with every epoch taking 30 seconds to run. 
 
 ```{r}
 model3 <- keras_model_sequential() %>% 
@@ -246,7 +249,6 @@ model3 %>% compile(
 )
 
 summary(model3)
-
 ```
 
 
