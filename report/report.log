@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2020.10.13)  7 DEC 2020 00:49
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2020.10.13)  9 DEC 2020 23:32
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -292,83 +292,6 @@ Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
 )
 \Hy@SectionHShift=\skip54
 )
-(/Users/grahamchickering/Library/TinyTeX/texmf-dist/tex/latex/booktabs/booktabs
-.sty
-Package: booktabs 2020/01/12 v1.61803398 Publication quality tables
-\heavyrulewidth=\dimen162
-\lightrulewidth=\dimen163
-\cmidrulewidth=\dimen164
-\belowrulesep=\dimen165
-\belowbottomsep=\dimen166
-\aboverulesep=\dimen167
-\abovetopsep=\dimen168
-\cmidrulesep=\dimen169
-\cmidrulekern=\dimen170
-\defaultaddspace=\dimen171
-\@cmidla=\count274
-\@cmidlb=\count275
-\@aboverulesep=\dimen172
-\@belowrulesep=\dimen173
-\@thisruleclass=\count276
-\@lastruleclass=\count277
-\@thisrulewidth=\dimen174
-)
-(/Users/grahamchickering/Library/TinyTeX/texmf-dist/tex/latex/tools/longtable.s
-ty
-Package: longtable 2020/01/07 v4.13 Multi-page Table package (DPC)
-\LTleft=\skip55
-\LTright=\skip56
-\LTpre=\skip57
-\LTpost=\skip58
-\LTchunksize=\count278
-\LTcapwidth=\dimen175
-\LT@head=\box49
-\LT@firsthead=\box50
-\LT@foot=\box51
-\LT@lastfoot=\box52
-\LT@cols=\count279
-\LT@rows=\count280
-\c@LT@tables=\count281
-\c@LT@chunks=\count282
-\LT@p@ftn=\toks22
-) (/Users/grahamchickering/Library/TinyTeX/texmf-dist/tex/latex/tools/array.sty
-Package: array 2020/10/01 v2.5c Tabular extension package (FMi)
-\col@sep=\dimen176
-\ar@mcellbox=\box53
-\extrarowheight=\dimen177
-\NC@list=\toks23
-\extratabsurround=\skip59
-\backup@length=\skip60
-\ar@cellbox=\box54
-)
-(/Users/grahamchickering/Library/TinyTeX/texmf-dist/tex/latex/multirow/multirow
-.sty
-Package: multirow 2019/05/31 v2.5 Span multiple rows of a table
-\multirow@colwidth=\skip61
-\multirow@cntb=\count283
-\multirow@dima=\skip62
-\bigstrutjot=\dimen178
-)
-(/Users/grahamchickering/Library/TinyTeX/texmf-dist/tex/latex/wrapfig/wrapfig.s
-ty
-\wrapoverhang=\dimen179
-\WF@size=\dimen180
-\c@WF@wrappedlines=\count284
-\WF@box=\box55
-\WF@everypar=\toks24
-Package: wrapfig 2003/01/31  v 3.6
-) (/Users/grahamchickering/Library/TinyTeX/texmf-dist/tex/latex/float/float.sty
-Package: float 2001/11/08 v1.3d Float enhancements (AL)
-\c@float@type=\count285
-\float@exts=\toks25
-\float@box=\box56
-\@float@everytoks=\toks26
-\@floatcapt=\box57
-)
-(/Users/grahamchickering/Library/TinyTeX/texmf-dist/tex/latex/colortbl/colortbl
-.sty
-Package: colortbl 2020/01/04 v1.0e Color table columns (DPC)
-
 (/Users/grahamchickering/Library/TinyTeX/texmf-dist/tex/latex/graphics/color.st
 y
 Package: color 2020/02/24 v1.2b Standard LaTeX Color (DPC)
@@ -379,8 +302,102 @@ File: color.cfg 2016/01/02 v1.6 sample color configuration
 )
 Package color Info: Driver file: pdftex.def on input line 147.
 )
+(/Users/grahamchickering/Library/TinyTeX/texmf-dist/tex/latex/fancyvrb/fancyvrb
+.sty
+Package: fancyvrb 2020/05/03 v3.6 verbatim text (tvz,hv)
+\FV@CodeLineNo=\count274
+\FV@InFile=\read3
+\FV@TabBox=\box49
+\c@FancyVerbLine=\count275
+\FV@StepNumber=\count276
+\FV@OutFile=\write4
+)
+(/Users/grahamchickering/Library/TinyTeX/texmf-dist/tex/latex/framed/framed.sty
+Package: framed 2011/10/22 v 0.96: framed or shaded text with page breaks
+\OuterFrameSep=\skip55
+\fb@frw=\dimen162
+\fb@frh=\dimen163
+\FrameRule=\dimen164
+\FrameSep=\dimen165
+)
+(/Users/grahamchickering/Library/TinyTeX/texmf-dist/tex/latex/booktabs/booktabs
+.sty
+Package: booktabs 2020/01/12 v1.61803398 Publication quality tables
+\heavyrulewidth=\dimen166
+\lightrulewidth=\dimen167
+\cmidrulewidth=\dimen168
+\belowrulesep=\dimen169
+\belowbottomsep=\dimen170
+\aboverulesep=\dimen171
+\abovetopsep=\dimen172
+\cmidrulesep=\dimen173
+\cmidrulekern=\dimen174
+\defaultaddspace=\dimen175
+\@cmidla=\count277
+\@cmidlb=\count278
+\@aboverulesep=\dimen176
+\@belowrulesep=\dimen177
+\@thisruleclass=\count279
+\@lastruleclass=\count280
+\@thisrulewidth=\dimen178
+)
+(/Users/grahamchickering/Library/TinyTeX/texmf-dist/tex/latex/tools/longtable.s
+ty
+Package: longtable 2020/01/07 v4.13 Multi-page Table package (DPC)
+\LTleft=\skip56
+\LTright=\skip57
+\LTpre=\skip58
+\LTpost=\skip59
+\LTchunksize=\count281
+\LTcapwidth=\dimen179
+\LT@head=\box50
+\LT@firsthead=\box51
+\LT@foot=\box52
+\LT@lastfoot=\box53
+\LT@cols=\count282
+\LT@rows=\count283
+\c@LT@tables=\count284
+\c@LT@chunks=\count285
+\LT@p@ftn=\toks22
+) (/Users/grahamchickering/Library/TinyTeX/texmf-dist/tex/latex/tools/array.sty
+Package: array 2020/10/01 v2.5c Tabular extension package (FMi)
+\col@sep=\dimen180
+\ar@mcellbox=\box54
+\extrarowheight=\dimen181
+\NC@list=\toks23
+\extratabsurround=\skip60
+\backup@length=\skip61
+\ar@cellbox=\box55
+)
+(/Users/grahamchickering/Library/TinyTeX/texmf-dist/tex/latex/multirow/multirow
+.sty
+Package: multirow 2019/05/31 v2.5 Span multiple rows of a table
+\multirow@colwidth=\skip62
+\multirow@cntb=\count286
+\multirow@dima=\skip63
+\bigstrutjot=\dimen182
+)
+(/Users/grahamchickering/Library/TinyTeX/texmf-dist/tex/latex/wrapfig/wrapfig.s
+ty
+\wrapoverhang=\dimen183
+\WF@size=\dimen184
+\c@WF@wrappedlines=\count287
+\WF@box=\box56
+\WF@everypar=\toks24
+Package: wrapfig 2003/01/31  v 3.6
+) (/Users/grahamchickering/Library/TinyTeX/texmf-dist/tex/latex/float/float.sty
+Package: float 2001/11/08 v1.3d Float enhancements (AL)
+\c@float@type=\count288
+\float@exts=\toks25
+\float@box=\box57
+\@float@everytoks=\toks26
+\@floatcapt=\box58
+)
+(/Users/grahamchickering/Library/TinyTeX/texmf-dist/tex/latex/colortbl/colortbl
+.sty
+Package: colortbl 2020/01/04 v1.0e Color table columns (DPC)
 \everycr=\toks27
-\minrowclearance=\skip63
+\minrowclearance=\skip64
 )
 (/Users/grahamchickering/Library/TinyTeX/texmf-dist/tex/latex/pdflscape/pdflsca
 pe.sty
@@ -397,38 +414,38 @@ Package: tabu 2019/01/11 v2.9 - flexible LaTeX tabulars (FC+tabu-fixed)
 (/Users/grahamchickering/Library/TinyTeX/texmf-dist/tex/latex/varwidth/varwidth
 .sty
 Package: varwidth 2009/03/30 ver 0.92;  Variable-width minipages
-\@vwid@box=\box58
-\sift@deathcycles=\count286
-\@vwid@loff=\dimen181
-\@vwid@roff=\dimen182
+\@vwid@box=\box59
+\sift@deathcycles=\count289
+\@vwid@loff=\dimen185
+\@vwid@roff=\dimen186
 )
-\c@taburow=\count287
-\tabu@nbcols=\count288
-\tabu@cnt=\count289
-\tabu@Xcol=\count290
-\tabu@alloc=\count291
-\tabu@nested=\count292
-\tabu@target=\dimen183
-\tabu@spreadtarget=\dimen184
-\tabu@naturalX=\dimen185
-\tabucolX=\dimen186
-\tabu@Xsum=\dimen187
-\extrarowdepth=\dimen188
-\abovetabulinesep=\dimen189
-\belowtabulinesep=\dimen190
-\tabustrutrule=\dimen191
+\c@taburow=\count290
+\tabu@nbcols=\count291
+\tabu@cnt=\count292
+\tabu@Xcol=\count293
+\tabu@alloc=\count294
+\tabu@nested=\count295
+\tabu@target=\dimen187
+\tabu@spreadtarget=\dimen188
+\tabu@naturalX=\dimen189
+\tabucolX=\dimen190
+\tabu@Xsum=\dimen191
+\extrarowdepth=\dimen192
+\abovetabulinesep=\dimen193
+\belowtabulinesep=\dimen194
+\tabustrutrule=\dimen195
 \tabu@thebody=\toks28
 \tabu@footnotes=\toks29
-\tabu@box=\box59
-\tabu@arstrutbox=\box60
-\tabu@hleads=\box61
-\tabu@vleads=\box62
-\tabu@cellskip=\skip64
+\tabu@box=\box60
+\tabu@arstrutbox=\box61
+\tabu@hleads=\box62
+\tabu@vleads=\box63
+\tabu@cellskip=\skip65
 )
 (/Users/grahamchickering/Library/TinyTeX/texmf-dist/tex/latex/threeparttable/th
 reeparttable.sty
 Package: threeparttable 2003/06/13  v 3.0
-\@tempboxb=\box63
+\@tempboxb=\box64
 )
 (/Users/grahamchickering/Library/TinyTeX/texmf-dist/tex/latex/threeparttablex/t
 hreeparttablex.sty
@@ -442,24 +459,24 @@ Package: environ 2014/05/04 v0.3 A new way to define environments
 aces.sty
 Package: trimspaces 2009/09/17 v1.1 Trim spaces around a token list
 ))
-\TPTL@width=\skip65
+\TPTL@width=\skip66
 ) (/Users/grahamchickering/Library/TinyTeX/texmf-dist/tex/generic/ulem/ulem.sty
-\UL@box=\box64
-\UL@hyphenbox=\box65
-\UL@skip=\skip66
+\UL@box=\box65
+\UL@hyphenbox=\box66
+\UL@skip=\skip67
 \UL@hook=\toks30
-\UL@height=\dimen192
-\UL@pe=\count293
-\UL@pixel=\dimen193
-\ULC@box=\box66
+\UL@height=\dimen196
+\UL@pe=\count296
+\UL@pixel=\dimen197
+\ULC@box=\box67
 Package: ulem 2019/11/18
-\ULdepth=\dimen194
+\ULdepth=\dimen198
 )
 (/Users/grahamchickering/Library/TinyTeX/texmf-dist/tex/latex/makecell/makecell
 .sty
 Package: makecell 2009/08/03 V0.1e Managing of Tab Column Heads and Cells
-\rotheadsize=\dimen195
-\c@nlinenum=\count294
+\rotheadsize=\dimen199
+\c@nlinenum=\count297
 \TeXr@lab=\toks31
 )
 (/Users/grahamchickering/Library/TinyTeX/texmf-dist/tex/latex/xcolor/xcolor.sty
@@ -484,27 +501,27 @@ Package xcolor Info: Model `wave' substituted by `hsb' on input line 1371.
 (/Users/grahamchickering/Library/TinyTeX/texmf-dist/tex/latex/l3backend/l3backe
 nd-pdftex.def
 File: l3backend-pdftex.def 2020-09-24 L3 backend support: PDF output (pdfTeX)
-\l__kernel_color_stack_int=\count295
-\l__pdf_internal_box=\box67
+\l__kernel_color_stack_int=\count298
+\l__pdf_internal_box=\box68
 ) (./report.aux)
 \openout1 = `report.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 45.
-LaTeX Font Info:    ... okay on input line 45.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 45.
-LaTeX Font Info:    ... okay on input line 45.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 45.
-LaTeX Font Info:    ... okay on input line 45.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 45.
-LaTeX Font Info:    ... okay on input line 45.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 45.
-LaTeX Font Info:    ... okay on input line 45.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 45.
-LaTeX Font Info:    ... okay on input line 45.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 45.
-LaTeX Font Info:    ... okay on input line 45.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 45.
-LaTeX Font Info:    ... okay on input line 45.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 85.
+LaTeX Font Info:    ... okay on input line 85.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 85.
+LaTeX Font Info:    ... okay on input line 85.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 85.
+LaTeX Font Info:    ... okay on input line 85.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 85.
+LaTeX Font Info:    ... okay on input line 85.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 85.
+LaTeX Font Info:    ... okay on input line 85.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 85.
+LaTeX Font Info:    ... okay on input line 85.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 85.
+LaTeX Font Info:    ... okay on input line 85.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 85.
+LaTeX Font Info:    ... okay on input line 85.
 
 (/Users/grahamchickering/Library/TinyTeX/texmf-dist/tex/latex/epstopdf-pkg/epst
 opdf-base.sty
@@ -517,7 +534,7 @@ pdf-sys.cfg
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
-Package hyperref Info: Link coloring OFF on input line 45.
+Package hyperref Info: Link coloring OFF on input line 85.
 
 (/Users/grahamchickering/Library/TinyTeX/texmf-dist/tex/latex/hyperref/nameref.
 sty
@@ -531,14 +548,14 @@ Package: refcount 2019/12/15 v3.6 Data extraction from label references (HO)
 gettitlestring.sty
 Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 )
-\c@section@level=\count296
+\c@section@level=\count299
 )
-LaTeX Info: Redefining \ref on input line 45.
-LaTeX Info: Redefining \pageref on input line 45.
-LaTeX Info: Redefining \nameref on input line 45.
+LaTeX Info: Redefining \ref on input line 85.
+LaTeX Info: Redefining \pageref on input line 85.
+LaTeX Info: Redefining \nameref on input line 85.
 (./report.out) (./report.out)
-\@outlinefile=\write4
-\openout4 = `report.out'.
+\@outlinefile=\write5
+\openout5 = `report.out'.
 
 [1
 Non-PDF special ignored!
@@ -546,194 +563,365 @@ Non-PDF special ignored!
 
 {/Users/grahamchickering/Library/TinyTeX/texmf-var/fonts/map/pdftex/updmap/pdft
 ex.map}]
-<images/big-data-healthcare.png, id=82, 1027.84pt x 833.1125pt>
+<images/big-data-healthcare.png, id=110, 1027.84pt x 833.1125pt>
 File: images/big-data-healthcare.png Graphic file (type png)
 <use images/big-data-healthcare.png>
-Package pdftex.def Info: images/big-data-healthcare.png  used on input line 108
+Package pdftex.def Info: images/big-data-healthcare.png  used on input line 143
 .
 (pdftex.def)             Requested size: 346.70067pt x 160.60664pt.
 [2pdfTeX warning (ext4): destination with the same identifier (name{figure.1}) 
 has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   
-l.153 
-       <./images/big-data-healthcare.png>] [3]
-<images/cloud_storage.png, id=98, 1639.12375pt x 469.755pt>
-File: images/cloud_storage.png Graphic file (type png)
-<use images/cloud_storage.png>
-Package pdftex.def Info: images/cloud_storage.png  used on input line 201.
-(pdftex.def)             Requested size: 346.70224pt x 160.61057pt.
-[4pdfTeX warning (ext4): destination with the same identifier (name{figure.2}) 
-has been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  
-l.224 
-       <./images/cloud_storage.png>]
-<images/pneumonia.jpeg, id=111, 1389.19pt x 1316.92pt>
+l.187 
+       <./images/big-data-healthcare.png>]
+<images/pneumonia.jpeg, id=121, 1389.19pt x 1316.92pt>
 File: images/pneumonia.jpeg Graphic file (type jpg)
 <use images/pneumonia.jpeg>
-Package pdftex.def Info: images/pneumonia.jpeg  used on input line 255.
+Package pdftex.def Info: images/pneumonia.jpeg  used on input line 220.
 (pdftex.def)             Requested size: 226.5144pt x 160.59569pt.
-<images/normal.jpeg, id=112, 1389.19pt x 1171.37625pt>
+<images/normal.jpeg, id=122, 1389.19pt x 1171.37625pt>
 File: images/normal.jpeg Graphic file (type jpg)
 <use images/normal.jpeg>
-Package pdftex.def Info: images/normal.jpeg  used on input line 255.
+Package pdftex.def Info: images/normal.jpeg  used on input line 220.
 (pdftex.def)             Requested size: 226.5144pt x 160.61342pt.
+[3] [4pdfTeX warning (ext4): destination with the same identifier (name{figure.
+2}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  
+l.263 
+       <./images/pneumonia.jpeg> <./images/normal.jpeg>]
+<images/neural_net.jpeg, id=147, 259.97125pt x 194.7275pt>
+File: images/neural_net.jpeg Graphic file (type jpg)
+<use images/neural_net.jpeg>
+Package pdftex.def Info: images/neural_net.jpeg  used on input line 285.
+(pdftex.def)             Requested size: 346.70152pt x 160.61946pt.
 [5]
-<images/tensors.jpg, id=130, 224.2779pt x 119.4864pt>
-File: images/tensors.jpg Graphic file (type jpg)
-<use images/tensors.jpg>
-Package pdftex.def Info: images/tensors.jpg  used on input line 277.
-(pdftex.def)             Requested size: 346.74419pt x 160.61414pt.
+<images/cnn.jpeg, id=158, 1259.70625pt x 425.59pt>
+File: images/cnn.jpeg Graphic file (type jpg)
+<use images/cnn.jpeg>
+Package pdftex.def Info: images/cnn.jpeg  used on input line 322.
+(pdftex.def)             Requested size: 346.699pt x 160.6154pt.
 [6pdfTeX warning (ext4): destination with the same identifier (name{figure.3}) 
 has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   
-l.292 
-      pdfTeX warning (ext4): destination with the same identifier (name{figure.
-4}) has been already used, duplicate ignored
+l.338 
+       <./images/neural_net.jpeg>] [7pdfTeX warning (ext4): destination with th
+e same identifier (name{figure.4}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   
-l.292 
-       <./images/pneumonia.jpeg> <./images/normal.jpeg> <./images/tensors.jpg>]
-[7] [8]
-<images/neural_net.jpeg, id=158, 259.97125pt x 194.7275pt>
-File: images/neural_net.jpeg Graphic file (type jpg)
-<use images/neural_net.jpeg>
-Package pdftex.def Info: images/neural_net.jpeg  used on input line 373.
-(pdftex.def)             Requested size: 346.70152pt x 160.61946pt.
-[9pdfTeX warning (ext4): destination with the same identifier (name{figure.5}) 
-has been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  
-l.414 
-       <./images/neural_net.jpeg>] [10] [11]
-<images/model1.png, id=192, 1026.83624pt x 328.22626pt>
+l.366 
+       <./images/cnn.jpeg>] [8] [9]
+<images/model1.png, id=201, 1026.83624pt x 328.22626pt>
 File: images/model1.png Graphic file (type png)
 <use images/model1.png>
-Package pdftex.def Info: images/model1.png  used on input line 512.
+Package pdftex.def Info: images/model1.png  used on input line 484.
 (pdftex.def)             Requested size: 346.7068pt x 160.6119pt.
-<images/model1out.png, id=193, 769.87625pt x 379.4175pt>
+[10]
+<images/model1out.png, id=208, 769.87625pt x 379.4175pt>
 File: images/model1out.png Graphic file (type png)
 <use images/model1out.png>
-Package pdftex.def Info: images/model1out.png  used on input line 521.
+Package pdftex.def Info: images/model1out.png  used on input line 505.
 (pdftex.def)             Requested size: 346.7113pt x 160.61635pt.
-[12pdfTeX warning (ext4): destination with the same identifier (name{figure.6})
+[11pdfTeX warning (ext4): destination with the same identifier (name{figure.5})
  has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   
-l.546 
-       <./images/model1.png>]
-<images/model2.png, id=201, 1031.855pt x 392.46625pt>
+l.528 
+      pdfTeX warning (ext4): destination with the same identifier (name{figure.
+6}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  
+l.528 
+       <./images/model1.png> <./images/model1out.png>]
+<images/model2.png, id=218, 1031.855pt x 392.46625pt>
 File: images/model2.png Graphic file (type png)
 <use images/model2.png>
-Package pdftex.def Info: images/model2.png  used on input line 564.
+Package pdftex.def Info: images/model2.png  used on input line 531.
 (pdftex.def)             Requested size: 346.70091pt x 160.61276pt.
-<images/model2out.png, id=202, 770.88pt x 397.485pt>
+<images/model2out.png, id=219, 770.88pt x 397.485pt>
 File: images/model2out.png Graphic file (type png)
 <use images/model2out.png>
-Package pdftex.def Info: images/model2out.png  used on input line 573.
+Package pdftex.def Info: images/model2out.png  used on input line 540.
 (pdftex.def)             Requested size: 346.69283pt x 160.61662pt.
-[13pdfTeX warning (ext4): destination with the same identifier (name{figure.7})
+[12pdfTeX warning (ext4): destination with the same identifier (name{figure.7})
  has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   
-l.593 
-       <./images/model1out.png>] [14pdfTeX warning (ext4): destination with the
- same identifier (name{figure.8}) has been already used, duplicate ignored
+l.557 \subsection{Model 3}\label{model-3}}
+                                          pdfTeX warning (ext4): destination wi
+th the same identifier (name{figure.8}) has been already used, duplicate ignore
+d
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   
-l.593 
-      pdfTeX warning (ext4): destination with the same identifier (name{figure.
-9}) has been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  
-l.593 
-       <./images/model2.png> <./images/model2out.png>] [15]
-<images/model3.png, id=224, 1048.91875pt x 646.415pt>
+l.557 \subsection{Model 3}\label{model-3}}
+                                           <./images/model2.png> <./images/mode
+l2out.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 570--581
+
+ []
+
+<images/model3.png, id=228, 1048.91875pt x 646.415pt>
 File: images/model3.png Graphic file (type png)
 <use images/model3.png>
-Package pdftex.def Info: images/model3.png  used on input line 633.
+Package pdftex.def Info: images/model3.png  used on input line 584.
 (pdftex.def)             Requested size: 346.70444pt x 160.60713pt.
-<images/model3out.png, id=225, 760.8425pt x 381.425pt>
+<images/model3out.png, id=229, 760.8425pt x 381.425pt>
 File: images/model3out.png Graphic file (type png)
 <use images/model3out.png>
-Package pdftex.def Info: images/model3out.png  used on input line 642.
+Package pdftex.def Info: images/model3out.png  used on input line 593.
 (pdftex.def)             Requested size: 346.7063pt x 160.61063pt.
-[16pdfTeX warning (ext4): destination with the same identifier (name{figure.10}
+[13pdfTeX warning (ext4): destination with the same identifier (name{figure.9})
+ has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  
+l.607 
+       <./images/model3.png>] [14pdfTeX warning (ext4): destination with the sa
+me identifier (name{figure.10}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  
+l.648 
+       <./images/model3out.png>]
+<images/heatmap.png, id=245, 1190.4475pt x 586.19pt>
+File: images/heatmap.png Graphic file (type png)
+<use images/heatmap.png>
+Package pdftex.def Info: images/heatmap.png  used on input line 651.
+(pdftex.def)             Requested size: 346.69228pt x 160.60793pt.
+[15pdfTeX warning (ext4): destination with the same identifier (name{figure.11}
 ) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   
-l.660 
-      pdfTeX warning (ext4): destination with the same identifier (name{figure.
-11}) has been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  
-l.660 
-       <./images/model3.png> <./images/model3out.png>]
-<images/heatmap.png, id=235, 1190.4475pt x 586.19pt>
-File: images/heatmap.png Graphic file (type png)
-<use images/heatmap.png>
-Package pdftex.def Info: images/heatmap.png  used on input line 693.
-(pdftex.def)             Requested size: 346.69228pt x 160.60793pt.
-[17] [18pdfTeX warning (ext4): destination with the same identifier (name{figur
-e.12}) has been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  
-l.731 T
-       he second way this project could be improved upon in the future would <.
-/images/heatmap.png>]
+l.681 ... Work}\label{conclusion-and-future-work}}
+                                                   <./images/heatmap.png>]
 
-Package natbib Warning: Citation `PAD' on page 19 undefined on input line 753.
+Package xcolor Warning: Incompatible color definition on input line 718.
 
-[19] (./report.bbl
-Overfull \hbox (89.06792pt too wide) in paragraph at lines 13--15
+[16]
+LaTeX Font Info:    Font shape `OT1/cmtt/bx/n' in size <12> not available
+(Font)              Font shape `OT1/cmtt/m/n' tried instead on input line 720.
+
+Package xcolor Warning: Incompatible color definition on input line 735.
+
+
+Package xcolor Warning: Incompatible color definition on input line 735.
+
+
+Package xcolor Warning: Incompatible color definition on input line 737.
+
+
+Package xcolor Warning: Incompatible color definition on input line 744.
+
+
+Package xcolor Warning: Incompatible color definition on input line 744.
+
+
+Package xcolor Warning: Incompatible color definition on input line 746.
+
+
+Package xcolor Warning: Incompatible color definition on input line 770.
+
+
+Package xcolor Warning: Incompatible color definition on input line 770.
+
+
+Package xcolor Warning: Incompatible color definition on input line 770.
+
+[17]
+
+Package xcolor Warning: Incompatible color definition on input line 770.
+
+
+Package xcolor Warning: Incompatible color definition on input line 770.
+
+
+Package xcolor Warning: Incompatible color definition on input line 776.
+
+
+Package xcolor Warning: Incompatible color definition on input line 787.
+
+
+Package xcolor Warning: Incompatible color definition on input line 787.
+
+
+Package xcolor Warning: Incompatible color definition on input line 792.
+
+[18]
+
+Package xcolor Warning: Incompatible color definition on input line 809.
+
+
+Package xcolor Warning: Incompatible color definition on input line 809.
+
+
+Package xcolor Warning: Incompatible color definition on input line 811.
+
+
+Package xcolor Warning: Incompatible color definition on input line 830.
+
+
+Package xcolor Warning: Incompatible color definition on input line 830.
+
+
+Underfull \vbox (badness 2990) detected at line 830
+ []
+
+
+Package xcolor Warning: Incompatible color definition on input line 830.
+
+[19]
+
+Package xcolor Warning: Incompatible color definition on input line 830.
+
+
+Package xcolor Warning: Incompatible color definition on input line 830.
+
+
+Package xcolor Warning: Incompatible color definition on input line 835.
+
+
+Package xcolor Warning: Incompatible color definition on input line 855.
+
+
+Package xcolor Warning: Incompatible color definition on input line 855.
+
+
+Package xcolor Warning: Incompatible color definition on input line 857.
+
+
+Package xcolor Warning: Incompatible color definition on input line 875.
+
+
+Package xcolor Warning: Incompatible color definition on input line 875.
+
+
+Package xcolor Warning: Incompatible color definition on input line 875.
+
+[20]
+
+Package xcolor Warning: Incompatible color definition on input line 875.
+
+
+Package xcolor Warning: Incompatible color definition on input line 875.
+
+
+Package xcolor Warning: Incompatible color definition on input line 880.
+
+
+Package xcolor Warning: Incompatible color definition on input line 912.
+
+
+Package xcolor Warning: Incompatible color definition on input line 912.
+
+
+Overfull \vbox (0.82896pt too high) detected at line 912
+ []
+
+
+Package xcolor Warning: Incompatible color definition on input line 912.
+
+[21]
+
+Package xcolor Warning: Incompatible color definition on input line 912.
+
+
+Package xcolor Warning: Incompatible color definition on input line 912.
+
+
+Package xcolor Warning: Incompatible color definition on input line 914.
+
+
+Package xcolor Warning: Incompatible color definition on input line 932.
+
+
+Package xcolor Warning: Incompatible color definition on input line 932.
+
+
+Package xcolor Warning: Incompatible color definition on input line 937.
+
+
+Package xcolor Warning: Incompatible color definition on input line 956.
+
+
+Package xcolor Warning: Incompatible color definition on input line 956.
+
+
+Package xcolor Warning: Incompatible color definition on input line 956.
+
+[22]
+
+Package xcolor Warning: Incompatible color definition on input line 956.
+
+
+Package xcolor Warning: Incompatible color definition on input line 956.
+
+
+Package xcolor Warning: Incompatible color definition on input line 958.
+
+
+Package xcolor Warning: Incompatible color definition on input line 967.
+
+
+Package xcolor Warning: Incompatible color definition on input line 967.
+
+
+Package natbib Warning: Citation `PAD' on page 23 undefined on input line 982.
+
+[23] (./report.bbl
+Overfull \hbox (89.06792pt too wide) in paragraph at lines 8--10
 \OT1/cmr/bx/n/12 URL: \OT1/cmr/m/it/12 https://cran.r-project.org/web/packages/
 googleCloudStorageR/vignettes/googleCloudStorageR.html 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 29--32
+Underfull \hbox (badness 10000) in paragraph at lines 17--20
 \OT1/cmr/bx/n/12 URL: \OT1/cmr/m/it/12 https://www.mathworks.com/discovery/conv
 olutional-neural-network-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 44--47
+Underfull \hbox (badness 10000) in paragraph at lines 32--35
 \OT1/cmr/bx/n/12 URL: \OT1/cmr/m/it/12 https://medium.com/@RaghavPrabhu/underst
 anding-of-convolutional-neural-
  []
 
-[20])
+
+Underfull \hbox (badness 5260) in paragraph at lines 42--45
+\OT1/cmr/bx/n/12 URL: \OT1/cmr/m/it/12 https://towardsdatascience.com/a-compreh
+ensive-guide-to-convolutional-neural-
+ []
+
+[24])
 
 Package natbib Warning: There were undefined citations.
 
-[21] (./report.aux)
+[25] (./report.aux)
 Package rerunfilecheck Info: File `report.out' has not changed.
-(rerunfilecheck)             Checksum: 94AE5824EEBE123BCA735CB77576436D;1125.
+(rerunfilecheck)             Checksum: B53C5F2F3D2DDC152BFAD38B60589A34;1651.
  ) 
 Here is how much of TeX's memory you used:
- 8201 strings out of 481861
- 124496 string characters out of 5929210
- 433155 words of memory out of 5000000
- 24243 multiletter control sequences out of 15000+600000
- 542749 words of font info for 56 fonts, out of 8000000 for 9000
+ 8684 strings out of 481861
+ 131835 string characters out of 5929210
+ 445579 words of memory out of 5000000
+ 24701 multiletter control sequences out of 15000+600000
+ 543086 words of font info for 58 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 60i,7n,66p,323b,450s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 60i,7n,66p,344b,448s stack positions out of 5000i,500n,10000p,200000b,80000s
 </Users/grahamchickering/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfon
 ts/cm/cmbx10.pfb></Users/grahamchickering/Library/TinyTeX/texmf-dist/fonts/type
 1/public/amsfonts/cm/cmbx12.pfb></Users/grahamchickering/Library/TinyTeX/texmf-
-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></Users/grahamchickering/Library
-/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></Users/grahamchic
-kering/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></Us
-ers/grahamchickering/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/
-cmr12.pfb></Users/grahamchickering/Library/TinyTeX/texmf-dist/fonts/type1/publi
-c/amsfonts/cm/cmsy10.pfb></Users/grahamchickering/Library/TinyTeX/texmf-dist/fo
-nts/type1/public/amsfonts/cm/cmti12.pfb>
-Output written on report.pdf (21 pages, 1331020 bytes).
+dist/fonts/type1/public/amsfonts/cm/cmitt10.pfb></Users/grahamchickering/Librar
+y/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></Users/grahamch
+ickering/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></
+Users/grahamchickering/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/c
+m/cmr10.pfb></Users/grahamchickering/Library/TinyTeX/texmf-dist/fonts/type1/pub
+lic/amsfonts/cm/cmr12.pfb></Users/grahamchickering/Library/TinyTeX/texmf-dist/f
+onts/type1/public/amsfonts/cm/cmti12.pfb></Users/grahamchickering/Library/TinyT
+eX/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb>
+Output written on report.pdf (25 pages, 1299708 bytes).
 PDF statistics:
- 327 PDF objects out of 1000 (max. 8388607)
- 271 compressed objects within 3 object streams
- 83 named destinations out of 1000 (max. 500000)
- 202 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 378 PDF objects out of 1000 (max. 8388607)
+ 318 compressed objects within 4 object streams
+ 99 named destinations out of 1000 (max. 500000)
+ 253 words of extra memory for PDF output out of 10000 (max. 10000000)
 
