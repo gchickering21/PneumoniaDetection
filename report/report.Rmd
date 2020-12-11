@@ -428,7 +428,8 @@ test_results<-model3 %>%
 test_results
 ```
 
-One can also check out the file report/setup/Convolutional_Neural_Net.pdf to an output to all the code above. 
+One can also check out the file "report/setup/Convolutional_Neural_Net.pdf" to see output to all the code above. 
+
 ## Google Cloud Storage
 
 If one wants to learn how to store data and upload data from Google Cloud Storage to work with within RStudio, go to report/setup/GoogleCloudSetup.Rmd to learn how to connect ones R Studio with their Google Cloud Storage Buckets. One can also go to report/setup/Google_Cloud_Setup_Instructions folder to follow the exact process of connecting the data from this project with Google Cloud Storage. 

@@ -1,11 +1,23 @@
 # STAT495-F20 final project
 
-This is an individual GitHub repo for your final project.
-My hope is that in addition to the assessment in STAT495 that this project might be used as a base for:
+## Detecting Pneumonia within CT Scans Using Convolutional Neural Networks
 
-1. a public e-portfolio showcase of your work, and/or
-2. a submission to the USRESP competition
+Graham Chickering Final Project
 
-In any case, I would encourage you to take care in terms of repo organization, naming, and structure.
+### Setup Instructions
 
+Due to the size of the data that I was working with in this project, I did not upload the data directly to Github. Therefore in order for the extra files in this project to run, one needs to follow the instructions below to set up this project. 
+
+1) While the actual data comes from https://data.mendeley.com/datasets/rscbjbr9sj/3, the best source to download the data comes from https://www.kaggle.com/paultimothymooney/chest-xray-pneumonia. Once on this site, please click the "Download (2 GB) " button that is located on the page. 
+2) Once downloaded, please move the data into the report/setup/images folder. This will allow all files within the report folder to properly run and execute. 
+
+
+### Setup Instructions with Google Cloud Storage
+
+If one wishes to learn how to download the data from Google Cloud Storage to work with their R Studio Account, please go to report/setup/Google_Cloud_Setup_Instructions and follow the list of instructions within this folder. 
+
+
+### Extra files
+
+Beyond the report itself, one can go to report/setup and view the Convolutional_Neural_Net.pdf file to see further information on how to setup and train a convolutional neural network.
 
