@@ -117,18 +117,18 @@
 \begin{abstract}
 Convolutional Networks are a specific type of Neural Networks that have
 shown to be particularly effective at being able to identify distinct
-objects within images. This technique can be used to identify different
-sorts of conditions, such as pneumonia, within medical images as well as
-detect other sorts of tumors or cancers. In theory this type of network
-is designed based on how the human brain works and the idea that
-multiple levels of neurons are connected together in order to detect and
-identify images. In practice though, running and training these types of
-neural networks can be very computationally expensive and require large
-amounts of memory and processing capabilities if working with a very
-large dataset. While there is more work to be done, this project shows
-how to create an infrastructure that efficiently stores data and then
-train convolutional neural networks when working with the R Studio
-Environment.
+objects within images. This technique has been shown to be effective
+within the healthcare industry with tasks such as identifying certain
+types of cancers or even pneumonia from different types of scans.In
+theory this type of network is designed based on how the human brain
+works and the idea that multiple levels of neurons are connected
+together in order to detect and identify images. In practice though,
+running and training these types of neural networks can be very
+computationally expensive and require large amounts of memory and
+processing capabilities if working with a very large dataset. While
+there is more work to be done, this project shows how to create an
+infrastructure that efficiently stores data and then trains
+convolutional neural networks within the R Studio Environment.
 \end{abstract}
 
 \noindent%
@@ -156,24 +156,24 @@ images, or text. Although hospitals and researchers historically had a
 hard time extracting insights from this type of data, with the recent
 advances that have been made in data science and handling big data, this
 has created new application areas within the health care industry in
-sectors such as genomics, drug trials, predicting patient health, and
-medical imagery (See Figure 1 \citep{NEJM}). Medical imaging research in
-particular has made significant progress recently with scientists being
-able to use different machine learning algorithms to detect different
-types of lesions and cancers from CT,MRI, and other types of scans. In
+sectors such as genomics, predicting patient health, and medical imagery
+(See Figure 1 \citep{NEJM}). Medical imaging research in particular has
+made significant progress recently with scientists being able to use
+different machine learning algorithms to detect different types of
+lesions and cancers from CT, MRI, and other types of scans. In
 particular the advancements of convolutional neural networks have
 enormous potential for different image detection problems. In particular
 this type of network could be used to assist doctors and clinicians as
 to whether or not someone has pneumonia by looking at their CT Scans,
 which would in turn help reduce the amount of hours and amount of
-expertise required to understand CT scans.
+expertise required to understand these scans.
 
 When working with medical imagery data sets one of the first problems
 someone may run into is how to process and handle these large data sets.
 When trying to perform analysis on small and medium sized data sets
-within R, one rarely run into complications that would be attributed to
-how R is loading and dealing with the data itself.While most of the time
-one can load data into the R Studio environment without issues and
+within R, one rarely runs into complications that would be attributed to
+how R is loading and dealing with the data itself. While most of the
+time one can load data into the R Studio environment without issues and
 without having to worry about whether the entirety of our data can even
 be loaded in, one may begin to run into complications the larger the
 data set becomes. If one ends up crossing into the threshold where R can
@@ -186,10 +186,10 @@ packages, that will allow me to work with and convert large image files
 into a form that models can be trained on them.
 
 By working with Keras and Tensorflow, this will allow me to utilize a
-large data medical imagery data set that is made up of CT scans of
-patients with and without pneumonia. This data set will then be used to
-train and create convolutional neural networks that will try to identify
-whether or not someone has pneumonia from the images.
+large medical imagery data set that consists of CT scans of patients
+with and without pneumonia. This data set will then be used to train and
+create convolutional neural networks that will try to identify whether
+or not someone has pneumonia from the images.
 
 This project will allow me to answer the questions of how does one
 handle and process images so that analysis can be performed on them? How
@@ -214,7 +214,7 @@ pixel by pixel basis so they were all the same size, and then converted
 them to a grayscale color. When looking at Figure 2, we can see an
 example of two different types of scans, one of a patient with pnuemonia
 and one of a normal patient, but both have been converted to the same
-size with contrast, brightness, and size all the same.
+size with the same contrast, brightness, and color scale.
 
 \begin{figure}
 \includegraphics[width=0.49\linewidth,height=0.25\textheight]{images/pneumonia} \includegraphics[width=0.49\linewidth,height=0.25\textheight]{images/normal} \caption{Patient CT Scans. At left, patient with pneumonia. At right, a patient without pnuemonia}\label{fig:sample-fig2}
@@ -229,10 +229,10 @@ algorithms'' \citep{PML}. This package is built around the idea of a
 ``computation graph composed as a set of nodes where each node
 represents an operation''. A tensor is created as a symbolic handle to
 refer to the input and output of these operations'' \citep{PML}. A
-tensor is best understood as either a scalar, vector , matrices where
+tensor is best understood as either a scalar, vector, or matrices where
 all values within the tensor hold an identical data type. These tensors
-are created from the values in the data you are working with and then
-are used to build and create the complex models one wants to work with.
+are created from the values in the data and then are used to build and
+create the complex models one wants to work with.
 
 For the images in my data set, by using Tensorflow I was able to convert
 the images into a set of tensors that represented the pixels of the
@@ -298,7 +298,7 @@ allows for much faster processing times of these complex models.
 
 By looking at Figure 3, we can see an example of what the underlying
 structure of a neural network looks like (See Figure 3
-\citep{Investopedia}). The neural network show in this example consists
+\citep{Investopedia}). The neural network shown in this example consists
 of one input layer, one hidden layer with 4 hidden units, and then one
 output layer. The input layer would be the exact data you are feeding
 into the model, so for this picture this would mean there was two
@@ -696,7 +696,8 @@ The second way this project could be improved upon in the future would
 have been to work entirely within the Google Cloud Environment. Since
 Google Cloud now offers an R Studio that runs directly within their
 cloud environment, this means that I could have taken advantage of both
-Google Cloud Storage and also the Google Cloud AI Platform.
+Google Cloud Storage, to store the data, and also the Google Cloud AI
+Platform, to optimize the model.
 
 The Google Cloud AI Platform would have first helped by speeding up the
 run time of the models I created. As I mentioned in the report, running
@@ -966,17 +967,17 @@ Images}\label{convolutional-neural-networks-cnn-with-medical-images}}
 \end{Highlighting}
 \end{Shaded}
 
-\hypertarget{google-cloud-storage}{%
-\subsection{Google Cloud Storage}\label{google-cloud-storage}}
+One can also check out the file
+report/setup/Convolutional\_Neural\_Net.pdf to an output to all the code
+above. \#\# Google Cloud Storage
 
 If one wants to learn how to store data and upload data from Google
 Cloud Storage to work with within RStudio, go to
 report/setup/GoogleCloudSetup.Rmd to learn how to connect ones R Studio
 with their Google Cloud Storage Buckets. One can also go to
-report/setup/Setup\_Instructions folder to follow the exact process of
-connecting the data from this project with Google Cloud Storage. (In
-order to properly download the data for this project one needs to follow
-these instructions)
+report/setup/Google\_Cloud\_Setup\_Instructions folder to follow the
+exact process of connecting the data from this project with Google Cloud
+Storage.
 
 Note: Other sources that were extremely beneficial towards this project
 include \citep{PAD}, \citep{Medium}, \citep{CloudStorage},
