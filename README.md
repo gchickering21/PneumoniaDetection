@@ -1,6 +1,6 @@
 # Detecting Pneumonia within CT Scans Using Convolutional Neural Networks
 
-To view the actual report, go to report/report.pdf file
+To view the actual report, go to [report.pdf](https://github.com/gchickering21/Pneumonia_Detection/blob/main/report/report.pdf) file
 
 ### Prerequisites
 
