@@ -1,5 +1,7 @@
 # Detecting Pneumonia within CT Scans Using Convolutional Neural Networks
 
+Convolutional Neural Networks have been shown to be effective within the healthcare industry with tasks such as identifying certain types of cancers or even pneumonia from different types of scans. This project shows how to efficiently store and convert images in order to then train convolutional neural networks to detect pneumonia within patients.
+
 To view the actual report, go to [report.pdf](https://github.com/gchickering21/Pneumonia_Detection/blob/main/report/report.pdf) file
 
 ### Prerequisites
