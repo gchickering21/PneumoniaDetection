@@ -2,6 +2,20 @@
 
 To view the actual report, go to report/report.pdf file
 
+### Prerequisites
+
+What things you need to install the software and how to install them
+
+```
+library(tensorflow)
+library(reticulate) 
+library(tfdatasets)
+library(keras)
+library(tidyverse)
+library(ggplot2)
+library(tfruns)
+```
+
 ### Setup Instructions
 
 Due to the size of the data that I was working with in this project, I did not upload the data directly to Github. Therefore in order for the extra files in this project to run, one needs to follow the instructions below to set up this project. 
