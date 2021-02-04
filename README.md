@@ -4,7 +4,7 @@ To view the actual report, go to report/report.pdf file
 
 ### Prerequisites
 
-What things you need to install the software and how to install them
+Packages that need to be downloaded
 
 ```
 library(tensorflow)
