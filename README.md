@@ -1,8 +1,4 @@
-# STAT495-F20 final project
-
-## Detecting Pneumonia within CT Scans Using Convolutional Neural Networks
-
-Graham Chickering Final Project
+# Detecting Pneumonia within CT Scans Using Convolutional Neural Networks
 
 To view the actual report, go to report/report.pdf file
 
